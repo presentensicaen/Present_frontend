@@ -48,7 +48,7 @@ android {
 
             property "sonar.android.lint.report", "build/outputs/lint-results.xml"
             //property "sonar.java.binaries", "build/intermediates/classes/dev/debug" //breaks because there are not CLASSES !
-            property "sonar.jacoco.reportPaths","build/jacoco/testDevDebugUnitTest.exec"
+            property "sonar.jacoco.reportPaths","build/jacoco/testDebugUnitTest.exec"
             //property "sonar.jacoco.itReportPath", instrumentationFileName //later for emulator tests
 
             property "sonar.test.inclusions", "**/*Test*/**"
