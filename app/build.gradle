@@ -51,8 +51,8 @@ android {
             property "sonar.jacoco.reportPaths","build/jacoco/testDebugUnitTest.exec"
             //property "sonar.jacoco.itReportPath", instrumentationFileName //later for emulator tests
 
-            property "sonar.test.inclusions", "**/*Test*/**"
-            property "sonar.exclusions", "**/*Test*/**"
+            //property "sonar.test.inclusions", "**/*Test*/**"
+            property "sonar.exclusions", "**/*test*/**, **/*Test*/**"
         }
     }
 
