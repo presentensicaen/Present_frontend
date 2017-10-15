@@ -9,15 +9,15 @@ public class InitalFakeClassToDelete {
     private int _testInt;
 
 
-    public InitalFakeClassToDelete(int _testInt) {
-        this._testInt = _testInt;
+    public InitalFakeClassToDelete(int testInt) {
+        _testInt = testInt;
     }
 
-    public int get_testInt() {
+    public int getTestInt() {
         return _testInt;
     }
 
     public int add(InitalFakeClassToDelete a){
-        return _testInt + a.get_testInt();
+        return _testInt + a.getTestInt();
     }
 }
