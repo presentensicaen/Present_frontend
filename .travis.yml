@@ -28,4 +28,4 @@ android:
   - extra
 
 script:
-- ./gradlew clean test build
+- ./gradlew clean test build sonar
