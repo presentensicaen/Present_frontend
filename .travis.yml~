@@ -1,0 +1,60 @@
+language: android
+
+jdk:
+  - oraclejdk8
+
+android:
+  components:
+    - platform-tools
+    - tools
+    - build-tools-22.0.1
+    - android-22
+    - extra-android-support
+    # - extra-google-google_play_services
+    - extra-android-m2repository
+    - extra-google-m2repository
+    - sys-img-armeabi-v7a-android-22
+    # - sys-img-armeabi-v7a-android-21
+    # - sys-img-armeabi-v7a-android-20
+    # - sys-img-armeabi-v7a-android-19
+    # - sys-img-armeabi-v7a-android-18
+    # - sys-img-armeabi-v7a-android-17
+    # - sys-img-armeabi-v7a-android-16
+
+before_script:
+  - echo no | android create avd --force -n test -t $ANDROID_TARGET --abi $ANDROID_ABI
+  - emulator -avd test -no-skin -no-audio -no-window &
+  - android-wait-for-emulator
+  - adb shell input keyevent 82 &
+
+before_install:
+  - TERM=dumb
+
+install:
+  - ./gradlew assemble --stacktrace
+
+script:
+  - ./gradlew build connectedCheck --stacktrace
+  - ./gradlew build testDebug --stacktrace
+
+branches:
+  only:
+    - master
+
+env:
+  global:
+    - TRAVIS=true
+    - ADB_INSTALL_TIMEOUT=8
+  matrix:
+    # - ANDROID_TARGET=android-16 ANDROID_ABI=armeabi-v7a
+    # - ANDROID_TARGET=android-17 ANDROID_ABI=armeabi-v7a
+    # - ANDROID_TARGET=android-18 ANDROID_ABI=armeabi-v7a
+    # - ANDROID_TARGET=android-19 ANDROID_ABI=armeabi-v7a
+    # - ANDROID_TARGET=android-20 ANDROID_ABI=armeabi-v7a
+    # - ANDROID_TARGET=android-21 ANDROID_ABI=armeabi-v7a
+    - ANDROID_TARGET=android-22 ANDROID_ABI=armeabi-v7a
+
+notifications:
+  #email: false
+
+sudo: true

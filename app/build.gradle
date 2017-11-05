@@ -83,7 +83,7 @@ dependencies {
     testCompile 'junit:junit:4.12'
 }
 
-task createTestReport(type: JacocoReport, dependsOn: ['testDebugUnitTest']) {
+task createTestReport(type: JacocoReport, dependsOn: ['test','testDebugUnitTest']) {
     group = "Reporting"
 
     reports {
