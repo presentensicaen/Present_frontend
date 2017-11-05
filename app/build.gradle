@@ -1,4 +1,10 @@
+plugins {
+    id "org.sonarqube" version "2.5"
+}
+apply plugin: 'jacoco'
 apply plugin: 'com.android.application'
+
+
 
 android {
     compileSdkVersion 26
@@ -11,12 +17,61 @@ android {
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
+
+
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
+        debug {
+            testCoverageEnabled = true
+        }
     }
+
+    sonarqube {
+        properties {
+
+            property "sonar.organization", "present"
+            property "sonar.host.url", "https://sonarcloud.io"
+            property "sonar.login", "c338049a2948b5443ad12c3eb1bcb915d80ac8df"
+            //property "sonar.username", "jueast08@github"
+            //property "sonar.password", "c338049a2948b5443ad12c3eb1bcb915d80ac8df"
+
+            //property "sonar.projectKey", "key-for-your-project"
+            property "sonar.projectName", "Présent_Frontend"
+            property "sonar.projectVersion", "${version}"
+
+            property "sonar.sources", "src"
+
+            property "sonar.java.source", "7"
+
+            property "sonar.android.lint.report", "build/outputs/lint-results.xml"
+            //property "sonar.java.binaries", "build/intermediates/classes/dev/debug" //breaks because there are not CLASSES !
+            property "sonar.jacoco.reportPaths","build/jacoco/testDebugUnitTest.exec"
+            //property "sonar.jacoco.itReportPath", instrumentationFileName //later for emulator tests
+
+            //property "sonar.test.inclusions", "**/*Test*/**"
+            property "sonar.exclusions", "**/*test*/**, **/*Test*/**"
+        }
+    }
+
+    testOptions {
+        unitTests.all { /* JACOCO TEST COVERAGE */
+            jacoco {
+                includeNoLocationClasses = true
+            }
+        }
+    }
+
+    // Test Logging
+    tasks.withType(Test) {
+        testLogging {
+            events "standardOut", "started", "passed", "skipped", "failed"
+        }
+    }
+
+
 }
 
 dependencies {
@@ -26,4 +81,54 @@ dependencies {
     })
     compile 'com.android.support:appcompat-v7:26.+'
     testCompile 'junit:junit:4.12'
+}
+
+task createTestReport(type: JacocoReport, dependsOn: ['test','testDebugUnitTest']) {
+    group = "Reporting"
+
+    reports {
+        xml.enabled = true
+        html.enabled = true
+    }
+
+    def fileFilter = ['**/R.class',
+                      '**/R$*.class',
+                      '**/BuildConfig.*',
+                      '**/*$ViewInjector*.*',
+                      '**/*$ViewBinder*.*',
+                      '**/*$MembersInjector*.*',
+                      '**/Manifest*.*',
+                      '**/*Test*.*',
+                      'android/**/*.*']
+    def debugTree = fileTree(dir: "${buildDir}/intermediates/classes/dev/dls ebug", excludes: fileFilter)
+    def mainSrc = "${project.projectDir}/src/main/java"
+
+    sourceDirectories = files([mainSrc])
+    classDirectories = files([debugTree])
+    executionData = files("${project.buildDir}/jacoco/testDebugUnitTest.exec")
+}
+
+task createUnitInstrumentTestReport(type: JacocoReport, dependsOn: ['testDebugUnitTest', 'createDebugCoverageReport']) {
+    group = "Reporting"
+
+    reports {
+        xml.enabled = true
+        html.enabled = true
+    }
+
+    def fileFilter = ['**/R.class',
+                      '**/R$*.class',
+                      '**/BuildConfig.*',
+                      '**/*$ViewInjector*.*',
+                      '**/*$ViewBinder*.*',
+                      '**/*$MembersInjector*.*',
+                      '**/Manifest*.*',
+                      '**/*Test*.*',
+                      'android/**/*.*']
+    def debugTree = fileTree(dir: "${buildDir}/intermediates/classes/dev/dls ebug", excludes: fileFilter)
+    def mainSrc = "${project.projectDir}/src/main/java"
+
+    sourceDirectories = files([mainSrc])
+    classDirectories = files([debugTree])
+    executionData = files("${project.buildDir}/jacoco/testDebugUnitTest.exec")
 }
