@@ -3,6 +3,11 @@ sudo: required
 language: android
 jdk: oraclejdk8
 
+branches:
+  only:
+    - develop
+    - master
+    
 before_cache:
   - rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
   - rm -rf $HOME/.gradle/caches/*/plugin-resolution/
