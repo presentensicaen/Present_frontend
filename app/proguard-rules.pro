@@ -23,3 +23,5 @@
 # If you keep the line number information, uncomment this to
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
+-dontnote okhttp3.**, okio.**, retrofit2.**, pl.droidsonroids.**
+-ignorewarnings
