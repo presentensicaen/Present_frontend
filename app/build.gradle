@@ -29,6 +29,16 @@ android {
         }
     }
 
+    //Allows for different configurations types ...use BuildConfig.API_URL for example
+    productFlavors {
+        prod {
+
+        }
+        dev {
+            buildConfigField 'String', 'API_URL', '"http://localhost:8080/"'
+        }
+    }
+
     sonarqube {
         properties {
 
@@ -137,3 +147,4 @@ task createUnitInstrumentTestReport(type: JacocoReport, dependsOn: ['testDebugUn
     classDirectories = files([debugTree])
     executionData = files("${project.buildDir}/jacoco/testDebugUnitTest.exec")
 }
+
