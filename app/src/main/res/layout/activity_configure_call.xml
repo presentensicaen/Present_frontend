@@ -34,13 +34,12 @@
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
         android:layout_marginTop="20dp"
-        android:background="@drawable/spinnerBackground"
+        android:background="@drawable/spinner_background"
         android:entries="@array/duree" />
 
 
     <Button
-        android:id="@+id/button"
-        android:background="@drawable/roundButton"
+        android:id="@+id/launchCall"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/editText"
@@ -48,19 +47,22 @@
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
         android:layout_marginTop="30dp"
+        android:background="@drawable/round_button"
         android:gravity="center"
         android:text="Lancer l'appel"
         android:textColor="@android:color/background_light"
         android:visibility="visible" />
 
     <LinearLayout
+        android:id="@+id/successCall"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginBottom="10dp"
+        android:layout_marginBottom="30dp"
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
         android:background="@android:color/background_light"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:visibility="invisible">
 
         <ImageView
             android:layout_width="match_parent"
