@@ -1,7 +1,9 @@
 <resources>
-    <string name="app_name" translatable="false">Present!</string>
+    <string name="app_name" translatable="false">Présent !</string>
 
     <string name="title_activity_login" translatable="false">LoginActivity</string>
-    <string name="login">se connecter</string>
+    <string name="login">Login</string>
     <string name="title_activity_main">MainActivity</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
 </resources>

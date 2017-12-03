@@ -105,6 +105,7 @@ dependencies {
     testCompile 'com.squareup.okhttp3:mockwebserver:3.9.0'
     testCompile 'junit:junit:4.12'
     annotationProcessor 'com.google.dagger:dagger-compiler:2.4'
+    compile 'com.android.support:cardview-v7:26.+'
 }
 
 task createTestReport(type: JacocoReport, dependsOn: ['test', 'testDebugUnitTest']) {

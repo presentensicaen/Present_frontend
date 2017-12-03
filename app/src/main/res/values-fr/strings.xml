@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Present!</string>
-    <string name="login" translatable="false">Se Connecter</string>
+    <string name="login" translatable="false">Se connecter</string>
+    <string name="email">Addresse mail</string>
+    <string name="password">Mot de passe</string>
 </resources>
