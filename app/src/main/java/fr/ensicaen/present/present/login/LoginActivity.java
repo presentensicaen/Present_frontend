@@ -2,6 +2,7 @@ package fr.ensicaen.present.present.login;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.view.ViewCompat;
 import android.support.v4.view.ViewPropertyAnimatorCompat;
 import android.view.View;
@@ -21,13 +22,12 @@ public class LoginActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        //_presenter.checkTokenValidity();
         setTheme(R.style.AppTheme);
         getWindow().getDecorView().setSystemUiVisibility(
                 View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
     }
 
     @Override
@@ -37,7 +37,14 @@ public class LoginActivity extends Activity {
             return;
         }
 
-        animate();
+        new Handler().postDelayed(new Runnable(){
+            @Override
+            public void run() {
+                animate();
+
+            }
+        }, 500);
+
 
         super.onWindowFocusChanged(hasFocus);
     }
@@ -48,7 +55,7 @@ public class LoginActivity extends Activity {
         ViewGroup container = (ViewGroup) findViewById(R.id.splash_option_container);
 
         ViewCompat.animate(logoImageView)
-                .translationY(-50)
+                .translationY(-100)
                 .setStartDelay(STARTUP_DELAY)
                 .setDuration(ANIM_ITEM_DURATION).setInterpolator(
                 new DecelerateInterpolator(1.2f)).start();
