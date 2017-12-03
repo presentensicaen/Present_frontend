@@ -1,3 +1,15 @@
 <resources>
-    <string name="app_name">Present</string>
+    <string name="app_name">Configurer l\'appel</string>
+
+    <string-array name="duree">
+        <item>5 min</item>
+        <item>10 min</item>
+        <item>15 min</item>
+        <item>20 min</item>
+
+    </string-array>
+
+    <string name="launchCall">Lorem Ipsum dzenfknre fjznfjerng trhjnrntmhs trhinhrrhj drhidtnhoinr
+    gtrnbjtr rb drntj rdt rtutdlijn fjerjgtrjh rjgbbjtrbrjk
+    rgbrjbtjbhjrtnjhnj gtrnbjn rtjn</string>
 </resources>

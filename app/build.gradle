@@ -7,12 +7,12 @@ apply plugin: 'com.android.application'
 
 
 android {
-    compileSdkVersion 26
-    buildToolsVersion "26.0.2"
+    compileSdkVersion 25
+    buildToolsVersion '25.0.3'
     defaultConfig {
         applicationId "fr.ensicaen.present.present"
         minSdkVersion 19
-        targetSdkVersion 26
+        targetSdkVersion 25
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
@@ -58,7 +58,7 @@ android {
 
             property "sonar.android.lint.report", "build/outputs/lint-results.xml"
             //property "sonar.java.binaries", "build/intermediates/classes/dev/debug" //breaks because there are not CLASSES !
-            property "sonar.jacoco.reportPaths","build/jacoco/testDebugUnitTest.exec"
+            property "sonar.jacoco.reportPaths", "build/jacoco/testDebugUnitTest.exec"
             //property "sonar.jacoco.itReportPath", instrumentationFileName //later for emulator tests
 
             //property "sonar.test.inclusions", "**/*Test*/**"
@@ -85,7 +85,8 @@ android {
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    compile 'com.android.support.constraint:constraint-layout:1.0.2'
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
@@ -98,7 +99,7 @@ dependencies {
     testCompile 'junit:junit:4.12'
 }
 
-task createTestReport(type: JacocoReport, dependsOn: ['test','testDebugUnitTest']) {
+task createTestReport(type: JacocoReport, dependsOn: ['test', 'testDebugUnitTest']) {
     group = "Reporting"
 
     reports {
