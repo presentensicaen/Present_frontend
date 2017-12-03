@@ -3,4 +3,5 @@
 
     <string name="title_activity_login" translatable="false">LoginActivity</string>
     <string name="login">se connecter</string>
+    <string name="title_activity_main">MainActivity</string>
 </resources>

@@ -14,4 +14,5 @@ public interface ISplashScreenView {
 
     void showProgressBar();
 
+    void finish();
 }
