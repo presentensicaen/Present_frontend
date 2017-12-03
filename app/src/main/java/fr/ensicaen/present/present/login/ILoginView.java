@@ -5,4 +5,6 @@ package fr.ensicaen.present.present.login;
  */
 
 public interface ILoginView {
+
+    void animate();
 }
