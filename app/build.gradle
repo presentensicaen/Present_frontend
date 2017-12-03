@@ -58,7 +58,7 @@ android {
 
             property "sonar.android.lint.report", "build/outputs/lint-results.xml"
             //property "sonar.java.binaries", "build/intermediates/classes/dev/debug" //breaks because there are not CLASSES !
-            property "sonar.jacoco.reportPaths","build/jacoco/testDebugUnitTest.exec"
+            property "sonar.jacoco.reportPaths", "build/jacoco/testDebugUnitTest.exec"
             //property "sonar.jacoco.itReportPath", instrumentationFileName //later for emulator tests
 
             //property "sonar.test.inclusions", "**/*Test*/**"
@@ -89,16 +89,24 @@ dependencies {
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    compile 'com.android.support:appcompat-v7:26.+'
-    compile 'com.squareup.retrofit2:retrofit:2.3.0'
-    compile 'com.squareup.okhttp3:okhttp:3.9.0'
+
+    // dependency injection
+    
+
+    compile
+    'com.android.support:appcompat-v7:26.+'compile
+    'com.squareup.retrofit2:retrofit:2.3.0'compile
+    'com.squareup.okhttp3:okhttp:3.9.0'compile
+    'com.google.code.gson:gson:2.8.2'compile
+    'com.squareup.retrofit2:converter-gson:2.3.0'compile 'com.android.support.constraint:constraint-layout:1.0.2'
+    compile 'com.google.dagger:dagger:2.4'
+    compile 'com.android.support:support-v4:26.+'
     testCompile 'com.squareup.okhttp3:mockwebserver:3.9.0'
-    compile 'com.google.code.gson:gson:2.8.2'
-    compile 'com.squareup.retrofit2:converter-gson:2.3.0'
     testCompile 'junit:junit:4.12'
+    annotationProcessor 'com.google.dagger:dagger-compiler:2.4'
 }
 
-task createTestReport(type: JacocoReport, dependsOn: ['test','testDebugUnitTest']) {
+task createTestReport(type: JacocoReport, dependsOn: ['test', 'testDebugUnitTest']) {
     group = "Reporting"
 
     reports {
