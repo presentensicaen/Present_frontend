@@ -1,7 +1,6 @@
 <resources>
-    <string name="app_name">Present</string>
+    <string name="app_name" translatable="false">Present!</string>
 
-    <string name="title_activity_login">LoginActivity</string>
-    <string name="dummy_button">Dummy Button</string>
-    <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="title_activity_login" translatable="false">LoginActivity</string>
+    <string name="login">se connecter</string>
 </resources>
