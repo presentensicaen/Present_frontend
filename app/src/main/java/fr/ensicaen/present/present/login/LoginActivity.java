@@ -4,17 +4,16 @@ import android.app.Activity;
 import android.os.Bundle;
 
 import android.support.v4.view.ViewCompat;
-import android.support.v4.view.ViewPropertyAnimatorCompat;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.DecelerateInterpolator;
-import android.widget.Button;
 import android.widget.ImageView;
 
 
 import fr.ensicaen.present.present.R;
+import fr.ensicaen.present.present.utils.Animations.Animator;
 
-public class LoginActivity extends Activity implements ILoginView {
+public final class LoginActivity extends Activity implements ILoginView {
 
     public static final int STARTUP_DELAY = 300;
     public static final int ANIM_ITEM_DURATION = 1000;
@@ -53,34 +52,13 @@ public class LoginActivity extends Activity implements ILoginView {
     }
 
     private void animateContent(){
+        Animator animator = new Animator();
         for (int i = 0; i < _loginContainer.getChildCount(); i++) {
             View v = _loginContainer.getChildAt(i);
-
-            if (!(v instanceof Button)) {
-                animateTextOpacity(v,ITEM_DELAY * i);
-            } else {
-                animateButtonScale(v,ITEM_DELAY * i);
-            }
+            animator.animate(v, ITEM_DELAY * i);
         }
     }
 
-    private void animateTextOpacity(View v, int delay){
-        ViewPropertyAnimatorCompat viewAnimator;
-        viewAnimator = ViewCompat.animate(v)
-                .translationY(50).alpha(1)
-                .setStartDelay(delay + 500)
-                .setDuration(1000);
-        viewAnimator.setInterpolator(new DecelerateInterpolator()).start();
-    }
-
-    private void animateButtonScale(View v, int delay){
-        ViewPropertyAnimatorCompat viewAnimator;
-        viewAnimator = ViewCompat.animate(v)
-                .scaleY(1).scaleX(1)
-                .setStartDelay(delay + 500)
-                .setDuration(500);
-        viewAnimator.setInterpolator(new DecelerateInterpolator()).start();
-    }
 
     private void translateLogo(){
         ViewCompat.animate(_logoImageView)

@@ -6,7 +6,7 @@ import android.os.Handler;
  * Created by jueast on 03/12/17.
  */
 
-public class SplashPresenter implements ISplashPresenter {
+public final class SplashPresenter implements ISplashPresenter {
 
     private ISplashScreenView _view;
 
@@ -16,6 +16,7 @@ public class SplashPresenter implements ISplashPresenter {
 
     @Override
     public void checkTokenValidity() {
+        /**@TOTO replace with real token verification*/
         new Handler().postDelayed(new Runnable(){
             @Override
             public void run() {

@@ -7,7 +7,7 @@ import android.os.Handler;
  * Created by jueast on 03/12/17.
  */
 
-public class LoginActivityPresenter implements ILoginPresenter {
+public final class LoginActivityPresenter implements ILoginPresenter {
 
     private ILoginView _view;
     private boolean animationStarted;
