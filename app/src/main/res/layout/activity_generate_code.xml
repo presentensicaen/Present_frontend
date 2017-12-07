@@ -43,8 +43,9 @@
         android:layout_height="wrap_content"
 
 
-        android:background="@color/present"
+        android:background="@color/colorPrimary"
         android:text="Générer un code"
+        android:textColor="@color/colorWhite"
 
         android:layout_alignParentLeft="true"
         android:layout_below="@id/empty_text" />
@@ -56,8 +57,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
 
-        android:background="@color/present"
+        android:background="@color/colorPrimary"
         android:text="Choisir un groupe"
+        android:textColor="@color/colorWhite"
 
         android:layout_alignParentLeft="true"
         android:layout_below="@id/button_id1"

@@ -1,6 +1,16 @@
 package fr.ensicaen.present.present;
 
+import android.util.Log;
+
+import org.json.JSONException;
 import org.junit.Test;
+
+import java.io.IOException;
+import java.util.ArrayList;
+
+import okhttp3.HttpUrl;
+import okhttp3.mockwebserver.MockResponse;
+import okhttp3.mockwebserver.MockWebServer;
 
 import static org.junit.Assert.assertEquals;
 
@@ -19,4 +29,21 @@ public class InitialFakeClassToDeleteTest {
         assertEquals(4, a.add(b));
     }
 
+    @Test
+    public void  testGetHobbies() throws JSONException, IOException {
+        MockWebServer server = new MockWebServer();
+        MockResponse response = new MockResponse()
+                                .addHeader("Content-Type", "application/json; charset=utf-8")
+                                .addHeader("Cache-Control", "no-cache")
+                                .setBody("[{\"name\": \"blah\"}, {\"name\": \"blah\"}]");
+        server.enqueue(response);
+        server.start();
+
+        InitalFakeClassToDelete exampleHobies = new InitalFakeClassToDelete(2);
+        exampleHobies.setBaseUrl(server.url("/").toString());
+        ArrayList<HobbiesExample> hobbies = exampleHobies.getHobbies("julian");
+
+        assertEquals(new HobbiesExample("blah"), hobbies.get(0));
+        server.close();
+    }
 }
