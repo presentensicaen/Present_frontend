@@ -1,11 +1,14 @@
-package fr.ensicaen.present.present;
+package fr.ensicaen.present.present.generateCode;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
+
+import fr.ensicaen.present.present.R;
+import fr.ensicaen.present.present.selectGroups.SelectGroups;
+import fr.ensicaen.present.present.configureCall.ConfigureCall;
 
 public class GenerateCodeActivity extends AppCompatActivity {
 

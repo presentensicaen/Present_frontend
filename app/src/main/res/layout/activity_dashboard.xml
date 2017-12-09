@@ -7,7 +7,7 @@ android:layout_height="match_parent"
 android:background="#efefef"
 android:gravity="center"
 android:orientation="vertical"
-tools:context="fr.ensicaen.present.present.Dashboard">
+tools:context="fr.ensicaen.present.present.dashboard.Dashboard">
 
 
     <ImageView

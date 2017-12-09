@@ -1,4 +1,4 @@
-package fr.ensicaen.present.present;
+package fr.ensicaen.present.present.selectGroups;
 
 import android.content.Context;
 import android.content.Intent;
@@ -8,6 +8,9 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+
+import fr.ensicaen.present.present.R;
+import fr.ensicaen.present.present.configureCall.ConfigureCall;
 
 
 public class SelectGroups extends AppCompatActivity {

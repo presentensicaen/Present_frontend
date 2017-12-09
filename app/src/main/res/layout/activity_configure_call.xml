@@ -7,7 +7,7 @@
     android:background="#efefef"
     android:gravity="center"
     android:orientation="vertical"
-    tools:context="fr.ensicaen.present.present.ConfigureCall">
+    tools:context="fr.ensicaen.present.present.configureCall.ConfigureCall">
 
 
     <EditText

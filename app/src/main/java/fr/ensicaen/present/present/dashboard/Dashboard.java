@@ -1,10 +1,13 @@
-package fr.ensicaen.present.present;
+package fr.ensicaen.present.present.dashboard;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+
+import fr.ensicaen.present.present.R;
+import fr.ensicaen.present.present.generateCode.GenerateCodeActivity;
 
 public class Dashboard extends AppCompatActivity {
 
