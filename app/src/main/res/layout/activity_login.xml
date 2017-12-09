@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorWhite"
@@ -38,8 +39,9 @@
             android:ems="10"
             android:gravity="center"
             android:hint="@string/password"
-            android:inputType="textPersonName"
-            android:textAppearance="@style/TextAppearance.AppCompat.Widget.ActionBar.Subtitle.Inverse" />
+            android:inputType="none"
+            android:textAppearance="@style/TextAppearance.AppCompat.Widget.ActionBar.Subtitle.Inverse"
+            tools:ignore="TextFields" />
 
         <Button
             android:id="@+id/login_connect_button"
@@ -48,15 +50,15 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="48dp"
             android:elevation="3dp"
+            android:scaleX="0"
+            android:scaleY="0"
             android:text="@string/login" />
     </LinearLayout>
-    <!--android:scaleX="0"
-    android:scaleY="0"-->
     <ImageView
         android:id="@+id/login_logo"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:src="@drawable/logo_black"
-        />
+        android:contentDescription="" />
 </FrameLayout>
