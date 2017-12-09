@@ -34,5 +34,16 @@ public final class LoginActivityPresenter implements ILoginPresenter {
         return true;
     }
 
+    @Override
+    public void onConnectionButtonClick(String email, String password) {
+        if(verifyCredentials(email, password)){
+           _view.goToDashboard(); //@TODO needs to save a user model somewhere
+        }
+    }
+
+    private boolean verifyCredentials(String email, String password){
+        /*@TODO this needs to of course do a real verification */
+        return true;
+    }
 
 }
