@@ -35,7 +35,8 @@ android:
 script:
 - set -e
 - set -x
-- echo y | android update sdk --no-ui --all --filter extra-android-support | grep 'package installed'
-- echo y | android update sdk --no-ui --all --filter extra-android-m2repository | grep 'package installed'
-- echo y | android update sdk --no-ui --all --filter extra-google-m2repository | grep 'package installed'
+
+#- echo y | android update sdk --no-ui --all --filter extra-android-support > /dev/null
+- echo y | android update sdk --no-ui --all --filter extra-android-m2repository /dev/null
+- echo y | android update sdk --no-ui --all --filter extra-google-m2repository > /dev/null
 - ./gradlew clean test build sonar
