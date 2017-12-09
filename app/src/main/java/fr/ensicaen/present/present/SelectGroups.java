@@ -18,6 +18,8 @@ public class SelectGroups extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_select_groups);
+
+
         context = this;
         listview = (ListView)findViewById(R.id.listGroup);
         //string array
@@ -28,6 +30,7 @@ public class SelectGroups extends AppCompatActivity {
         listview.setItemsCanFocus(false);
         // we want multiple clicks
         listview.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
+
 
         Button button1 = (Button) findViewById(R.id.generateCode);
         button1.setOnClickListener(new View.OnClickListener() {

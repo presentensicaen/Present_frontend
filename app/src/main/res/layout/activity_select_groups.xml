@@ -13,7 +13,9 @@
     <ListView
         android:id="@+id/listGroup"
         android:layout_width="match_parent"
-        android:layout_height="377dp"></ListView>
+        android:layout_height="377dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"></ListView>
 
     <Button
         android:id="@+id/generateCode"
