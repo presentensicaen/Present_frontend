@@ -23,7 +23,7 @@ public final class SplashPresenter implements ISplashPresenter {
                 _view.openLoginActivity();
                 _view.finish();
             }
-        }, 1000);
+        }, 0);
 
     }
 

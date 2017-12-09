@@ -43,14 +43,15 @@
 
         <Button
             android:id="@+id/login_connect_button"
+            style="@style/accent_button"
             android:layout_width="250dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="48dp"
             android:elevation="3dp"
-            android:scaleX="0"
-            android:scaleY="0"
             android:text="@string/login" />
     </LinearLayout>
+    <!--android:scaleX="0"
+    android:scaleY="0"-->
     <ImageView
         android:id="@+id/login_logo"
         android:layout_width="200dp"

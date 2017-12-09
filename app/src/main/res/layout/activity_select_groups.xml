@@ -19,6 +19,7 @@
 
     <Button
         android:id="@+id/generateCode"
+        style="@style/accent_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/editText"
@@ -26,7 +27,6 @@
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
         android:layout_marginTop="30dp"
-        android:background="@drawable/accent_color_code"
         android:gravity="center"
         android:text="Générer code appel"
         android:textColor="@android:color/background_light"

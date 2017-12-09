@@ -38,33 +38,31 @@
 
     <Button
         android:id="@+id/button_id1"
-        style="@style/Widget.AppCompat.Button"
+        style="@style/primary_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
 
 
-        android:background="@color/colorPrimary"
-        android:text="Générer un code"
-        android:textColor="@color/colorWhite"
-
         android:layout_alignParentLeft="true"
-        android:layout_below="@id/empty_text" />
+        android:layout_below="@id/empty_text"
+
+        android:text="Générer un code"
+        android:textColor="@color/colorWhite" />
 
 
     <Button
         android:id="@+id/button_id2"
-        style="@style/Widget.AppCompat.Button"
+        style="@style/primary_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
 
-        android:background="@color/colorPrimary"
-        android:text="Choisir un groupe"
-        android:textColor="@color/colorWhite"
-
         android:layout_alignParentLeft="true"
         android:layout_below="@id/button_id1"
+        android:layout_marginTop="20dp"
 
-        android:layout_marginTop="20dp"/>
+        android:text="Choisir un groupe"
+
+        android:textColor="@color/colorWhite" />
 
 
 </RelativeLayout>

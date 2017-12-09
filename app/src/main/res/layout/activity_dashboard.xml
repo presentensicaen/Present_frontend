@@ -42,7 +42,7 @@
                 android:layout_marginLeft="15dp"
                 android:layout_marginRight="15dp"
                 android:layout_marginTop="30dp"
-                android:background="@drawable/accent_color_code"
+                android:background="@drawable/accent_color_button"
                 android:gravity="center"
                 android:text="Répondre à un appel"
                 android:textColor="@android:color/background_light"
@@ -50,6 +50,7 @@
 
             <Button
                 android:id="@+id/launchCall"
+                style="@style/primary_button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/editText"
@@ -57,7 +58,6 @@
                 android:layout_marginLeft="15dp"
                 android:layout_marginRight="15dp"
                 android:layout_marginTop="5dp"
-                android:background="@drawable/primary_color_button"
                 android:gravity="center"
                 android:text="Lancer un appel"
                 android:textColor="@android:color/background_light"
@@ -65,6 +65,7 @@
 
             <Button
                 android:id="@+id/button_id2"
+                style="@style/primary_button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/editText"
@@ -72,7 +73,6 @@
                 android:layout_marginLeft="15dp"
                 android:layout_marginRight="15dp"
                 android:layout_marginTop="5dp"
-                android:background="@drawable/primary_color_button"
                 android:gravity="center"
                 android:text="Consulter un appel"
                 android:textColor="@android:color/background_light"
