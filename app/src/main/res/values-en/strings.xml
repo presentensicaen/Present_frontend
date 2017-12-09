@@ -3,4 +3,10 @@
     <string name="login" translatable="false">Login</string>
     <string name="email">Email</string>
     <string name="password">Password</string>
+    <string name="launch_new_call">Create Call</string>
+    <string name="event_name">Event Name</string>
+    <string name="respond_call">Respond to a call</string>
+    <string name="consult_calls">Review a call</string>
+    <string name="generate_code_no_groupe">Generate a code</string>
+    <string name="chose_group">Choose a group</string>
 </resources>

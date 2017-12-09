@@ -1,16 +1,20 @@
 package fr.ensicaen.present.present.login;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 
 import android.support.v4.view.ViewCompat;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.DecelerateInterpolator;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 
 
 import fr.ensicaen.present.present.R;
+import fr.ensicaen.present.present.dashboard.DashboardActivity;
 import fr.ensicaen.present.present.utils.Animations.Animator;
 
 public final class LoginActivity extends Activity implements ILoginView {
@@ -22,14 +26,27 @@ public final class LoginActivity extends Activity implements ILoginView {
     private ILoginPresenter _presenter;
     private ImageView _logoImageView;
     private ViewGroup _loginContainer;
+    private Button _loginButton;
+    private EditText _emailText;
+    private EditText _passwordText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        initializeActivity();
         _presenter = new LoginActivityPresenter(this);
-        _logoImageView = findViewById(R.id.splash_logo);
-        _loginContainer = findViewById(R.id.splash_option_container);
+        initializeActivity();
+        initializeLayoutComponents();
+    }
+
+    private void initializeLayoutComponents() {
+        _logoImageView = findViewById(R.id.login_logo);
+        _loginContainer = findViewById(R.id.logo_option_container);
+        _loginButton = findViewById(R.id.login_connect_button);
+        _emailText = findViewById(R.id.login_email);
+        _passwordText = findViewById(R.id.login_password);
+        _passwordText.setTransformationMethod(android.text.method.PasswordTransformationMethod.getInstance());
+
+        setConnectionButtonClickAction();
     }
 
     private void initializeActivity(){
@@ -51,6 +68,12 @@ public final class LoginActivity extends Activity implements ILoginView {
         animateContent();
     }
 
+    @Override
+    public void goToDashboard() {
+        Intent loginIntent = new Intent(LoginActivity.this, DashboardActivity.class);
+        startActivity(loginIntent);
+    }
+
     private void animateContent(){
         Animator animator = new Animator();
         for (int i = 0; i < _loginContainer.getChildCount(); i++) {
@@ -59,12 +82,23 @@ public final class LoginActivity extends Activity implements ILoginView {
         }
     }
 
-
     private void translateLogo(){
         ViewCompat.animate(_logoImageView)
                 .translationY(-100)
                 .setStartDelay(STARTUP_DELAY)
                 .setDuration(ANIM_ITEM_DURATION).setInterpolator(
                 new DecelerateInterpolator(1.2f)).start();
+    }
+
+    private void setConnectionButtonClickAction(){
+        _loginButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                _presenter.onConnectionButtonClick(
+                        _emailText.getText().toString(),
+                        _passwordText.getText().toString()
+                );
+            }
+        });
     }
 }

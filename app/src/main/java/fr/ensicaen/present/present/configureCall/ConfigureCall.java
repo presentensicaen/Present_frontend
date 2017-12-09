@@ -1,9 +1,11 @@
-package fr.ensicaen.present.present;
+package fr.ensicaen.present.present.configureCall;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+
+import fr.ensicaen.present.present.R;
 
 public class ConfigureCall extends AppCompatActivity {
 
@@ -16,7 +18,7 @@ public class ConfigureCall extends AppCompatActivity {
         Button button1 = (Button)findViewById(R.id.launchCall);
         button1.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v){
-                findViewById(R.id.successCall).setVisibility(View.VISIBLE);
+                findViewById(R.id.code_result_mesg_container).setVisibility(View.VISIBLE);
             }
         });
     }

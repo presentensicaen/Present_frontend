@@ -27,6 +27,12 @@
     <string name="title_activity_main">MainActivity</string>
     <string name="email">Email</string>
     <string name="password">Password</string>
+    <string name="launch_new_call">Lancer un appel</string>
+    <string name="event_name">Nom d\'évènement</string>
+    <string name="respond_call">Répondre à un appel</string>
+    <string name="consult_calls">Consulter un appel</string>
+    <string name="generate_code_no_groupe">Générer un code</string>
+    <string name="chose_group">Choisir un groupe</string>
 
 
 </resources>
