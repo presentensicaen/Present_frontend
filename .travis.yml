@@ -36,5 +36,5 @@ script:
 - set -e
 - set -x
 
-- sdkmanager --update && y | sdkmanager --licenses
+- sdkmanager --update && yes | (echo y; echo y; echo y; echo y; echo y; echo y) | sdkmanager --licenses
 - ./gradlew clean test build sonar
