@@ -1,9 +1,12 @@
 package fr.ensicaen.present.present;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 
 
@@ -25,5 +28,13 @@ public class SelectGroups extends AppCompatActivity {
         listview.setItemsCanFocus(false);
         // we want multiple clicks
         listview.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
+
+        Button button1 = (Button) findViewById(R.id.generateCode);
+        button1.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v1){
+                Intent intent = new Intent(SelectGroups.this, ConfigureCall.class);
+                startActivity(intent);
+            }
+        });
     }
 }
