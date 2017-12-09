@@ -44,7 +44,7 @@
                 android:layout_marginTop="30dp"
                 android:background="@drawable/accent_color_button"
                 android:gravity="center"
-                android:text="Répondre à un appel"
+                android:text="@string/respond_call"
                 android:textColor="@android:color/background_light"
                 android:visibility="visible" />
 
@@ -59,7 +59,7 @@
                 android:layout_marginRight="15dp"
                 android:layout_marginTop="5dp"
                 android:gravity="center"
-                android:text="Lancer un appel"
+                android:text="@string/launch_new_call"
                 android:textColor="@android:color/background_light"
                 android:visibility="visible" />
 
@@ -74,7 +74,7 @@
                 android:layout_marginRight="15dp"
                 android:layout_marginTop="5dp"
                 android:gravity="center"
-                android:text="Consulter un appel"
+                android:text="@string/consult_calls"
                 android:textColor="@android:color/background_light"
                 android:visibility="visible" />
         </LinearLayout>
