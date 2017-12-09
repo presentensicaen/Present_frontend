@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -9,76 +9,66 @@
     android:orientation="vertical"
     tools:context="fr.ensicaen.present.present.dashboard.DashboardActivity">
 
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
 
-    <ScrollView
+    <android.support.v7.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="20dp">
 
-        <LinearLayout
+        <ImageView
+            android:id="@+id/imageView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            app:srcCompat="@drawable/chart"
+            tools:ignore="ContentDescription" />
+    </android.support.v7.widget.CardView>
 
-            <android.support.v7.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:layout_marginTop="20dp">
+    <Button
+        android:id="@+id/answerCall"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/accent_color_button"
+        android:gravity="center"
+        android:text="@string/respond_call"
+        android:textColor="@android:color/background_light"
+        android:visibility="visible" />
 
-                <ImageView
-                    android:id="@+id/imageView"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:srcCompat="@drawable/chart" />
-            </android.support.v7.widget.CardView>
+    <Button
+        android:id="@+id/launchCall"
+        style="@style/primary_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="5dp"
+        android:gravity="center"
+        android:text="@string/launch_new_call"
+        android:textColor="@android:color/background_light"
+        android:visibility="visible" />
 
-            <Button
-                android:id="@+id/answerCall"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/editText"
-                android:layout_marginBottom="5dp"
-                android:layout_marginLeft="15dp"
-                android:layout_marginRight="15dp"
-                android:layout_marginTop="30dp"
-                android:background="@drawable/accent_color_button"
-                android:gravity="center"
-                android:text="@string/respond_call"
-                android:textColor="@android:color/background_light"
-                android:visibility="visible" />
-
-            <Button
-                android:id="@+id/launchCall"
-                style="@style/primary_button"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/editText"
-                android:layout_marginBottom="5dp"
-                android:layout_marginLeft="15dp"
-                android:layout_marginRight="15dp"
-                android:layout_marginTop="5dp"
-                android:gravity="center"
-                android:text="@string/launch_new_call"
-                android:textColor="@android:color/background_light"
-                android:visibility="visible" />
-
-            <Button
-                android:id="@+id/button_id2"
-                style="@style/primary_button"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/editText"
-                android:layout_marginBottom="20dp"
-                android:layout_marginLeft="15dp"
-                android:layout_marginRight="15dp"
-                android:layout_marginTop="5dp"
-                android:gravity="center"
-                android:text="@string/consult_calls"
-                android:textColor="@android:color/background_light"
-                android:visibility="visible" />
-        </LinearLayout>
-    </ScrollView>
-
-
-</RelativeLayout>
+    <Button
+        android:id="@+id/review_call_button"
+        style="@style/primary_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="5dp"
+        android:gravity="center"
+        android:text="@string/consult_calls"
+        android:textColor="@android:color/background_light"
+        android:visibility="visible" />
+</LinearLayout>
+</ScrollView>

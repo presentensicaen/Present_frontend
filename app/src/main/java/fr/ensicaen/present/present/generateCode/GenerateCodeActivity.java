@@ -25,7 +25,7 @@ public class GenerateCodeActivity extends AppCompatActivity {
             }
         });
 
-        Button button2 = (Button) findViewById(R.id.button_id2);
+        Button button2 = (Button) findViewById(R.id.choose_groupe_button);
         button2.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v1){
                 Intent intent = new Intent(GenerateCodeActivity.this, SelectGroups.class);

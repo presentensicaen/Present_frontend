@@ -18,7 +18,7 @@ public class ConfigureCall extends AppCompatActivity {
         Button button1 = (Button)findViewById(R.id.launchCall);
         button1.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v){
-                findViewById(R.id.successCall).setVisibility(View.VISIBLE);
+                findViewById(R.id.code_result_mesg_container).setVisibility(View.VISIBLE);
             }
         });
     }
