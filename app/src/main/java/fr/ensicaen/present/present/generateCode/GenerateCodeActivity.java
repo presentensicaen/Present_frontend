@@ -17,7 +17,7 @@ public class GenerateCodeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_generate_code);
 
-        Button button1 = (Button)findViewById(R.id.button_id1);
+        Button button1 = (Button)findViewById(R.id.generate_without_group_button);
         button1.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v){
                 Intent intent = new Intent(GenerateCodeActivity.this, ConfigureCall.class);
