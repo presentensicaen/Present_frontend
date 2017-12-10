@@ -94,24 +94,24 @@ dependencies {
     // dependency injection
 
 
-    compile 'com.android.support:appcompat-v7:26.+'
+    compile 'com.android.support:appcompat-v7:26.0.0-alpha1'
     compile 'com.squareup.retrofit2:retrofit:2.3.0'
     compile 'com.squareup.okhttp3:okhttp:3.9.0'
     compile 'com.google.code.gson:gson:2.8.2'
     compile 'com.squareup.retrofit2:converter-gson:2.3.0'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     compile 'com.google.dagger:dagger:2.4'
-    compile 'com.android.support:design:26.+'
+    compile 'com.android.support:design:26.0.0-alpha1'
     testCompile 'com.squareup.okhttp3:mockwebserver:3.9.0'
     testCompile 'junit:junit:4.12'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     compile 'com.google.dagger:dagger:2.4'
-    compile 'com.android.support:design:26.+'
+    compile 'com.android.support:design:26.0.0-alpha1'
     testCompile 'com.squareup.okhttp3:mockwebserver:3.9.0'
     testCompile 'junit:junit:4.12'
     annotationProcessor 'com.google.dagger:dagger-compiler:2.4'
-    compile 'com.android.support:cardview-v7:26.+'
+    compile 'com.android.support:cardview-v7:26.0.0-alpha1'
 }
 
 task createTestReport(type: JacocoReport, dependsOn: ['test', 'testDebugUnitTest']) {

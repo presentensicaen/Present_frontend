@@ -4,11 +4,6 @@
         <color android:color="@color/colorWhite"/>
     </item>
     <item>
-        <bitmap
-            android:src="@drawable/logo_pin"
-            android:width="200dp"
-            android:tileMode="disabled"
-            android:top="144dp"
-            android:gravity="center"/>
+        <bitmap android:src="@drawable/logo_pin" />
     </item>
 </layer-list>

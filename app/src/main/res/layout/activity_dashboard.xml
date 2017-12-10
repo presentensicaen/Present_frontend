@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorWhite"
     android:gravity="center"
     android:orientation="vertical"
     tools:context="fr.ensicaen.present.present.dashboard.DashboardActivity">
@@ -37,7 +36,7 @@
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
         android:layout_marginTop="30dp"
-        android:background="@drawable/accent_color_button"
+        android:background="@drawable/accent_button"
         android:gravity="center"
         android:text="@string/respond_call"
         android:textColor="@android:color/background_light"

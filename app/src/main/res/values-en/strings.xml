@@ -1,12 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="login" translatable="false">Login</string>
+    <string name="login">Login</string>
     <string name="email">Email</string>
     <string name="password">Password</string>
     <string name="launch_new_call">Create Call</string>
-    <string name="event_name">Event Name</string>
+    <string name="event_name">Event name</string>
     <string name="respond_call">Respond to a call</string>
     <string name="consult_calls">Review a call</string>
-    <string name="generate_code_no_groupe">Generate a code</string>
+    <string name="generate_code_no_groupe">Generate Code</string>
     <string name="chose_group">Choose a group</string>
+    <string name="empty_text">Lorem ipsum dolor sit amet, sapien etiam, nunc amet     dolor ac odio mauris justo. Luctus arcu, ur,a preasent at id quisque ac. Arcu     es massa vestibulum malesuada, integer vivamus elit eu mauris eus, cum eros quis     aliquam wisi. Nulla wisi laoreet suspendisse integer vivamus elit eu mauris     henderit facilisi, mi mattis pariatur aliquam pharetra eget.</string>
+    <string name="header_generate_code">Blah Blah</string>
+    <string name="launchCall">Lorem Ipsum dzenfknre fjznfjerng trhjnrntmhs trhinhrrhj drhidtnhoinr     gtrnbjtr rb drntj rdt rtutdlijn fjerjgtrjh rjgbbjtrbrjk     rgbrjbtjbhjrtnjhnj gtrnbjn rtjn</string>
 </resources>

@@ -17,7 +17,7 @@
     <style name="accent_button" parent="@android:style/Widget.Button">
         <item name="android:gravity">center_vertical|center_horizontal</item>
         <item name="android:textColor">#FFFFFFFF</item>
-        <item name="android:textSize">16dp</item>
+        <item name="android:textSize">16sp</item>
         <item name="android:background">@drawable/accent_button</item>
         <item name="android:focusable">true</item>
         <item name="android:clickable">true</item>
@@ -26,7 +26,7 @@
     <style name="primary_button" parent="@android:style/Widget.Button">
         <item name="android:gravity">center_vertical|center_horizontal</item>
         <item name="android:textColor">#FFFFFFFF</item>
-        <item name="android:textSize">16dp</item>
+        <item name="android:textSize">16sp</item>
         <item name="android:background">@drawable/primary_button</item>
         <item name="android:focusable">true</item>
         <item name="android:clickable">true</item>

@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorWhite"
     android:orientation="vertical"
     >
     <LinearLayout
@@ -49,7 +48,6 @@
             android:layout_width="250dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="48dp"
-            android:elevation="3dp"
             android:scaleX="0"
             android:scaleY="0"
             android:text="@string/login" />
@@ -60,5 +58,5 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:src="@drawable/logo_black"
-        android:contentDescription="" />
+        android:contentDescription="@string/app_name" />
 </FrameLayout>
