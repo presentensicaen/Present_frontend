@@ -5,7 +5,4 @@
     android:layout_width="match_parent"
     android:layout_height="90dip"
     android:checkMark="?android:attr/listChoiceIndicatorMultiple"
-    android:clickable="true"
-    android:checked="true"
-    android:gravity="center"
-    android:hint="Checked" />
+    android:gravity="center" />

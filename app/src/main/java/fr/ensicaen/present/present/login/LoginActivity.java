@@ -84,7 +84,7 @@ public class LoginActivity extends Activity implements ILoginView {
 
     private void translateLogo(){
         ViewCompat.animate(_logoImageView)
-                .translationY(-100)
+                .translationY(-200)
                 .setStartDelay(STARTUP_DELAY)
                 .setDuration(ANIM_ITEM_DURATION).setInterpolator(
                 new DecelerateInterpolator(1.2f)).start();
