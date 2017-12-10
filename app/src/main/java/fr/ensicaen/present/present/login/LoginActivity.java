@@ -15,6 +15,8 @@ import android.widget.ImageView;
 
 import fr.ensicaen.present.present.R;
 import fr.ensicaen.present.present.dashboard.DashboardActivity;
+import fr.ensicaen.present.present.generateCode.GenerateCodeActivity;
+import fr.ensicaen.present.present.selectGroups.SelectGroups;
 import fr.ensicaen.present.present.utils.Animations.Animator;
 
 public class LoginActivity extends Activity implements ILoginView {
@@ -98,6 +100,9 @@ public class LoginActivity extends Activity implements ILoginView {
                         _emailText.getText().toString(),
                         _passwordText.getText().toString()
                 );
+                Intent intent = new Intent(LoginActivity.this, DashboardActivity.class);
+                startActivity(intent);
+
             }
         });
     }
