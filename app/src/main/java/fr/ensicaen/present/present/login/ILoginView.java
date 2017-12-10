@@ -9,4 +9,6 @@ public interface ILoginView {
     void animate();
 
     void goToDashboard();
+
+    void finish();
 }

@@ -17,14 +17,8 @@ public final class SplashPresenter implements ISplashPresenter {
     @Override
     public void checkTokenValidity() {
         /**@TOTO replace with real token verification*/
-        new Handler().postDelayed(new Runnable(){
-            @Override
-            public void run() {
-                _view.openLoginActivity();
-                _view.finish();
-            }
-        }, 0);
-
+        _view.openLoginActivity();
+        _view.finish();
     }
 
     @Override

@@ -1,4 +1,4 @@
-package fr.ensicaen.present.present;
+package fr.ensicaen.present.present.tests2delete;
 
 import java.io.IOException;
 import java.util.ArrayList;

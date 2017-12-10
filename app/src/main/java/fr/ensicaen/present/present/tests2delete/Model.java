@@ -1,4 +1,4 @@
-package fr.ensicaen.present.present;
+package fr.ensicaen.present.present.tests2delete;
 
 /**
  * Created by pierr on 03/12/2017.

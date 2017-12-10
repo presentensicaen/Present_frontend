@@ -17,7 +17,7 @@ import fr.ensicaen.present.present.R;
 import fr.ensicaen.present.present.dashboard.DashboardActivity;
 import fr.ensicaen.present.present.utils.Animations.Animator;
 
-public final class LoginActivity extends Activity implements ILoginView {
+public class LoginActivity extends Activity implements ILoginView {
 
     public static final int STARTUP_DELAY = 300;
     public static final int ANIM_ITEM_DURATION = 1000;

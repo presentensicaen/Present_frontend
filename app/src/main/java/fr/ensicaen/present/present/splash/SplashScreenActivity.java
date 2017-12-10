@@ -6,7 +6,7 @@ import android.os.Bundle;
 
 import fr.ensicaen.present.present.login.LoginActivity;
 
-public final class SplashScreenActivity extends Activity implements ISplashScreenView {
+public class SplashScreenActivity extends Activity implements ISplashScreenView {
 
 
     private ISplashPresenter _presenter;

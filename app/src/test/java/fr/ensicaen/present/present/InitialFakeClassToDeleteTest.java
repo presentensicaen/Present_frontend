@@ -1,14 +1,13 @@
 package fr.ensicaen.present.present;
 
-import android.util.Log;
-
 import org.json.JSONException;
 import org.junit.Test;
 
 import java.io.IOException;
 import java.util.ArrayList;
 
-import okhttp3.HttpUrl;
+import fr.ensicaen.present.present.tests2delete.HobbiesExample;
+import fr.ensicaen.present.present.tests2delete.InitalFakeClassToDelete;
 import okhttp3.mockwebserver.MockResponse;
 import okhttp3.mockwebserver.MockWebServer;
 
