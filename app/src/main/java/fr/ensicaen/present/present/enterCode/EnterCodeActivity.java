@@ -26,7 +26,7 @@ public class EnterCodeActivity extends Activity implements IEnterCodeView {
         button1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                findViewById(R.id.success_message).setVisibility(View.VISIBLE);
+                findViewById(R.id.success_message_container).setVisibility(View.VISIBLE);
             }
         });
     }
