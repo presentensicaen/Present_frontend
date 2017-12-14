@@ -5,5 +5,5 @@ package fr.ensicaen.present.present.enterCode;
  */
 
 interface IEnterCodeView {
-    void enterCodeActivity();
+    void initializeEnterCodeActivity();
 }
