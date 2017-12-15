@@ -7,11 +7,13 @@ import android.view.View;
 import android.widget.Button;
 
 import fr.ensicaen.present.present.R;
+import fr.ensicaen.present.present.enterCode.EnterCodeActivity;
 import fr.ensicaen.present.present.generateCode.GenerateCodeActivity;
 
 public class DashboardActivity extends AppCompatActivity implements IDashboardView{
 
     private Button _launchCallButton;
+    private Button _answerCallButton;
     private IDashboardPresenter _presenter;
 
     @Override
@@ -23,6 +25,9 @@ public class DashboardActivity extends AppCompatActivity implements IDashboardVi
 
         _launchCallButton = (Button)findViewById(R.id.launchCall);
         setLaunchCallAction();
+
+        _answerCallButton = (Button)findViewById(R.id.answerCall);
+        setAnswerCallAction();
     }
 
     private void setLaunchCallAction() {
@@ -33,8 +38,22 @@ public class DashboardActivity extends AppCompatActivity implements IDashboardVi
         });
     }
 
+    private void setAnswerCallAction(){
+        _answerCallButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                _presenter.onAnswerCallClick();
+            }
+        });
+    }
+
     public void goToGenerateCode() {
         Intent intent = new Intent(DashboardActivity.this, GenerateCodeActivity.class);
+        startActivity(intent);
+    }
+
+    public void goToEnterCode(){
+        Intent intent = new Intent(DashboardActivity.this, EnterCodeActivity.class);
         startActivity(intent);
     }
 }
