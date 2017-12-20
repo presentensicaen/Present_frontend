@@ -6,6 +6,5 @@ package fr.ensicaen.present.present.enterCode;
 
 interface IEnterCodePresenter {
     void sendCode();
-    void getMessage();
 
 }
