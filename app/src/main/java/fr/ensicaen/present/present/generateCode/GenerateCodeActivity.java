@@ -10,13 +10,23 @@ import fr.ensicaen.present.present.R;
 import fr.ensicaen.present.present.selectGroups.SelectGroups;
 import fr.ensicaen.present.present.configureCall.ConfigureCall;
 
-public class GenerateCodeActivity extends AppCompatActivity {
+public class GenerateCodeActivity extends AppCompatActivity implements IGenerateCodeView {
+
+    private IGenerateCodePresenter _presenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_generate_code);
+        _presenter = new GenerateCodePresenter(this);
+        initializeLayoutComponents();
+        initializeGenerateCodeActivity();
+    }
 
+    public void initializeLayoutComponents (){
+        setContentView(R.layout.activity_generate_code);
+    }
+
+    public void initializeGenerateCodeActivity(){
         Button button1 = (Button)findViewById(R.id.generate_without_group_button);
         button1.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v){
@@ -32,6 +42,5 @@ public class GenerateCodeActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
     }
 }

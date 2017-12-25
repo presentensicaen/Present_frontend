@@ -23,6 +23,7 @@ public class EnterCodeActivity extends Activity implements IEnterCodeView {
         initializeLayoutComponents();
         initializeEnterCodeActivity();
     }
+
     public void initializeEnterCodeActivity() {
         Button enterCodeButton = (Button)findViewById(R.id.enter_code);
         Button returnToDashboardButton = (Button)findViewById(R.id.return_dashboard);
