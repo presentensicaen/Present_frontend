@@ -59,4 +59,6 @@
         android:layout_gravity="center"
         android:src="@drawable/logo_black"
         android:contentDescription="@string/app_name" />
+
+    <include layout="@layout/include_progress_overlay"/>
 </FrameLayout>

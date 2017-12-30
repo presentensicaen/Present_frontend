@@ -12,6 +12,7 @@
         <item name="android:windowBackground">@drawable/splash_screen</item>
         <item name="android:windowNoTitle">true</item>
         <item name="android:windowFullscreen">true</item>
+
     </style>
 
     <style name="accent_button" parent="@android:style/Widget.Button">
@@ -31,4 +32,5 @@
         <item name="android:focusable">true</item>
         <item name="android:clickable">true</item>
     </style>
+
 </resources>
