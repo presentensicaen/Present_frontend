@@ -66,7 +66,7 @@ public class LoginActivityPresenter implements ILoginPresenter {
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnSubscribe(disposable -> _view.showLoadingAnimation())
                 .doOnComplete(this::onVerificationComplete)
-                .subscribe(this::handleLoginSuccesResponse, this::handleLoginErrorResponse);
+                .subscribe(this::handleLoginSuccessResponse, this::handleLoginErrorResponse);
 
     }
 
@@ -88,7 +88,7 @@ public class LoginActivityPresenter implements ILoginPresenter {
         return _user != null;
     }
 
-    private void handleLoginSuccesResponse(ApiResponseModel<UserModel.UserObjectHolder> response){
+    private void handleLoginSuccessResponse(ApiResponseModel<UserModel.UserObjectHolder> response){
         _user = response.getData().getUser();
     }
 
