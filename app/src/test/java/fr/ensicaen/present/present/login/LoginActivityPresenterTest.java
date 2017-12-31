@@ -8,7 +8,12 @@ import org.junit.Test;
 import org.mockito.Mock;
 import org.mockito.invocation.InvocationOnMock;
 import org.mockito.stubbing.Answer;
+import org.powermock.reflect.Whitebox;
 
+
+import java.lang.reflect.Field;
+import java.util.HashSet;
+import java.util.Set;
 
 import static org.junit.Assert.assertFalse;
 import static org.mockito.ArgumentMatchers.any;
@@ -40,6 +45,7 @@ public class LoginActivityPresenterTest {
 
     }
 
+    //@TODO TEST
 
 
     @Test
