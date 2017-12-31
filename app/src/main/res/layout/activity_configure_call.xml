@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:gravity="center"
     android:orientation="vertical"
-    tools:context="fr.ensicaen.present.present.configureCall.ConfigureCall">
+    tools:context="fr.ensicaen.present.present.configureCall.ConfigureCallActivity">
 
 
     <LinearLayout

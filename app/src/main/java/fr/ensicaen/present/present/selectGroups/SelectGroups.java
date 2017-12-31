@@ -10,7 +10,7 @@ import android.widget.Button;
 import android.widget.ListView;
 
 import fr.ensicaen.present.present.R;
-import fr.ensicaen.present.present.configureCall.ConfigureCall;
+import fr.ensicaen.present.present.configureCall.ConfigureCallActivity;
 
 
 public class SelectGroups extends AppCompatActivity {
@@ -38,7 +38,7 @@ public class SelectGroups extends AppCompatActivity {
         Button button1 = (Button) findViewById(R.id.generateCode);
         button1.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v1){
-                Intent intent = new Intent(SelectGroups.this, ConfigureCall.class);
+                Intent intent = new Intent(SelectGroups.this, ConfigureCallActivity.class);
                 startActivity(intent);
             }
         });
