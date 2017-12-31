@@ -12,8 +12,10 @@ import fr.ensicaen.present.present.BuildConfig;
 import fr.ensicaen.present.present.models.ApiResponseModel;
 import fr.ensicaen.present.present.models.UserModel;
 import fr.ensicaen.present.present.services.IUserService;
+import fr.ensicaen.present.present.utils.api.NetworkTools;
 import fr.ensicaen.present.present.utils.api.ServiceFactory;
 import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 
 
@@ -64,10 +66,22 @@ public class LoginActivityPresenter implements ILoginPresenter {
         service.loginUser(createLoginPayload(email, password))
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .doOnSubscribe(disposable -> _view.showLoadingAnimation())
+                .doOnSubscribe(this::onLoginAttemptStart)
                 .doOnComplete(this::onVerificationComplete)
                 .subscribe(this::handleLoginSuccessResponse, this::handleLoginErrorResponse);
 
+    }
+
+    private void onLoginAttemptStart(Disposable d){
+        _view.showLoadingAnimation();
+        Context c = _view.getContext();
+        try {
+            NetworkTools.verifyConnection(c);
+        } catch (NetworkTools.NoInternetException e) {
+            _view.hideLoadingAnimation();
+            Toast.makeText(c, "Erreur : Network error", Toast.LENGTH_SHORT).show();
+            d.dispose();
+        }
     }
 
     private void onVerificationComplete() {
