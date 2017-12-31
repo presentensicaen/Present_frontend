@@ -7,7 +7,7 @@ import android.widget.Button;
 
 import fr.ensicaen.present.present.R;
 
-public class ConfigureCallActivity extends AppCompatActivity {
+public class ConfigureCallActivity extends AppCompatActivity implements IConfigurePresenter{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

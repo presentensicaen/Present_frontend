@@ -13,7 +13,7 @@ import fr.ensicaen.present.present.R;
 import fr.ensicaen.present.present.configureCall.ConfigureCallActivity;
 
 
-public class SelectGroups extends AppCompatActivity {
+public class SelectGroups extends AppCompatActivity implements ISelectView{
     ListView listview;
     String[] foody;
     Context context;

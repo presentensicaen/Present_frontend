@@ -10,7 +10,7 @@ import fr.ensicaen.present.present.R;
 import fr.ensicaen.present.present.selectGroups.SelectGroups;
 import fr.ensicaen.present.present.configureCall.ConfigureCallActivity;
 
-public class GenerateCodeActivity extends AppCompatActivity {
+public class GenerateCodeActivity extends AppCompatActivity implements IGenerateView {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

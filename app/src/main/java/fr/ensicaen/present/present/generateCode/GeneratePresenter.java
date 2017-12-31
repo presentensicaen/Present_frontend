@@ -4,5 +4,5 @@ package fr.ensicaen.present.present.generateCode;
  * Created by pierr on 31/12/2017.
  */
 
-public class GeneratePresenter {
+public class GeneratePresenter implements IGeneratePresenter{
 }
