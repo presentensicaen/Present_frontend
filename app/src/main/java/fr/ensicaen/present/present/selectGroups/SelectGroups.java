@@ -26,7 +26,7 @@ public class SelectGroups extends AppCompatActivity {
         context = this;
         listview = (ListView)findViewById(R.id.listGroup);
         //string array
-        String[] foody = {"pizza", "burger", "chocolate", "ice-cream", "banana", "apple"};
+        String[] foody = {"TP1 info 2A", "TP2 info 2A", "TD A info 2A", "TD B info 2A", "promo info 2A"};
         // set adapter for listview
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.list_item, foody);
         listview.setAdapter(adapter);
