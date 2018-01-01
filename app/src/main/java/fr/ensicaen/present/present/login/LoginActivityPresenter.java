@@ -8,6 +8,8 @@ import android.widget.Toast;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.HashSet;
+
 import fr.ensicaen.present.present.models.ApiResponseModel;
 import fr.ensicaen.present.present.models.UserModel;
 import fr.ensicaen.present.present.services.IUserService;
@@ -28,11 +30,15 @@ public class LoginActivityPresenter implements ILoginPresenter {
     private ILoginView _view;
     private boolean _animationStarted;
     private UserModel _user;
+    private Handler _handler;
 
     public LoginActivityPresenter(ILoginView view){
         _view = view;
         _animationStarted = false;
+        _handler = new Handler();
     }
+
+
 
     @Override
     public boolean onWindowFocusChanged(boolean hasFocus) {
@@ -40,7 +46,7 @@ public class LoginActivityPresenter implements ILoginPresenter {
             return false;
         }
 
-        new Handler().postDelayed(() -> {
+        _handler.postDelayed(() -> {
             _view.animate();
             _animationStarted = false;
         }, 500);
@@ -127,6 +133,20 @@ public class LoginActivityPresenter implements ILoginPresenter {
             e.printStackTrace();
         }
         return jsonPayload;
+    }
+
+
+    /*
+    * F O R  T E S T I N G   O N L Y
+    */
+    LoginActivityPresenter(ILoginView view, Handler handler){
+        _view = view;
+        _animationStarted = false;
+        _handler = handler;
+    }
+
+    boolean isAnimationStarted() {
+        return _animationStarted;
     }
 
 }
