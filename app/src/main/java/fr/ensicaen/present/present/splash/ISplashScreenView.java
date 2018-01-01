@@ -1,5 +1,7 @@
 package fr.ensicaen.present.present.splash;
 
+import android.content.Context;
+
 /**
  * Created by jueast on 03/12/17.
  */
@@ -15,4 +17,6 @@ public interface ISplashScreenView {
     void showProgressBar();
 
     void finish();
+
+    Context getContext();
 }

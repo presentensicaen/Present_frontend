@@ -8,10 +8,10 @@ import android.widget.Toast;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import fr.ensicaen.present.present.BuildConfig;
 import fr.ensicaen.present.present.models.ApiResponseModel;
 import fr.ensicaen.present.present.models.UserModel;
 import fr.ensicaen.present.present.services.IUserService;
+import fr.ensicaen.present.present.utils.Config;
 import fr.ensicaen.present.present.utils.api.NetworkTools;
 import fr.ensicaen.present.present.utils.api.ServiceFactory;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -32,7 +32,6 @@ public class LoginActivityPresenter implements ILoginPresenter {
     public LoginActivityPresenter(ILoginView view){
         _view = view;
         _animationStarted = false;
-
     }
 
     @Override
@@ -41,12 +40,9 @@ public class LoginActivityPresenter implements ILoginPresenter {
             return false;
         }
 
-        new Handler().postDelayed(new Runnable(){
-            @Override
-            public void run() {
-                _view.animate();
-                _animationStarted = false;
-            }
+        new Handler().postDelayed(() -> {
+            _view.animate();
+            _animationStarted = false;
         }, 500);
 
         return true;
@@ -61,7 +57,7 @@ public class LoginActivityPresenter implements ILoginPresenter {
         _user = null;
 
         IUserService service = ServiceFactory
-                .createRetrofitService(IUserService.class, BuildConfig.API_URL);
+                .createRetrofitService(IUserService.class, Config.property("API_URL"));
 
         service.loginUser(createLoginPayload(email, password))
                 .subscribeOn(Schedulers.io())
@@ -79,6 +75,7 @@ public class LoginActivityPresenter implements ILoginPresenter {
             NetworkTools.verifyConnection(c);
         } catch (NetworkTools.NoInternetException e) {
             _view.hideLoadingAnimation();
+            //@TODO make this a constant
             Toast.makeText(c, "Erreur : Network error", Toast.LENGTH_SHORT).show();
             d.dispose();
         }
@@ -88,6 +85,7 @@ public class LoginActivityPresenter implements ILoginPresenter {
         Context c =  _view.getContext();
         if(!isUserValidated()){
             _view.hideLoadingAnimation();
+            //@TODO make this a constant
             Toast.makeText(c,"Erreur : login failed", Toast.LENGTH_SHORT).show();
         }else{
             _view.hideLoadingAnimation();
@@ -107,6 +105,7 @@ public class LoginActivityPresenter implements ILoginPresenter {
     }
 
     private void handleLoginErrorResponse(Throwable throwable) {
+        _view.hideLoadingAnimation();
         //@TODO handle error
         Toast.makeText(
                 _view.getContext(),
