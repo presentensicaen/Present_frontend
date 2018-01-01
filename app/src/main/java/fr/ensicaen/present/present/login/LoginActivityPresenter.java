@@ -102,7 +102,7 @@ public class LoginActivityPresenter implements ILoginPresenter {
         }
     }
 
-    private boolean isUserValidated() {
+    public boolean isUserValidated() {
         return _user != null;
     }
 
@@ -145,8 +145,11 @@ public class LoginActivityPresenter implements ILoginPresenter {
         _handler = handler;
     }
 
-    boolean isAnimationStarted() {
-        return _animationStarted;
+    void setUser(UserModel user){
+        _user = user;
     }
 
+    UserModel getUser(){
+        return _user;
+    }
 }

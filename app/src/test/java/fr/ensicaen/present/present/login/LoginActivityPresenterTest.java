@@ -7,11 +7,19 @@ import org.junit.Test;
 import org.mockito.Mock;
 
 
+import java.io.IOException;
+
+import fr.ensicaen.present.present.models.UserModel;
+import okhttp3.mockwebserver.MockResponse;
+import okhttp3.mockwebserver.MockWebServer;
+
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 /**
@@ -21,7 +29,7 @@ import static org.mockito.Mockito.when;
 public class LoginActivityPresenterTest {
 
     @Mock
-    private LoginActivity _activity;
+    private LoginActivity _view;
 
     @Mock
     private Handler _handler;
@@ -30,8 +38,8 @@ public class LoginActivityPresenterTest {
 
     @Before
     public void setup(){
-        _activity = mock(LoginActivity.class);
-        _presenter = new LoginActivityPresenter(_activity, createMockHandler());
+        _view = mock(LoginActivity.class);
+        _presenter = new LoginActivityPresenter(_view, createMockHandler());
     }
 
     private Handler createMockHandler() {
@@ -58,7 +66,15 @@ public class LoginActivityPresenterTest {
         assertTrue(_presenter.onWindowFocusChanged(true));
     }
 
+    @Test
+    public void isUserValidTestFalse() {
+        _presenter.setUser(null);
+        assertFalse(_presenter.isUserValidated());
+    }
 
-
-
+    @Test
+    public void isUserValidTestTrue() {
+        _presenter.setUser(new UserModel("Julian", "Easterly", "id"));
+        assertTrue(_presenter.isUserValidated());
+    }
 }
