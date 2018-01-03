@@ -1,25 +1,24 @@
 package fr.ensicaen.present.present.login;
 
 import android.os.Handler;
-import android.os.Message;
 
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
-import org.mockito.invocation.InvocationOnMock;
-import org.mockito.stubbing.Answer;
-import org.powermock.reflect.Whitebox;
 
 
-import java.lang.reflect.Field;
-import java.util.HashSet;
-import java.util.Set;
+import java.io.IOException;
+
+import fr.ensicaen.present.present.models.UserModel;
+import okhttp3.mockwebserver.MockResponse;
+import okhttp3.mockwebserver.MockWebServer;
 
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -30,7 +29,7 @@ import static org.mockito.Mockito.when;
 public class LoginActivityPresenterTest {
 
     @Mock
-    private LoginActivity _mock;
+    private LoginActivity _view;
 
     @Mock
     private Handler _handler;
@@ -39,10 +38,18 @@ public class LoginActivityPresenterTest {
 
     @Before
     public void setup(){
-        _mock = mock(LoginActivity.class);
-        _presenter = new LoginActivityPresenter(_mock);
+        _view = mock(LoginActivity.class);
+        _presenter = new LoginActivityPresenter(_view, createMockHandler());
+    }
 
+    private Handler createMockHandler() {
+        Handler handler = mock(Handler.class);
+        when(handler.postDelayed(any(Runnable.class), anyLong())).thenAnswer(invocation -> {
+            ((Runnable) invocation.getArgument(0)).run();
+            return null;
+        });
 
+        return handler;
     }
 
     //@TODO TEST
@@ -51,7 +58,23 @@ public class LoginActivityPresenterTest {
     @Test
     public void testOnWindoFocusChangedWhenHasFocusFalse() throws Exception {
         assertFalse(_presenter.onWindowFocusChanged(false));
+
     }
 
+    @Test
+    public void testOnWindoFocusChangedWhenHasFocusTrue() throws Exception {
+        assertTrue(_presenter.onWindowFocusChanged(true));
+    }
 
+    @Test
+    public void isUserValidTestFalse() {
+        _presenter.setUser(null);
+        assertFalse(_presenter.isUserValidated());
+    }
+
+    @Test
+    public void isUserValidTestTrue() {
+        _presenter.setUser(new UserModel("Julian", "Easterly", "id"));
+        assertTrue(_presenter.isUserValidated());
+    }
 }

@@ -8,12 +8,16 @@ import android.widget.Toast;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import fr.ensicaen.present.present.BuildConfig;
+import java.util.HashSet;
+
 import fr.ensicaen.present.present.models.ApiResponseModel;
 import fr.ensicaen.present.present.models.UserModel;
 import fr.ensicaen.present.present.services.IUserService;
+import fr.ensicaen.present.present.utils.Config;
+import fr.ensicaen.present.present.utils.api.NetworkTools;
 import fr.ensicaen.present.present.utils.api.ServiceFactory;
 import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 
 
@@ -26,12 +30,15 @@ public class LoginActivityPresenter implements ILoginPresenter {
     private ILoginView _view;
     private boolean _animationStarted;
     private UserModel _user;
+    private Handler _handler;
 
     public LoginActivityPresenter(ILoginView view){
         _view = view;
         _animationStarted = false;
-
+        _handler = new Handler();
     }
+
+
 
     @Override
     public boolean onWindowFocusChanged(boolean hasFocus) {
@@ -39,12 +46,9 @@ public class LoginActivityPresenter implements ILoginPresenter {
             return false;
         }
 
-        new Handler().postDelayed(new Runnable(){
-            @Override
-            public void run() {
-                _view.animate();
-                _animationStarted = false;
-            }
+        _handler.postDelayed(() -> {
+            _view.animate();
+            _animationStarted = false;
         }, 500);
 
         return true;
@@ -59,21 +63,35 @@ public class LoginActivityPresenter implements ILoginPresenter {
         _user = null;
 
         IUserService service = ServiceFactory
-                .createRetrofitService(IUserService.class, BuildConfig.API_URL);
+                .createRetrofitService(IUserService.class, Config.property("API_URL"));
 
         service.loginUser(createLoginPayload(email, password))
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .doOnSubscribe(disposable -> _view.showLoadingAnimation())
+                .doOnSubscribe(this::onLoginAttemptStart)
                 .doOnComplete(this::onVerificationComplete)
                 .subscribe(this::handleLoginSuccessResponse, this::handleLoginErrorResponse);
 
+    }
+
+    private void onLoginAttemptStart(Disposable d){
+        _view.showLoadingAnimation();
+        Context c = _view.getContext();
+        try {
+            NetworkTools.verifyConnection(c);
+        } catch (NetworkTools.NoInternetException e) {
+            _view.hideLoadingAnimation();
+            //@TODO make this a constant
+            Toast.makeText(c, "Erreur : Network error", Toast.LENGTH_SHORT).show();
+            d.dispose();
+        }
     }
 
     private void onVerificationComplete() {
         Context c =  _view.getContext();
         if(!isUserValidated()){
             _view.hideLoadingAnimation();
+            //@TODO make this a constant
             Toast.makeText(c,"Erreur : login failed", Toast.LENGTH_SHORT).show();
         }else{
             _view.hideLoadingAnimation();
@@ -84,7 +102,7 @@ public class LoginActivityPresenter implements ILoginPresenter {
         }
     }
 
-    private boolean isUserValidated() {
+    public boolean isUserValidated() {
         return _user != null;
     }
 
@@ -93,6 +111,7 @@ public class LoginActivityPresenter implements ILoginPresenter {
     }
 
     private void handleLoginErrorResponse(Throwable throwable) {
+        _view.hideLoadingAnimation();
         //@TODO handle error
         Toast.makeText(
                 _view.getContext(),
@@ -116,4 +135,21 @@ public class LoginActivityPresenter implements ILoginPresenter {
         return jsonPayload;
     }
 
+
+    /*
+    * F O R  T E S T I N G   O N L Y
+    */
+    LoginActivityPresenter(ILoginView view, Handler handler){
+        _view = view;
+        _animationStarted = false;
+        _handler = handler;
+    }
+
+    void setUser(UserModel user){
+        _user = user;
+    }
+
+    UserModel getUser(){
+        return _user;
+    }
 }
