@@ -6,4 +6,5 @@ package fr.ensicaen.present.present.configureCall;
 
 public interface IConfigurePresenter {
 
+    void onDestroy();
 }

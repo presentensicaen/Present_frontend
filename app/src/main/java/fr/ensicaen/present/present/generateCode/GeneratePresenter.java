@@ -5,4 +5,11 @@ package fr.ensicaen.present.present.generateCode;
  */
 
 public class GeneratePresenter implements IGeneratePresenter{
+
+
+    @Override
+    public void onDestroy() {
+
+    }
+
 }

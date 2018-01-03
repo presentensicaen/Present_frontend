@@ -7,7 +7,11 @@ import android.widget.Button;
 
 import fr.ensicaen.present.present.R;
 
-public class ConfigureCallActivity extends AppCompatActivity implements IConfigurePresenter{
+public class ConfigureCallActivity extends AppCompatActivity implements IConfigureView{
+
+    private Button _launchCall;
+    private int _time; /* duration of the call in sec */
+    private String _name;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

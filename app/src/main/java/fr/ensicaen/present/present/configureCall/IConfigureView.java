@@ -5,4 +5,5 @@ package fr.ensicaen.present.present.configureCall;
  */
 
 public interface IConfigureView {
+
 }

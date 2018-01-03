@@ -5,5 +5,5 @@ package fr.ensicaen.present.present.generateCode;
  */
 
 public interface IGeneratePresenter {
-
+    void onDestroy();
 }

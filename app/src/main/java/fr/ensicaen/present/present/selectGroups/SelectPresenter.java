@@ -5,4 +5,11 @@ package fr.ensicaen.present.present.selectGroups;
  */
 
 public class SelectPresenter implements ISelectPresenter{
+
+
+    @Override
+    public void onDestroy() {
+
+    }
+
 }
