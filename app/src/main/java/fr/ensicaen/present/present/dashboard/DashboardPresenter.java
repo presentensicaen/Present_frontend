@@ -29,6 +29,9 @@ public class DashboardPresenter implements IDashboardPresenter {
     }
 
     @Override
+    public void onAnswerCallClick(){_view.goToEnterCode();}
+
+    @Override
     public void onReviewOldCallsClick() {
 
     }

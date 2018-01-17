@@ -12,6 +12,8 @@ public interface IDashboardPresenter {
 
     void onLaunchCallClick();
 
+    void onAnswerCallClick();
+
     void onReviewOldCallsClick();
 
 }

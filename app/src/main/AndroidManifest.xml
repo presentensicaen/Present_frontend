@@ -41,6 +41,11 @@
             android:label="@string/app_name">
         </activity>
 
+        <activity
+            android:name=".enterCode.EnterCodeActivity"
+            android:label="@string/app_name">
+
+        </activity>
     </application>
 
 </manifest>
