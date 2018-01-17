@@ -1,26 +1,14 @@
 package fr.ensicaen.present.present.login;
 
-import android.os.Handler;
-
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
 
-
-import java.io.IOException;
-
 import fr.ensicaen.present.present.models.UserModel;
-import okhttp3.mockwebserver.MockResponse;
-import okhttp3.mockwebserver.MockWebServer;
 
 import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
 
 /**
  * Created by jueast on 04/12/17.
@@ -31,25 +19,13 @@ public class LoginActivityPresenterTest {
     @Mock
     private LoginActivity _view;
 
-    @Mock
-    private Handler _handler;
 
     private LoginActivityPresenter _presenter;
 
     @Before
     public void setup(){
         _view = mock(LoginActivity.class);
-        _presenter = new LoginActivityPresenter(_view, createMockHandler());
-    }
-
-    private Handler createMockHandler() {
-        Handler handler = mock(Handler.class);
-        when(handler.postDelayed(any(Runnable.class), anyLong())).thenAnswer(invocation -> {
-            ((Runnable) invocation.getArgument(0)).run();
-            return null;
-        });
-
-        return handler;
+        _presenter = new LoginActivityPresenter(_view);
     }
 
     //@TODO TEST

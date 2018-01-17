@@ -16,20 +16,12 @@ public final class SplashPresenter implements ISplashPresenter {
 
     public SplashPresenter(ISplashScreenView view){
         _view = view;
-        loadEnvironmentPropertiesForApp();
+        _view.loadProperties();
     }
 
     //for tests
     protected SplashPresenter(ISplashScreenView view, Config mockConfig){
         _view = view;
-    }
-
-    public void loadEnvironmentPropertiesForApp() {
-        try {
-            Config.loadProperties(_view.getContext());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 
     @Override
