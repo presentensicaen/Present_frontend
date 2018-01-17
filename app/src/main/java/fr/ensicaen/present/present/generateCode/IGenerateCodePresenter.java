@@ -6,4 +6,3 @@ package fr.ensicaen.present.present.generateCode;
 
 interface IGenerateCodePresenter {
 }
-

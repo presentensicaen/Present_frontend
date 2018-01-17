@@ -22,8 +22,8 @@ public class EnterCodePresenter implements IEnterCodePresenter{
 
     }
 
-    public void getMessage(){
-
+    public boolean getMessage(){
+        return false;
     }
 
 }
