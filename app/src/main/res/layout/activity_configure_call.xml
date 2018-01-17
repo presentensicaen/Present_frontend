@@ -28,7 +28,7 @@
             android:entries="@array/duree" />
 
         <EditText
-            android:id="@+id/editText"
+            android:id="@+id/eventName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="15dp"

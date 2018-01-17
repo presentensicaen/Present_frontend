@@ -8,4 +8,6 @@ public interface IConfigurePresenter {
 
     void onDestroy();
     void onLaunchCallButtonClick(String duration);
-}
+    void createCall();
+
+    }
