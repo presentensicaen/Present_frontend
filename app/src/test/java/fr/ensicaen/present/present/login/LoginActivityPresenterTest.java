@@ -9,6 +9,8 @@ import fr.ensicaen.present.present.models.UserModel;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 
 /**
  * Created by jueast on 04/12/17.
@@ -32,14 +34,21 @@ public class LoginActivityPresenterTest {
 
 
     @Test
-    public void testOnWindoFocusChangedWhenHasFocusFalse() throws Exception {
+    public void testOnWindoFocusChangedWhenHasFocusFalse() {
         assertFalse(_presenter.onWindowFocusChanged(false));
+        verify(_view, times(0)).animate();
+    }
 
+    @Test
+    public void testOnAnimationFinished(){
+        _presenter.onAnimationFinished();
+        assertFalse(_presenter.getAnimationStarted());
     }
 
     @Test
     public void testOnWindoFocusChangedWhenHasFocusTrue() throws Exception {
         assertTrue(_presenter.onWindowFocusChanged(true));
+        verify(_view, times(1)).animate();
     }
 
     @Test

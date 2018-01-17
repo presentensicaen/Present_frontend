@@ -44,16 +44,12 @@ public class LoginActivityPresenter implements ILoginPresenter {
     }
 
     @Override
-    public void onConnectionButtonClick(String email, String password) {
-        verifyLoginCredentials(email, password);
-    }
-
-    @Override
     public void onAnimationFinished() {
         _animationStarted = false;
     }
 
-    private void verifyLoginCredentials(String email, String password){
+    @Override
+    public void onConnectionButtonClick(String email, String password){
         _user = null;
 
         IUserService service = ServiceFactory
@@ -132,5 +128,9 @@ public class LoginActivityPresenter implements ILoginPresenter {
 
     UserModel getUser(){
         return _user;
+    }
+
+    boolean getAnimationStarted(){
+        return _animationStarted;
     }
 }
