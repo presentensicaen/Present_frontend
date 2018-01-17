@@ -31,20 +31,11 @@ public class DashboardActivity extends AppCompatActivity implements IDashboardVi
     }
 
     private void setLaunchCallAction() {
-        _launchCallButton.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v){
-                _presenter.onLaunchCallClick();
-            }
-        });
+        _launchCallButton.setOnClickListener(v -> _presenter.onLaunchCallClick());
     }
 
     private void setAnswerCallAction(){
-        _answerCallButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                _presenter.onAnswerCallClick();
-            }
-        });
+        _answerCallButton.setOnClickListener(v -> _presenter.onAnswerCallClick());
     }
 
     public void goToGenerateCode() {

@@ -38,11 +38,9 @@ public class SelectGroups extends AppCompatActivity implements ISelectView{
 
 
         Button button1 = (Button) findViewById(R.id.generateCode);
-        button1.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v1){
-                Intent intent = new Intent(SelectGroups.this, ConfigureCallActivity.class);
-                startActivity(intent);
-            }
+        button1.setOnClickListener(v1 -> {
+            Intent intent = new Intent(SelectGroups.this, ConfigureCallActivity.class);
+            startActivity(intent);
         });
     }
 }

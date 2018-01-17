@@ -29,19 +29,15 @@ public class GenerateCodeActivity extends AppCompatActivity implements IGenerate
 
     public void initializeGenerateCodeActivity(){
         Button button1 = (Button)findViewById(R.id.generate_without_group_button);
-        button1.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v){
-                Intent intent = new Intent(GenerateCodeActivity.this, ConfigureCallActivity.class);
-                startActivity(intent);
-            }
+        button1.setOnClickListener(v -> {
+            Intent intent = new Intent(GenerateCodeActivity.this, ConfigureCallActivity.class);
+            startActivity(intent);
         });
 
         Button button2 = (Button) findViewById(R.id.choose_groupe_button);
-        button2.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v1){
-                Intent intent = new Intent(GenerateCodeActivity.this, SelectGroups.class);
-                startActivity(intent);
-            }
+        button2.setOnClickListener(v1 -> {
+            Intent intent = new Intent(GenerateCodeActivity.this, SelectGroups.class);
+            startActivity(intent);
         });
     }
 }
