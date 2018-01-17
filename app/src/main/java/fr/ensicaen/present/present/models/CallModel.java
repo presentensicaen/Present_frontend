@@ -19,16 +19,20 @@ public class CallModel implements Parcelable {
     @SerializedName("groups")
     private ArrayList<String> _groups;
 
+    /*
     public CallModel(String _id, int _duration, ArrayList<String> _groups) {
         this._id = _id;
         this._duration = _duration;
         this._groups = _groups;
     }
+*/
 
     public CallModel(String _id, int _duration) {
         this._id = _id;
         this._duration = _duration;
-        this._groups = null;
+        _groups = new ArrayList<String>();
+        _groups.add("INFO_TP1");
+        _groups.add("INFO_TP2");
     }
 
     @Override

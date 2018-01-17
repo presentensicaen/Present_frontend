@@ -7,6 +7,8 @@ import android.widget.Toast;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
+
 import fr.ensicaen.present.present.models.ApiResponseModel;
 import fr.ensicaen.present.present.models.CallModel;
 import fr.ensicaen.present.present.services.ICallService;
@@ -32,23 +34,23 @@ public class ConfigurePresenter implements IConfigurePresenter {
     public void createCall() {
         _call = null;
 
-
         ICallService service = ServiceFactory
                 .createRetrofitService(ICallService.class, Config.property("API_URL"));
-
-        service.createCall(createCallPayload("007", 130, null))
+        ArrayList<String> _groups = new ArrayList<String>();
+        _groups.add("INFO_TP1");
+        _groups.add("INFO_TP2");
+        service.createCall(createCallPayload("007", 130, _groups))
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .doOnSubscribe(this::onLoginAttemptStart)
+                .doOnSubscribe(this::onCreationAttemptStart)
                 .doOnComplete(this::onVerificationComplete)
                 .subscribe(this::handleLoginSuccessResponse, this::handleLoginErrorResponse);
-
     }
 
     @Override
     public void onLaunchCallButtonClick(String duration) {
         createCall();
-        //_view.setSuccessMessage();
+
     }
 
     public ConfigurePresenter(IConfigureView _view) {
@@ -57,7 +59,7 @@ public class ConfigurePresenter implements IConfigurePresenter {
     }
 
 
-    private void onLoginAttemptStart(Disposable d) {
+    private void onCreationAttemptStart(Disposable d) {
         Context c = _view.getContext();
         try {
             NetworkTools.verifyConnection(c);
@@ -70,16 +72,15 @@ public class ConfigurePresenter implements IConfigurePresenter {
 
     private void onVerificationComplete() {
         Context c = _view.getContext();
-        if (!isUserValidated()) {
+        if (!isCallCreated()) {
             //@TODO make this a constant
-            Toast.makeText(c, "Erreur : login failed", Toast.LENGTH_SHORT).show();
+            Toast.makeText(c, "Erreur lors de la création", Toast.LENGTH_SHORT).show();
         } else {
-            //@TODO make this a constant
-            Toast.makeText(c, "Bienvenue " + _call.getDisplayId(), Toast.LENGTH_SHORT).show();
+            _view.setSuccessMessage();
         }
     }
 
-    public boolean isUserValidated() {
+    public boolean isCallCreated() {
         return _call != null;
     }
 
@@ -98,15 +99,15 @@ public class ConfigurePresenter implements IConfigurePresenter {
     }
 
 
-    private JSONObject createCallPayload(String _id, int _duration, String[] _groups) {
-        JSONObject jsonPayload = new JSONObject();
-        JSONObject jsonData = new JSONObject();
-        try {
-            jsonPayload.put("id", _id);
-            jsonPayload.put("duration", _duration);
-            jsonPayload.put("groups", _groups);
+        private JSONObject createCallPayload(String _id, int _duration, ArrayList<String> _groups) {
+            JSONObject jsonPayload = new JSONObject();
+            JSONObject jsonData = new JSONObject();
+            try {
+                jsonPayload.put("id", _id);
+                jsonPayload.put("duration", _duration);
+                jsonPayload.put("groups", _groups.toString());
 
-            jsonData.put("data", jsonPayload);
+                jsonData.put("data", jsonPayload);
             return jsonData;
         } catch (JSONException e) {
             e.printStackTrace();
@@ -117,6 +118,12 @@ public class ConfigurePresenter implements IConfigurePresenter {
     @Override
     public void onDestroy() {
 
+    }
+
+    /* for the tests */
+    ConfigurePresenter(IConfigureView view, Handler handler) {
+        _view = view;
+        _handler = handler;
     }
 
 
