@@ -38,5 +38,9 @@
     <string name="success_message_text">Vous venez de vous déclarer présent pour au contrôle de présence.</string>
     <string name="error_message_header">Echec</string>
     <string name="error_message_text">Erreur de code. Veuillez réessayer.</string>
+    <string name="success_message_header">Succès</string>
+    <string name="success_message_text">Vous venez de vous déclarer présent pour au contrôle de présence.</string>
+    <string name="error_message_header">Echec</string>
+    <string name="error_message_text">Erreur de code. Veuillez réessayer.</string>
 
 </resources>

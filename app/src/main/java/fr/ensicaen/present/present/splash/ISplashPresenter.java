@@ -9,6 +9,4 @@ interface ISplashPresenter {
     void checkTokenValidity();
 
     void onDestroy();
-
-    void loadEnvironmentPropertiesForApp();
 }

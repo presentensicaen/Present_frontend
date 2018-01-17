@@ -1,10 +1,10 @@
 package fr.ensicaen.present.present.login;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
+import android.os.Handler;
 import android.support.v4.view.ViewCompat;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,12 +12,12 @@ import android.view.animation.DecelerateInterpolator;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.ProgressBar;
+import android.widget.Toast;
 
 
 import fr.ensicaen.present.present.R;
 import fr.ensicaen.present.present.dashboard.DashboardActivity;
-import fr.ensicaen.present.present.utils.Animations.Animator;
+import fr.ensicaen.present.present.utils.api.NetworkTools;
 
 public class LoginActivity extends Activity implements ILoginView {
 
@@ -69,19 +69,18 @@ public class LoginActivity extends Activity implements ILoginView {
     }
 
     public void animate() {
-        translateLogo();
-        animateContent();
+        new Handler().postDelayed(() -> {
+            translateLogo();
+            animateContent();
+            _presenter.onAnimationFinished();
+        }, 500);
+
     }
 
     @Override
     public void goToDashboard() {
         Intent loginIntent = new Intent(LoginActivity.this, DashboardActivity.class);
         startActivity(loginIntent);
-    }
-
-    @Override
-    public Context getContext() {
-        return this;
     }
 
     @Override
@@ -94,12 +93,47 @@ public class LoginActivity extends Activity implements ILoginView {
         _loadingAnimation.setVisibility(View.INVISIBLE);
     }
 
+    @Override
+    public void showToast(String message, int toastDuration) {
+        Toast.makeText(this, message, toastDuration).show();
+    }
+
+    @Override
+    public void verifyNetworkConnection() throws NetworkTools.NoInternetException {
+        NetworkTools.verifyConnection(this);
+    }
+
     private void animateContent(){
-        Animator animator = new Animator();
         for (int i = 0; i < _loginContainer.getChildCount(); i++) {
             View v = _loginContainer.getChildAt(i);
-            animator.animate(v, ITEM_DELAY * i);
+            animateIfButton(v, ITEM_DELAY * i);
+            animateIfTextInput(v, ITEM_DELAY * i);
         }
+    }
+
+    private void animateIfTextInput(View v, int delay) {
+        if(!(v instanceof EditText)){
+            return;
+        }
+        ViewCompat.animate(v)
+                .translationY(50).alpha(1)
+                .setStartDelay(delay + 500)
+                .setDuration(1000)
+                .setInterpolator(new DecelerateInterpolator())
+                .start();
+    }
+
+    private void animateIfButton(View v, int delay){
+        if(!(v instanceof Button)){
+            return;
+        }
+
+        ViewCompat.animate(v)
+                .scaleY(1).scaleX(1)
+                .setStartDelay(delay + 500)
+                .setDuration(500)
+                .setInterpolator(new DecelerateInterpolator())
+                .start();
     }
 
     private void translateLogo(){
@@ -111,14 +145,11 @@ public class LoginActivity extends Activity implements ILoginView {
     }
 
     private void setConnectionButtonClickAction(){
-        _loginButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                _presenter.onConnectionButtonClick(
-                        _emailText.getText().toString(),
-                        _passwordText.getText().toString()
-                );
-            }
-        });
+        _loginButton.setOnClickListener(v -> _presenter.onConnectionButtonClick(
+                _emailText.getText().toString(),
+                _passwordText.getText().toString()
+        ));
     }
+
+
 }
