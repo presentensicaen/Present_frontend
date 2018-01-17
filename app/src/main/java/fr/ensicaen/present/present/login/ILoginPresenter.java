@@ -1,7 +1,5 @@
 package fr.ensicaen.present.present.login;
 
-import android.text.Editable;
-
 /**
  * Created by jueast on 03/12/17.
  */

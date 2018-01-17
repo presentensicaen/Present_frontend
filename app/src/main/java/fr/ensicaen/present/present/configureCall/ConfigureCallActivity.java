@@ -1,8 +1,8 @@
 package fr.ensicaen.present.present.configureCall;
 
 import android.content.Context;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -11,7 +11,7 @@ import android.widget.Spinner;
 import fr.ensicaen.present.present.R;
 
 
-public class ConfigureCallActivity extends AppCompatActivity implements IConfigureView{
+public class ConfigureCallActivity extends AppCompatActivity implements IConfigureView {
 
     private IConfigurePresenter _presenter;
     private Button _launchCall;
@@ -20,7 +20,7 @@ public class ConfigureCallActivity extends AppCompatActivity implements IConfigu
 
 
     @Override
-    public void setSuccessMessage(){
+    public void setSuccessMessage() {
         findViewById(R.id.code_result_mesg_container).setVisibility(View.VISIBLE);
     }
 
@@ -47,10 +47,10 @@ public class ConfigureCallActivity extends AppCompatActivity implements IConfigu
 
     }
 
-    private void setLaunchCallButtonClick(){
+    private void setLaunchCallButtonClick() {
         _launchCall.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v){
+            public void onClick(View v) {
                 _presenter.onLaunchCallButtonClick(_timeSpinner.getSelectedItem().toString());
             }
         });

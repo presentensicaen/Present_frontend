@@ -23,15 +23,15 @@ public class NetworkTools {
 
     public static boolean isReachableByPing(String site) throws IOException, InterruptedException {
         String command = "ping -c 1 " + site;
-        return (Runtime.getRuntime().exec (command).waitFor() == 0);
+        return (Runtime.getRuntime().exec(command).waitFor() == 0);
     }
 
     public static void verifyConnection(Context c) throws NoInternetException {
-       try{
-           if(!isOnline(c)) throw new NoInternetException();
-       } catch (InterruptedException | IOException e) {
-           throw new NoInternetException();
-       }
+        try {
+            if (!isOnline(c)) throw new NoInternetException();
+        } catch (InterruptedException | IOException e) {
+            throw new NoInternetException();
+        }
 
     }
 

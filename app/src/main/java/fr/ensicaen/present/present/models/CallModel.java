@@ -11,10 +11,13 @@ import java.util.ArrayList;
  * Created by pierr on 31/12/2017.
  */
 
-public class CallModel implements Parcelable{
-    @SerializedName("id") private String _id;
-    @SerializedName("duration") private int _duration;
-    @SerializedName("groups") private ArrayList<String> _groups ;
+public class CallModel implements Parcelable {
+    @SerializedName("id")
+    private String _id;
+    @SerializedName("duration")
+    private int _duration;
+    @SerializedName("groups")
+    private ArrayList<String> _groups;
 
     public CallModel(String _id, int _duration, ArrayList<String> _groups) {
         this._id = _id;
@@ -25,7 +28,7 @@ public class CallModel implements Parcelable{
     public CallModel(String _id, int _duration) {
         this._id = _id;
         this._duration = _duration;
-        /* @todo add default value or _groups */
+        this._groups = null;
     }
 
     @Override
@@ -60,11 +63,24 @@ public class CallModel implements Parcelable{
         }
     };
 
+    public final class CallObjectHolder {
+        @SerializedName("call")
+        private CallModel _call;
+
+        public CallModel getCall() {
+            return _call;
+        }
+    }
+
+    public String getDisplayId() {
+        return _id;
+    }
+
     private CallModel(Parcel in) {
         _id = in.readString();
         _duration = in.readInt();
         _groups = new ArrayList<>();
-        in.readList(_groups,null);
+        in.readList(_groups, null);
     }
 
 

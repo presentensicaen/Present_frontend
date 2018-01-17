@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-
 import android.support.v4.view.ViewCompat;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,8 +11,6 @@ import android.view.animation.DecelerateInterpolator;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.ProgressBar;
-
 
 import fr.ensicaen.present.present.R;
 import fr.ensicaen.present.present.dashboard.DashboardActivity;
@@ -54,7 +51,7 @@ public class LoginActivity extends Activity implements ILoginView {
         setConnectionButtonClickAction();
     }
 
-    private void initializeActivity(){
+    private void initializeActivity() {
         setTheme(R.style.AppTheme);
         getWindow().getDecorView().setSystemUiVisibility(
                 View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION);
@@ -63,7 +60,7 @@ public class LoginActivity extends Activity implements ILoginView {
 
     @Override
     public void onWindowFocusChanged(boolean hasFocus) {
-        if(_presenter.onWindowFocusChanged(hasFocus)){
+        if (_presenter.onWindowFocusChanged(hasFocus)) {
             super.onWindowFocusChanged(hasFocus);
         }
     }
@@ -94,7 +91,7 @@ public class LoginActivity extends Activity implements ILoginView {
         _loadingAnimation.setVisibility(View.INVISIBLE);
     }
 
-    private void animateContent(){
+    private void animateContent() {
         Animator animator = new Animator();
         for (int i = 0; i < _loginContainer.getChildCount(); i++) {
             View v = _loginContainer.getChildAt(i);
@@ -102,7 +99,7 @@ public class LoginActivity extends Activity implements ILoginView {
         }
     }
 
-    private void translateLogo(){
+    private void translateLogo() {
         ViewCompat.animate(_logoImageView)
                 .translationY(-200)
                 .setStartDelay(STARTUP_DELAY)
@@ -110,7 +107,7 @@ public class LoginActivity extends Activity implements ILoginView {
                 new DecelerateInterpolator(1.2f)).start();
     }
 
-    private void setConnectionButtonClickAction(){
+    private void setConnectionButtonClickAction() {
         _loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

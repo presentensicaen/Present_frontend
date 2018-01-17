@@ -12,18 +12,17 @@ public abstract class AbstractAnimationCOR implements IAnimation {
 
     abstract protected boolean viewIsOfThisType(View v);
 
-    public void setSuccessor(AbstractAnimationCOR successor){
+    public void setSuccessor(AbstractAnimationCOR successor) {
         _successor = successor;
     }
 
-    public void processRequest(View v, int delay){
-        if(viewIsOfThisType(v)){
+    public void processRequest(View v, int delay) {
+        if (viewIsOfThisType(v)) {
             animate(v, delay);
-        }else {
+        } else {
             _successor.processRequest(v, delay);
         }
     }
-
 
 
 }

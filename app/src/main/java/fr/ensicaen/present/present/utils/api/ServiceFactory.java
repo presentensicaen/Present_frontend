@@ -11,7 +11,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ServiceFactory {
 
-    public static <T> T createRetrofitService(final Class<T> rfclass, final String endpoint){
+    public static <T> T createRetrofitService(final Class<T> rfclass, final String endpoint) {
         final Retrofit adapter = new Retrofit.Builder()
                 .baseUrl(endpoint)
                 .addConverterFactory(GsonConverterFactory.create())

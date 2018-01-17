@@ -20,7 +20,6 @@ public class SplashScreenActivity extends Activity implements ISplashScreenView 
     }
 
 
-
     @Override
     public void openLoginActivity() {
         Intent loginIntent = new Intent(SplashScreenActivity.this, LoginActivity.class);

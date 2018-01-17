@@ -4,7 +4,7 @@ package fr.ensicaen.present.present.services;
 import org.json.JSONObject;
 
 import fr.ensicaen.present.present.models.ApiResponseModel;
-import fr.ensicaen.present.present.models.UserModel;
+import fr.ensicaen.present.present.models.CallModel;
 import io.reactivex.Observable;
 import retrofit2.http.Body;
 import retrofit2.http.Headers;
@@ -19,5 +19,5 @@ public interface ICallService {
 
     @Headers("Content-Type: application/json")
     @POST("generate-code/")
-    Observable<ApiResponseModel<UserModel.UserObjectHolder>> createCall(@Body JSONObject jsonString);
+    Observable<ApiResponseModel<CallModel.CallObjectHolder>> createCall(@Body JSONObject jsonString);
 }

@@ -9,6 +9,7 @@ import android.content.Context;
 public interface IConfigureView {
 
     void setSuccessMessage();
+
     Context getContext();
 
 }

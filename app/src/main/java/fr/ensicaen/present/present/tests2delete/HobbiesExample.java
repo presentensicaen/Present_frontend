@@ -7,11 +7,11 @@ package fr.ensicaen.present.present.tests2delete;
 public class HobbiesExample {
     private String name;
 
-    public HobbiesExample(String name){
+    public HobbiesExample(String name) {
         this.name = name;
     }
 
-    public String getName(){
+    public String getName() {
         return name;
     }
 

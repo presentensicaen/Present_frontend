@@ -8,9 +8,12 @@ import com.google.gson.annotations.SerializedName;
 
 public class UserModel {
 
-    @SerializedName("name") private String _name;
-    @SerializedName("lastName") private String _lastName;
-    @SerializedName("id") private String _id;
+    @SerializedName("name")
+    private String _name;
+    @SerializedName("lastName")
+    private String _lastName;
+    @SerializedName("id")
+    private String _id;
 
     public UserModel(String _name, String _lastName, String _id) {
         this._name = _name;
@@ -32,9 +35,10 @@ public class UserModel {
     }
 
     public final class UserObjectHolder {
-        @SerializedName("user") private UserModel _user;
+        @SerializedName("user")
+        private UserModel _user;
 
-        public UserModel getUser(){
+        public UserModel getUser() {
             return _user;
         }
     }

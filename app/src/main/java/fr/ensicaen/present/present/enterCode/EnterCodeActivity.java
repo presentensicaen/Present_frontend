@@ -17,7 +17,7 @@ public class EnterCodeActivity extends Activity implements IEnterCodeView {
     private IEnterCodePresenter _presenter;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState){
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         _presenter = new EnterCodePresenter(this);
         initializeLayoutComponents();
@@ -25,8 +25,8 @@ public class EnterCodeActivity extends Activity implements IEnterCodeView {
     }
 
     public void initializeEnterCodeActivity() {
-        Button enterCodeButton = (Button)findViewById(R.id.enter_code);
-        Button returnToDashboardButton = (Button)findViewById(R.id.return_dashboard);
+        Button enterCodeButton = (Button) findViewById(R.id.enter_code);
+        Button returnToDashboardButton = (Button) findViewById(R.id.return_dashboard);
         enterCodeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -42,12 +42,13 @@ public class EnterCodeActivity extends Activity implements IEnterCodeView {
         });
     }
 
-    public void goToDashboard(){
+    public void goToDashboard() {
         Intent intent = new Intent(EnterCodeActivity.this, DashboardActivity.class);
         startActivity(intent);
 
     }
-    public void initializeLayoutComponents(){
+
+    public void initializeLayoutComponents() {
         setContentView(R.layout.activity_enter_code);
     }
 

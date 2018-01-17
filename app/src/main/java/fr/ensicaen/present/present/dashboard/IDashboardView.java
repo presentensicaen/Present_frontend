@@ -7,6 +7,7 @@ package fr.ensicaen.present.present.dashboard;
 public interface IDashboardView {
 
     void goToGenerateCode();
+
     void goToEnterCode();
 
 }

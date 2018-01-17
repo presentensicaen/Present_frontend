@@ -1,8 +1,8 @@
 package fr.ensicaen.present.present.dashboard;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 
@@ -10,7 +10,7 @@ import fr.ensicaen.present.present.R;
 import fr.ensicaen.present.present.enterCode.EnterCodeActivity;
 import fr.ensicaen.present.present.generateCode.GenerateCodeActivity;
 
-public class DashboardActivity extends AppCompatActivity implements IDashboardView{
+public class DashboardActivity extends AppCompatActivity implements IDashboardView {
 
     private Button _launchCallButton;
     private Button _answerCallButton;
@@ -23,22 +23,22 @@ public class DashboardActivity extends AppCompatActivity implements IDashboardVi
 
         setContentView(R.layout.activity_dashboard);
 
-        _launchCallButton = (Button)findViewById(R.id.launchCall);
+        _launchCallButton = (Button) findViewById(R.id.launchCall);
         setLaunchCallAction();
 
-        _answerCallButton = (Button)findViewById(R.id.answerCall);
+        _answerCallButton = (Button) findViewById(R.id.answerCall);
         setAnswerCallAction();
     }
 
     private void setLaunchCallAction() {
         _launchCallButton.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v){
+            public void onClick(View v) {
                 _presenter.onLaunchCallClick();
             }
         });
     }
 
-    private void setAnswerCallAction(){
+    private void setAnswerCallAction() {
         _answerCallButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -52,7 +52,7 @@ public class DashboardActivity extends AppCompatActivity implements IDashboardVi
         startActivity(intent);
     }
 
-    public void goToEnterCode(){
+    public void goToEnterCode() {
         Intent intent = new Intent(DashboardActivity.this, EnterCodeActivity.class);
         startActivity(intent);
     }

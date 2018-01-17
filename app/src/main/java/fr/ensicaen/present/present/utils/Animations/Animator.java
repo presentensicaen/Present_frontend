@@ -10,7 +10,7 @@ public class Animator implements IAnimation {
 
     private AbstractAnimationCOR _root;
 
-    public Animator(){
+    public Animator() {
         _root = new ButtonAnimation();
         _root.setSuccessor(new TextInputAnimation());
     }

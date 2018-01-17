@@ -1,25 +1,21 @@
 package fr.ensicaen.present.present.configureCall;
 
+import android.content.Context;
 import android.os.Handler;
-import android.view.View;
 import android.widget.Toast;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import fr.ensicaen.present.present.R;
 import fr.ensicaen.present.present.models.ApiResponseModel;
-import fr.ensicaen.present.present.models.UserModel;
+import fr.ensicaen.present.present.models.CallModel;
 import fr.ensicaen.present.present.services.ICallService;
-import fr.ensicaen.present.present.services.IUserService;
 import fr.ensicaen.present.present.utils.Config;
+import fr.ensicaen.present.present.utils.api.NetworkTools;
 import fr.ensicaen.present.present.utils.api.ServiceFactory;
 import io.reactivex.android.schedulers.AndroidSchedulers;
-import fr.ensicaen.present.present.utils.api.NetworkTools;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
-
-import android.content.Context;
 
 /**
  * Created by pierr on 31/12/2017.
@@ -29,12 +25,13 @@ public class ConfigurePresenter implements IConfigurePresenter {
 
     private final IConfigureView _view;
 
-    private UserModel _user;
+    private CallModel _call;
     private Handler _handler;
 
     @Override
     public void createCall() {
-        _user = null;
+        _call = null;
+
 
         ICallService service = ServiceFactory
                 .createRetrofitService(ICallService.class, Config.property("API_URL"));
@@ -50,7 +47,8 @@ public class ConfigurePresenter implements IConfigurePresenter {
 
     @Override
     public void onLaunchCallButtonClick(String duration) {
-        _view.setSuccessMessage();
+        createCall();
+        //_view.setSuccessMessage();
     }
 
     public ConfigurePresenter(IConfigureView _view) {
@@ -77,17 +75,17 @@ public class ConfigurePresenter implements IConfigurePresenter {
             Toast.makeText(c, "Erreur : login failed", Toast.LENGTH_SHORT).show();
         } else {
             //@TODO make this a constant
-            Toast.makeText(c, "Bienvenue " + _user.getDisplayName(), Toast.LENGTH_SHORT).show();
+            Toast.makeText(c, "Bienvenue " + _call.getDisplayId(), Toast.LENGTH_SHORT).show();
         }
     }
 
     public boolean isUserValidated() {
-        return _user != null;
+        return _call != null;
     }
 
 
-    private void handleLoginSuccessResponse(ApiResponseModel<UserModel.UserObjectHolder> response) {
-        _user = response.getData().getUser();
+    private void handleLoginSuccessResponse(ApiResponseModel<CallModel.CallObjectHolder> response) {
+        _call = response.getData().getCall();
     }
 
     private void handleLoginErrorResponse(Throwable throwable) {

@@ -4,11 +4,8 @@ import android.content.Context;
 import android.os.Handler;
 import android.widget.Toast;
 
-
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.util.HashSet;
 
 import fr.ensicaen.present.present.models.ApiResponseModel;
 import fr.ensicaen.present.present.models.UserModel;
@@ -32,12 +29,11 @@ public class LoginActivityPresenter implements ILoginPresenter {
     private UserModel _user;
     private Handler _handler;
 
-    public LoginActivityPresenter(ILoginView view){
+    public LoginActivityPresenter(ILoginView view) {
         _view = view;
         _animationStarted = false;
         _handler = new Handler();
     }
-
 
 
     @Override
@@ -59,7 +55,7 @@ public class LoginActivityPresenter implements ILoginPresenter {
         verifyLoginCredentials(email, password);
     }
 
-    private void verifyLoginCredentials(String email, String password){
+    private void verifyLoginCredentials(String email, String password) {
         _user = null;
 
         IUserService service = ServiceFactory
@@ -74,7 +70,7 @@ public class LoginActivityPresenter implements ILoginPresenter {
 
     }
 
-    private void onLoginAttemptStart(Disposable d){
+    private void onLoginAttemptStart(Disposable d) {
         _view.showLoadingAnimation();
         Context c = _view.getContext();
         try {
@@ -88,15 +84,15 @@ public class LoginActivityPresenter implements ILoginPresenter {
     }
 
     private void onVerificationComplete() {
-        Context c =  _view.getContext();
-        if(!isUserValidated()){
+        Context c = _view.getContext();
+        if (!isUserValidated()) {
             _view.hideLoadingAnimation();
             //@TODO make this a constant
-            Toast.makeText(c,"Erreur : login failed", Toast.LENGTH_SHORT).show();
-        }else{
+            Toast.makeText(c, "Erreur : login failed", Toast.LENGTH_SHORT).show();
+        } else {
             _view.hideLoadingAnimation();
             //@TODO make this a constant
-            Toast.makeText(c,"Bienvenue "+_user.getDisplayName(), Toast.LENGTH_SHORT).show();
+            Toast.makeText(c, "Bienvenue " + _user.getDisplayName(), Toast.LENGTH_SHORT).show();
             _view.goToDashboard();
             _view.finish();
         }
@@ -106,7 +102,7 @@ public class LoginActivityPresenter implements ILoginPresenter {
         return _user != null;
     }
 
-    private void handleLoginSuccessResponse(ApiResponseModel<UserModel.UserObjectHolder> response){
+    private void handleLoginSuccessResponse(ApiResponseModel<UserModel.UserObjectHolder> response) {
         _user = response.getData().getUser();
     }
 
@@ -115,7 +111,7 @@ public class LoginActivityPresenter implements ILoginPresenter {
         //@TODO handle error
         Toast.makeText(
                 _view.getContext(),
-                "Erreur "+throwable.getLocalizedMessage(),
+                "Erreur " + throwable.getLocalizedMessage(),
                 Toast.LENGTH_SHORT
         ).show();
     }
@@ -139,17 +135,17 @@ public class LoginActivityPresenter implements ILoginPresenter {
     /*
     * F O R  T E S T I N G   O N L Y
     */
-    LoginActivityPresenter(ILoginView view, Handler handler){
+    LoginActivityPresenter(ILoginView view, Handler handler) {
         _view = view;
         _animationStarted = false;
         _handler = handler;
     }
 
-    void setUser(UserModel user){
+    void setUser(UserModel user) {
         _user = user;
     }
 
-    UserModel getUser(){
+    UserModel getUser() {
         return _user;
     }
 }
