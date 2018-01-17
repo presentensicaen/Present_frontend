@@ -34,5 +34,7 @@
     <string name="generate_code_no_groupe">Générer un code</string>
     <string name="chose_group">Choisir un groupe</string>
 
+    <string name="success_message_header">Succès</string>
+    <string name="success_message_text">Vous venez de vous déclarer présent pour au contrôle de présence.</string>
 
 </resources>
