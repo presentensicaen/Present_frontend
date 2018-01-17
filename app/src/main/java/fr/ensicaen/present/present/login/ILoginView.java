@@ -1,7 +1,5 @@
 package fr.ensicaen.present.present.login;
 
-import android.content.Context;
-
 import fr.ensicaen.present.present.utils.api.NetworkTools;
 
 /**

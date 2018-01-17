@@ -1,12 +1,12 @@
 package fr.ensicaen.present.present.login;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
 import android.os.Handler;
 import android.support.v4.view.ViewCompat;
+import android.support.v4.view.ViewPropertyAnimatorCompat;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.DecelerateInterpolator;
@@ -86,11 +86,6 @@ public class LoginActivity extends Activity implements ILoginView {
     }
 
     @Override
-    public Context getContext() {
-        return this;
-    }
-
-    @Override
     public void showLoadingAnimation() {
         _loadingAnimation.setVisibility(View.VISIBLE);
     }
@@ -111,11 +106,36 @@ public class LoginActivity extends Activity implements ILoginView {
     }
 
     private void animateContent(){
-        Animator animator = new Animator();
         for (int i = 0; i < _loginContainer.getChildCount(); i++) {
             View v = _loginContainer.getChildAt(i);
-            animator.animate(v, ITEM_DELAY * i);
+            animateIfButton(v, ITEM_DELAY * i);
+            animateIfTextInput(v, ITEM_DELAY * i);
         }
+    }
+
+    private void animateIfTextInput(View v, int delay) {
+        if(!(v instanceof EditText)){
+            return;
+        }
+        ViewCompat.animate(v)
+                .translationY(50).alpha(1)
+                .setStartDelay(delay + 500)
+                .setDuration(1000)
+                .setInterpolator(new DecelerateInterpolator())
+                .start();
+    }
+
+    private void animateIfButton(View v, int delay){
+        if(!(v instanceof Button)){
+            return;
+        }
+
+        ViewCompat.animate(v)
+                .scaleY(1).scaleX(1)
+                .setStartDelay(delay + 500)
+                .setDuration(500)
+                .setInterpolator(new DecelerateInterpolator())
+                .start();
     }
 
     private void translateLogo(){
