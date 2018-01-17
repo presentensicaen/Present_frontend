@@ -20,11 +20,7 @@ public class ConfigureCallActivity extends AppCompatActivity implements IConfigu
 
 
         Button button1 = (Button)findViewById(R.id.launchCall);
-        button1.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v){
-                findViewById(R.id.code_result_mesg_container).setVisibility(View.VISIBLE);
-            }
-        });
+        button1.setOnClickListener(v -> findViewById(R.id.code_result_mesg_container).setVisibility(View.VISIBLE));
     }
 
 

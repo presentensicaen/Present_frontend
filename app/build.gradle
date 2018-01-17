@@ -117,6 +117,7 @@ dependencies {
 
     //RXJava
     compile 'io.reactivex.rxjava2:rxandroid:2.0.1'
+
     // Because RxAndroid releases are few and far between, it is recommended you also
     // explicitly depend on RxJava's latest version for bug fixes and new features.
     compile 'io.reactivex.rxjava2:rxjava:2.1.7'
@@ -138,7 +139,10 @@ task createTestReport(type: JacocoReport, dependsOn: ['test', 'testDebugUnitTest
         html.enabled = true
     }
 
-    def fileFilter = ['**/R.class',
+    def fileFilter = [
+                      '**/I*.java',
+                      '**/*Activity*.java',
+                      '**/R.class',
                       '**/R$*.class',
                       '**/BuildConfig.*',
                       '**/*$ViewInjector*.*',
