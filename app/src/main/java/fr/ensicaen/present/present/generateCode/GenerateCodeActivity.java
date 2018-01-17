@@ -7,8 +7,9 @@ import android.view.View;
 import android.widget.Button;
 
 import fr.ensicaen.present.present.R;
+import fr.ensicaen.present.present.configureCall.ConfigureCallActivity;
 import fr.ensicaen.present.present.selectGroups.SelectGroups;
-import fr.ensicaen.present.present.configureCall.ConfigureCall;
+
 
 public class GenerateCodeActivity extends AppCompatActivity implements IGenerateCodeView {
 
@@ -30,7 +31,7 @@ public class GenerateCodeActivity extends AppCompatActivity implements IGenerate
         Button button1 = (Button)findViewById(R.id.generate_without_group_button);
         button1.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v){
-                Intent intent = new Intent(GenerateCodeActivity.this, ConfigureCall.class);
+                Intent intent = new Intent(GenerateCodeActivity.this, ConfigureCallActivity.class);
                 startActivity(intent);
             }
         });
