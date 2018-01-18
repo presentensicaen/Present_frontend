@@ -24,15 +24,15 @@ public class InitalFakeClassToDelete {
         return _testInt;
     }
 
-    public int add(InitalFakeClassToDelete a){
+    public int add(InitalFakeClassToDelete a) {
         return _testInt + a.getTestInt();
     }
 
-    public void setBaseUrl(String url){
+    public void setBaseUrl(String url) {
         _baseUrl = url;
     }
 
-    public ArrayList<HobbiesExample> getHobbies(String userName){
+    public ArrayList<HobbiesExample> getHobbies(String userName) {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(_baseUrl)
                 .addConverterFactory(GsonConverterFactory.create())

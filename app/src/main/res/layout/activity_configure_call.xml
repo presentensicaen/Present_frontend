@@ -19,7 +19,7 @@
         android:paddingTop="20dp">
 
         <Spinner
-            android:id="@+id/spinner"
+            android:id="@+id/time_spinner"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="15dp"
@@ -28,7 +28,7 @@
             android:entries="@array/duree" />
 
         <EditText
-            android:id="@+id/editText"
+            android:id="@+id/eventName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="15dp"
@@ -87,11 +87,10 @@
                     tools:ignore="HardcodedText" />
 
                 <TextView
-                    android:id="@+id/textView3"
+                    android:id="@+id/code"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:text="AXCD-6AFT-7UIT"
                     android:textAlignment="center"
                     tools:ignore="HardcodedText" />
 

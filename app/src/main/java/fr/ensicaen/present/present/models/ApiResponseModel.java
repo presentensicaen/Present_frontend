@@ -6,10 +6,12 @@ import com.google.gson.annotations.SerializedName;
  * Created by jueast on 30/12/17.
  */
 
-public class ApiResponseModel <T> {
+public class ApiResponseModel<T> {
 
-    @SerializedName("status") private int _status;
-    @SerializedName("data") private T _data;
+    @SerializedName("status")
+    private int _status;
+    @SerializedName("data")
+    private T _data;
 
     public ApiResponseModel(int _status, T _data) {
         this._status = _status;

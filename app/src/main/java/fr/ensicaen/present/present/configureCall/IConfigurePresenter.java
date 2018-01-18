@@ -7,4 +7,9 @@ package fr.ensicaen.present.present.configureCall;
 public interface IConfigurePresenter {
 
     void onDestroy();
+
+    void onLaunchCallButtonClick(String duration);
+
+    void createCall();
+
 }
