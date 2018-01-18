@@ -29,12 +29,12 @@ public class InitialFakeClassToDeleteTest {
     }
 
     @Test
-    public void  testGetHobbies() throws JSONException, IOException {
+    public void testGetHobbies() throws JSONException, IOException {
         MockWebServer server = new MockWebServer();
         MockResponse response = new MockResponse()
-                                .addHeader("Content-Type", "application/json; charset=utf-8")
-                                .addHeader("Cache-Control", "no-cache")
-                                .setBody("[{\"name\": \"blah\"}, {\"name\": \"blah\"}]");
+                .addHeader("Content-Type", "application/json; charset=utf-8")
+                .addHeader("Cache-Control", "no-cache")
+                .setBody("[{\"name\": \"blah\"}, {\"name\": \"blah\"}]");
         server.enqueue(response);
         server.start();
 

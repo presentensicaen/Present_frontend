@@ -12,4 +12,6 @@ public interface IConfigureView {
 
     Context getContext();
 
+    void showToast(String message, int toastDuration);
+
 }

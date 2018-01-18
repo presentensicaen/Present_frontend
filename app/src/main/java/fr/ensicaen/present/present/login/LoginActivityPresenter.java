@@ -85,7 +85,7 @@ public class LoginActivityPresenter implements ILoginPresenter {
 
     private void onVerificationComplete() {
         Context c = _view.getContext();
-            if (!isUserValidated()) {
+        if (!isUserValidated()) {
             _view.hideLoadingAnimation();
             //@TODO make this a constant
             Toast.makeText(c, "Erreur : login failed", Toast.LENGTH_SHORT).show();

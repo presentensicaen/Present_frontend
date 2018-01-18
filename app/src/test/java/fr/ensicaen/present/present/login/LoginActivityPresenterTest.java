@@ -30,7 +30,7 @@ public class LoginActivityPresenterTest {
     private LoginActivityPresenter _presenter;
 
     @Before
-    public void setup(){
+    public void setup() {
         _view = mock(LoginActivity.class);
         _presenter = new LoginActivityPresenter(_view, createMockHandler());
     }

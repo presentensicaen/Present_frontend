@@ -87,7 +87,6 @@ dependencies {
 
     // dependency injection
 
-
     //noinspection GradleCompatible
     compile 'com.android.support:appcompat-v7:26.0.0-alpha1'
     compile 'com.squareup.retrofit2:retrofit:2.3.0'
@@ -114,7 +113,6 @@ dependencies {
     // required if you want to use Mockito for Android tests
     androidTestCompile 'org.mockito:mockito-android:2.7.22'
 
-
     //RXJava
     compile 'io.reactivex.rxjava2:rxandroid:2.0.1'
     // Because RxAndroid releases are few and far between, it is recommended you also
@@ -123,7 +121,6 @@ dependencies {
 
     // capatability between rxjava2 and retrofit2
     compile 'com.jakewharton.retrofit:retrofit2-rxjava2-adapter:1.0.0'
-
 
     //powermock
     testCompile 'org.powermock:powermock-module-junit4:1.7.0RC2',

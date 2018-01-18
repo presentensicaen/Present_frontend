@@ -1,15 +1,11 @@
 package fr.ensicaen.present.present.configureCall;
 
-import org.mockito.Mock;
 import android.os.Handler;
 
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
 
-import fr.ensicaen.present.present.models.CallModel;
-
-import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyLong;
@@ -31,7 +27,7 @@ public class ConfigurePresenterTest {
     private ConfigurePresenter _presenter;
 
     @Before
-    public void setup(){
+    public void setup() {
         _view = mock(ConfigureCallActivity.class);
         _presenter = new ConfigurePresenter(_view, createMockHandler());
     }
@@ -54,7 +50,7 @@ public class ConfigurePresenterTest {
     }*/
 
     @Test
-    public void test(){
+    public void test() {
         _presenter.createCall();
         System.out.println(_presenter.getCode());
 

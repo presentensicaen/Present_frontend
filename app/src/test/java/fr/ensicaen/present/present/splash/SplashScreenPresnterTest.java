@@ -19,13 +19,13 @@ public class SplashScreenPresnterTest {
     private SplashPresenter _presenter;
 
     @Before
-    public void setup(){
+    public void setup() {
         _mock = mock(SplashScreenActivity.class);
         _presenter = new SplashPresenter(_mock);
     }
 
     @Test
-    public void testCheckTokenValidity(){
+    public void testCheckTokenValidity() {
         _presenter.checkTokenValidity();
         verify(_mock, times(1)).openLoginActivity();
         verify(_mock, times(1)).finish();

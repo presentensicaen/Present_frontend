@@ -49,6 +49,7 @@ public class ConfigurePresenter implements IConfigurePresenter {
 
     @Override
     public void onLaunchCallButtonClick(String duration) {
+
         createCall();
 
     }
@@ -65,16 +66,17 @@ public class ConfigurePresenter implements IConfigurePresenter {
             NetworkTools.verifyConnection(c);
         } catch (NetworkTools.NoInternetException e) {
             //@TODO make this a constant
-            Toast.makeText(c, "Erreur : Network error", Toast.LENGTH_SHORT).show();
+
+            _view.showToast("Erreur : Network error", Toast.LENGTH_SHORT);
             d.dispose();
         }
     }
 
     private void onVerificationComplete() {
-        Context c = _view.getContext();
+
         if (!isCallCreated()) {
             //@TODO make this a constant
-            Toast.makeText(c, "Erreur lors de la création", Toast.LENGTH_SHORT).show();
+            _view.showToast("Erreur lors de la création", Toast.LENGTH_SHORT);
         } else {
             _view.setSuccessMessage(_call.getCode());
         }
@@ -91,23 +93,19 @@ public class ConfigurePresenter implements IConfigurePresenter {
 
     private void handleLoginErrorResponse(Throwable throwable) {
         //@TODO handle error
-        Toast.makeText(
-                _view.getContext(),
-                "Erreur " + throwable.getLocalizedMessage(),
-                Toast.LENGTH_SHORT
-        ).show();
+        _view.showToast("Erreur " + throwable.getLocalizedMessage(), Toast.LENGTH_SHORT);
     }
 
 
-        private JSONObject createCallPayload(String _id, int _duration, ArrayList<String> _groups) {
-            JSONObject jsonPayload = new JSONObject();
-            JSONObject jsonData = new JSONObject();
-            try {
-                jsonPayload.put("id", _id);
-                jsonPayload.put("duration", _duration);
-                jsonPayload.put("groups", _groups.toString());
+    private JSONObject createCallPayload(String _id, int _duration, ArrayList<String> _groups) {
+        JSONObject jsonPayload = new JSONObject();
+        JSONObject jsonData = new JSONObject();
+        try {
+            jsonPayload.put("id", _id);
+            jsonPayload.put("duration", _duration);
+            jsonPayload.put("groups", _groups.toString());
 
-                jsonData.put("data", jsonPayload);
+            jsonData.put("data", jsonPayload);
             return jsonData;
         } catch (JSONException e) {
             e.printStackTrace();
@@ -126,7 +124,7 @@ public class ConfigurePresenter implements IConfigurePresenter {
         _handler = handler;
     }
 
-    String getCode(){
+    String getCode() {
         return _call.getCode();
     }
 

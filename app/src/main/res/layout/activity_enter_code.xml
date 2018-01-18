@@ -22,8 +22,7 @@
             android:layout_marginRight="15dp"
             android:layout_marginTop="60dp"
             android:inputType="textPersonName"
-            android:hint="Entrer votre code"
-            />
+            android:hint="Entrer votre code" />
 
         <Button
             android:id="@+id/enter_code"
