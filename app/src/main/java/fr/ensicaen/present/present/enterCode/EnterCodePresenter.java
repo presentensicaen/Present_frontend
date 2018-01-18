@@ -6,6 +6,8 @@ import android.widget.Toast;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.IOException;
+
 import fr.ensicaen.present.present.models.ApiResponseModel;
 import fr.ensicaen.present.present.models.EnterCodeModel;
 import fr.ensicaen.present.present.services.IEnterCodeService;
@@ -23,6 +25,7 @@ import io.reactivex.schedulers.Schedulers;
 public class EnterCodePresenter implements IEnterCodePresenter{
 
     private IEnterCodeView _view;
+    private Config _config;
 
     //@TODO _serverMessage will be of type data
     private boolean _serverMessage;
@@ -30,6 +33,11 @@ public class EnterCodePresenter implements IEnterCodePresenter{
 
     public EnterCodePresenter(IEnterCodeView view){
         _view = view;
+        try {
+            _config = _view.getConfigAccessor();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public void onEnterCodeButtonClick(String id, String code){
@@ -39,7 +47,7 @@ public class EnterCodePresenter implements IEnterCodePresenter{
 
     public void verifyCode(String id, String code){
         IEnterCodeService service;
-        service = ServiceFactory.createRetrofitService(IEnterCodeService.class, Config.property("API_URL"));
+        service = ServiceFactory.createRetrofitService(IEnterCodeService.class, _config.property("API_URL"));
         service.checkCode(createEnterCodePayload(id, code))
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())

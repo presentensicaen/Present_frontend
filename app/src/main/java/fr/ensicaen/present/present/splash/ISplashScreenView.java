@@ -1,6 +1,9 @@
 package fr.ensicaen.present.present.splash;
 
-import android.content.Context;
+
+import java.io.IOException;
+
+import fr.ensicaen.present.present.utils.Config;
 
 /**
  * Created by jueast on 03/12/17.
@@ -10,13 +13,7 @@ public interface ISplashScreenView {
 
     void openLoginActivity();
 
-    void openDashboardActivity();
-
-    void startSyncService();
-
-    void showProgressBar();
-
     void finish();
 
-    Context getContext();
+    Config getConfigAccessor() throws IOException;
 }

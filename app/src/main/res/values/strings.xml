@@ -33,7 +33,6 @@
     <string name="consult_calls">Consulter un appel</string>
     <string name="generate_code_no_groupe">Générer un code</string>
     <string name="chose_group">Choisir un groupe</string>
-
     <string name="success_message_header">Succès</string>
     <string name="success_message_text">Vous venez de vous déclarer présent pour au contrôle de présence.</string>
     <string name="error_message_header">Echec</string>

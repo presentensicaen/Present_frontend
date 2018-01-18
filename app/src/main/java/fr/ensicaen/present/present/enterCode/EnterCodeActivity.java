@@ -10,8 +10,11 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.IOException;
+
 import fr.ensicaen.present.present.R;
 import fr.ensicaen.present.present.dashboard.DashboardActivity;
+import fr.ensicaen.present.present.utils.Config;
 
 /**
  * Created by Jeanne on 14/12/2017.
@@ -38,34 +41,31 @@ public class EnterCodeActivity extends Activity implements IEnterCodeView {
         Button enterCodeButton = (Button)findViewById(R.id.enter_code);
         Button returnToDashboardButton = (Button)findViewById(R.id.return_dashboard);
 
-        enterCodeButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                _presenter.onEnterCodeButtonClick(_id, _codeText.getText().toString());
+        enterCodeButton.setOnClickListener(view -> {
+            _presenter.onEnterCodeButtonClick(_id, _codeText.getText().toString());
 
-                if(_presenter.getMessage()) {
-                    findViewById(R.id.message_container).setVisibility(View.VISIBLE);
-                    TextView message_header = findViewById(R.id.message_header);
-                    message_header.setText(R.string.success_message_header);
-                    TextView message_text = findViewById(R.id.message_text);
-                    message_text.setText(R.string.success_message_text);
-                    findViewById(R.id.return_dashboard).setVisibility(View.VISIBLE);
-                }
-                else {
-                    findViewById(R.id.message_container).setVisibility(View.VISIBLE);
-                    TextView message_header = findViewById(R.id.message_header);
-                    message_header.setText(R.string.error_message_header);
-                    TextView message_text = findViewById(R.id.message_text);
-                    message_text.setText(R.string.error_message_text);
-                }
+            if(_presenter.getMessage()) {
+                findViewById(R.id.message_container).setVisibility(View.VISIBLE);
+                TextView message_header = findViewById(R.id.message_header);
+                message_header.setText(R.string.success_message_header);
+                TextView message_text = findViewById(R.id.message_text);
+                message_text.setText(R.string.success_message_text);
+                findViewById(R.id.return_dashboard).setVisibility(View.VISIBLE);
+            }
+            else {
+                findViewById(R.id.message_container).setVisibility(View.VISIBLE);
+                TextView message_header = findViewById(R.id.message_header);
+                message_header.setText(R.string.error_message_header);
+                TextView message_text = findViewById(R.id.message_text);
+                message_text.setText(R.string.error_message_text);
             }
         });
-        returnToDashboardButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                goToDashboard();
-            }
-        });
+        returnToDashboardButton.setOnClickListener(view -> goToDashboard());
+    }
+
+    @Override
+    public Config getConfigAccessor() throws IOException {
+        return new Config(this);
     }
 
 

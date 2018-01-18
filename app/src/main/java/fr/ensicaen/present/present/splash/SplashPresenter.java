@@ -1,7 +1,5 @@
 package fr.ensicaen.present.present.splash;
 
-import android.os.Handler;
-
 import java.io.IOException;
 
 import fr.ensicaen.present.present.utils.Config;
@@ -13,18 +11,20 @@ import fr.ensicaen.present.present.utils.Config;
 public final class SplashPresenter implements ISplashPresenter {
 
     private ISplashScreenView _view;
+    private Config _config;
 
     public SplashPresenter(ISplashScreenView view){
         _view = view;
-        loadEnvironmentPropertiesForApp();
-    }
-
-    public void loadEnvironmentPropertiesForApp() {
         try {
-            Config.loadProperties(_view.getContext());
+            _config = _view.getConfigAccessor();
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public SplashPresenter(ISplashScreenView view, Config c) {
+        _view = view;
+        _config = c;
     }
 
     @Override
