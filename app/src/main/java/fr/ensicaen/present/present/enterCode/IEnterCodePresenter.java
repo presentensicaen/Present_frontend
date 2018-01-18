@@ -5,6 +5,9 @@ package fr.ensicaen.present.present.enterCode;
  */
 
 interface IEnterCodePresenter {
-    void sendCode();
-    boolean getMessage();
+    void onEnterCodeButtonClick(String id, String code);
+
+    public boolean getMessage();
+
+    void verifyCode(String id, String code);
 }
