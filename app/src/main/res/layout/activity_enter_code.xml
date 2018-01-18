@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -23,8 +22,7 @@
             android:layout_marginRight="15dp"
             android:layout_marginTop="60dp"
             android:inputType="textPersonName"
-            android:hint="Entrer votre code"
-            />
+            android:hint="Entrer votre code" />
 
         <Button
             android:id="@+id/enter_code"
@@ -87,7 +85,7 @@
                     android:background="@drawable/accent_button"
                     android:text="Retourner Dashboard"
                     android:textColor="@android:color/background_light"
-                    android:visibility="invisible"/>
+                    android:visibility="invisible" />
 
             </LinearLayout>
         </android.support.v7.widget.CardView>

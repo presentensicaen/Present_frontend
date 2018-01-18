@@ -1,6 +1,5 @@
 package fr.ensicaen.present.present.configureCall;
 
-import android.content.Context;
 import android.os.Handler;
 import android.widget.Toast;
 
@@ -16,7 +15,6 @@ import fr.ensicaen.present.present.services.ICallService;
 import fr.ensicaen.present.present.utils.Config;
 import fr.ensicaen.present.present.utils.api.ServiceFactory;
 import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 
 /**
@@ -53,7 +51,7 @@ public class ConfigurePresenter implements IConfigurePresenter {
 
     }
 
-    public ConfigurePresenter(IConfigureView view){
+    public ConfigurePresenter(IConfigureView view) {
         _view = view;
 
         try {
@@ -64,7 +62,7 @@ public class ConfigurePresenter implements IConfigurePresenter {
 
     }
 
-    public ConfigurePresenter(IConfigureView view, Config c){
+    public ConfigurePresenter(IConfigureView view, Config c) {
         _view = view;
         _config = c;
     }
@@ -117,7 +115,7 @@ public class ConfigurePresenter implements IConfigurePresenter {
     }
 
     /* for the tests */
-    void setCall(CallModel call){
+    void setCall(CallModel call) {
         _call = call;
     }
 

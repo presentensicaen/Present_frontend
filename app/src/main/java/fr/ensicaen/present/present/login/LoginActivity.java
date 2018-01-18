@@ -54,7 +54,7 @@ public class LoginActivity extends Activity implements ILoginView {
         setConnectionButtonClickAction();
     }
 
-    private void initializeActivity(){
+    private void initializeActivity() {
         setTheme(R.style.AppTheme);
         getWindow().getDecorView().setSystemUiVisibility(
                 View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION);
@@ -63,7 +63,7 @@ public class LoginActivity extends Activity implements ILoginView {
 
     @Override
     public void onWindowFocusChanged(boolean hasFocus) {
-        if(_presenter.onWindowFocusChanged(hasFocus)){
+        if (_presenter.onWindowFocusChanged(hasFocus)) {
             super.onWindowFocusChanged(hasFocus);
         }
     }
@@ -103,7 +103,7 @@ public class LoginActivity extends Activity implements ILoginView {
         return new Config(this);
     }
 
-    private void animateContent(){
+    private void animateContent() {
         for (int i = 0; i < _loginContainer.getChildCount(); i++) {
             View v = _loginContainer.getChildAt(i);
             animateIfButton(v, ITEM_DELAY * i);
@@ -112,31 +112,31 @@ public class LoginActivity extends Activity implements ILoginView {
     }
 
     private void animateIfTextInput(View v, int delay) {
-        if(!(v instanceof EditText)){
+        if (!(v instanceof EditText)) {
             return;
         }
         ViewCompat.animate(v)
                 .translationY(50).alpha(1)
-                .setStartDelay((long)delay + 500)
+                .setStartDelay((long) delay + 500)
                 .setDuration(1000)
                 .setInterpolator(new DecelerateInterpolator())
                 .start();
     }
 
-    private void animateIfButton(View v, int delay){
-        if(!(v instanceof Button)){
+    private void animateIfButton(View v, int delay) {
+        if (!(v instanceof Button)) {
             return;
         }
 
         ViewCompat.animate(v)
                 .scaleY(1).scaleX(1)
-                .setStartDelay((long)delay + 500)
+                .setStartDelay((long) delay + 500)
                 .setDuration(500)
                 .setInterpolator(new DecelerateInterpolator())
                 .start();
     }
 
-    private void translateLogo(){
+    private void translateLogo() {
         ViewCompat.animate(_logoImageView)
                 .translationY(-200)
                 .setStartDelay(STARTUP_DELAY)
@@ -144,7 +144,7 @@ public class LoginActivity extends Activity implements ILoginView {
                 new DecelerateInterpolator(1.2f)).start();
     }
 
-    private void setConnectionButtonClickAction(){
+    private void setConnectionButtonClickAction() {
         _loginButton.setOnClickListener(v -> _presenter.onConnectionButtonClick(
                 _emailText.getText().toString(),
                 _passwordText.getText().toString()

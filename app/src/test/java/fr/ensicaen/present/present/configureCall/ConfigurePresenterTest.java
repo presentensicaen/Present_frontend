@@ -10,14 +10,11 @@ import org.mockito.Mock;
 import java.io.IOException;
 
 import fr.ensicaen.present.present.models.CallModel;
-import fr.ensicaen.present.present.models.UserModel;
 import fr.ensicaen.present.present.utils.Config;
 import io.reactivex.android.plugins.RxAndroidPlugins;
 import io.reactivex.schedulers.Schedulers;
 import okhttp3.mockwebserver.MockWebServer;
 
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.spy;
 import static org.mockito.Mockito.times;
@@ -30,7 +27,6 @@ import static org.mockito.Mockito.when;
  */
 
 public class ConfigurePresenterTest {
-
 
 
     @Mock
@@ -53,20 +49,20 @@ public class ConfigurePresenterTest {
     }
 
     @After
-    public void teardown(){
+    public void teardown() {
         RxAndroidPlugins.setInitMainThreadSchedulerHandler(null);
     }
 
 
     @Test
-    public void testOnVerificationCompleteError(){
+    public void testOnVerificationCompleteError() {
         when(_presenter.isCallCreated()).thenReturn(false);
         _presenter.onVerificationComplete();
         verify(_view, times(1)).showToast("Erreur lors de la création", Toast.LENGTH_SHORT);
     }
 
     @Test
-    public void testOnVerificationCompleteSuccess(){
+    public void testOnVerificationCompleteSuccess() {
         CallModel _call = new CallModel("CODE");
         _presenter.setCall(_call);
         when(_presenter.isCallCreated()).thenReturn(true);

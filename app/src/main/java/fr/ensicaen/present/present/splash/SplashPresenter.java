@@ -8,7 +8,7 @@ public final class SplashPresenter implements ISplashPresenter {
 
     private ISplashScreenView _view;
 
-    public SplashPresenter(ISplashScreenView view){
+    public SplashPresenter(ISplashScreenView view) {
         _view = view;
     }
 

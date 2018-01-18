@@ -22,7 +22,7 @@ public class Config {
 
     private void loadProperties(Context context) throws IOException {
         Resources resources = context.getResources();
-        if(_props == null){
+        if (_props == null) {
             InputStream rawResource = resources.openRawResource(R.raw.config);
             _props = new Properties();
             _props.load(rawResource);
@@ -31,7 +31,7 @@ public class Config {
     }
 
     public String property(String name) {
-        if(_props != null) {
+        if (_props != null) {
             return _props.getProperty(name);
         }
         return null;

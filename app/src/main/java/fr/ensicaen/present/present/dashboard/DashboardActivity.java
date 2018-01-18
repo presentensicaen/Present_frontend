@@ -9,7 +9,7 @@ import fr.ensicaen.present.present.R;
 import fr.ensicaen.present.present.enterCode.EnterCodeActivity;
 import fr.ensicaen.present.present.generateCode.GenerateCodeActivity;
 
-public class DashboardActivity extends Activity implements IDashboardView{
+public class DashboardActivity extends Activity implements IDashboardView {
 
     private Button _launchCallButton;
     private Button _answerCallButton;
@@ -37,20 +37,21 @@ public class DashboardActivity extends Activity implements IDashboardView{
         _launchCallButton.setOnClickListener(v -> _presenter.onLaunchCallClick());
     }
 
-    private void setAnswerCallAction(){
+    private void setAnswerCallAction() {
         _answerCallButton.setOnClickListener(v -> _presenter.onAnswerCallClick());
     }
 
-    private void setReviewCallsAction(){
+    private void setReviewCallsAction() {
         _reviewCallButton.setOnClickListener(v -> _presenter.onReviewOldCallsClick());
 
     }
+
     public void goToGenerateCode() {
         Intent intent = new Intent(DashboardActivity.this, GenerateCodeActivity.class);
         startActivity(intent);
     }
 
-    public void goToEnterCode(){
+    public void goToEnterCode() {
         Intent intent = new Intent(DashboardActivity.this, EnterCodeActivity.class);
         startActivity(intent);
     }

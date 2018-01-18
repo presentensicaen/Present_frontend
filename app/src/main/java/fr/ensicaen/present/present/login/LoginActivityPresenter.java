@@ -27,7 +27,7 @@ public class LoginActivityPresenter implements ILoginPresenter {
     private UserModel _user;
     private Config _config;
 
-    public LoginActivityPresenter(ILoginView view){
+    public LoginActivityPresenter(ILoginView view) {
         _view = view;
         _animationStarted = false;
         try {
@@ -37,7 +37,7 @@ public class LoginActivityPresenter implements ILoginPresenter {
         }
     }
 
-    public LoginActivityPresenter(ILoginView view, Config c){
+    public LoginActivityPresenter(ILoginView view, Config c) {
         _view = view;
         _animationStarted = false;
         _config = c;
@@ -59,7 +59,7 @@ public class LoginActivityPresenter implements ILoginPresenter {
     }
 
     @Override
-    public void onConnectionButtonClick(String email, String password){
+    public void onConnectionButtonClick(String email, String password) {
         attempLogin(createLoginPayload(email, password));
     }
 
@@ -77,28 +77,27 @@ public class LoginActivityPresenter implements ILoginPresenter {
     }
 
 
-
     public void onVerificationComplete() {
-        if(!isUserValidated()){
+        if (!isUserValidated()) {
             _view.hideLoadingAnimation();
             //@TODO make this a constant
             _view.showToast("Error : login failed", Toast.LENGTH_SHORT);
-        }else{
+        } else {
             _view.hideLoadingAnimation();
             //@TODO make this a constant
-            _view.showToast("Bienvenue "+_user.getDisplayName(), Toast.LENGTH_SHORT);
+            _view.showToast("Bienvenue " + _user.getDisplayName(), Toast.LENGTH_SHORT);
             _view.goToDashboard();
             _view.finish();
         }
     }
 
-    private void handleLoginSuccessResponse(ApiResponseModel<UserModel.UserObjectHolder> response){
+    private void handleLoginSuccessResponse(ApiResponseModel<UserModel.UserObjectHolder> response) {
         _user = response.getData().getUser();
     }
 
     private void handleLoginErrorResponse(Throwable throwable) {
         _view.hideLoadingAnimation();
-        _view.showToast("Erreur "+throwable.getLocalizedMessage(), Toast.LENGTH_SHORT);
+        _view.showToast("Erreur " + throwable.getLocalizedMessage(), Toast.LENGTH_SHORT);
     }
 
     public boolean isUserValidated() {
@@ -123,15 +122,15 @@ public class LoginActivityPresenter implements ILoginPresenter {
     /*
     * F O R  T E S T I N G   O N L Y
     */
-    void setUser(UserModel user){
+    void setUser(UserModel user) {
         _user = user;
     }
 
-    UserModel getUser(){
+    UserModel getUser() {
         return _user;
     }
 
-    boolean getAnimationStarted(){
+    boolean getAnimationStarted() {
         return _animationStarted;
     }
 }

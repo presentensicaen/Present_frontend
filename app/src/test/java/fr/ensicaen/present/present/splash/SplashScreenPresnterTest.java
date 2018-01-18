@@ -6,8 +6,6 @@ import org.mockito.Mock;
 
 import java.io.IOException;
 
-import fr.ensicaen.present.present.utils.Config;
-
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
@@ -29,7 +27,7 @@ public class SplashScreenPresnterTest {
     }
 
     @Test
-    public void testCheckTokenValidity(){
+    public void testCheckTokenValidity() {
         _presenter.checkTokenValidity();
         verify(_view, times(1)).openLoginActivity();
         verify(_view, times(1)).finish();

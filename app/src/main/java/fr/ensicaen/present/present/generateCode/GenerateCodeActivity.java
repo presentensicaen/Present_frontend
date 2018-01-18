@@ -22,12 +22,12 @@ public class GenerateCodeActivity extends AppCompatActivity implements IGenerate
         initializeGenerateCodeActivity();
     }
 
-    public void initializeLayoutComponents (){
+    public void initializeLayoutComponents() {
         setContentView(R.layout.activity_generate_code);
     }
 
-    public void initializeGenerateCodeActivity(){
-        Button button1 = (Button)findViewById(R.id.generate_without_group_button);
+    public void initializeGenerateCodeActivity() {
+        Button button1 = (Button) findViewById(R.id.generate_without_group_button);
         button1.setOnClickListener(v -> {
             Intent intent = new Intent(GenerateCodeActivity.this, ConfigureCallActivity.class);
             startActivity(intent);

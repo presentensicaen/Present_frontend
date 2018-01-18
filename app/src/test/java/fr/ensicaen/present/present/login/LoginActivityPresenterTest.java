@@ -29,7 +29,7 @@ import static org.mockito.Mockito.when;
 
 public class LoginActivityPresenterTest {
 
-    
+
     @Mock
     private LoginActivity _view;
 
@@ -50,13 +50,13 @@ public class LoginActivityPresenterTest {
     }
 
     @After
-    public void teardown(){
+    public void teardown() {
         RxAndroidPlugins.setInitMainThreadSchedulerHandler(null);
     }
 
 
     @Test
-    public void testOnVerificationCompleteError(){
+    public void testOnVerificationCompleteError() {
         when(_presenter.isUserValidated()).thenReturn(false);
         _presenter.onVerificationComplete();
         verify(_view, times(1)).hideLoadingAnimation();
@@ -64,14 +64,14 @@ public class LoginActivityPresenterTest {
     }
 
     @Test
-    public void testOnVerificationCompleteSuccess(){
+    public void testOnVerificationCompleteSuccess() {
         _presenter.setUser(new UserModel("Julian", "Easterly", "id"));
         when(_presenter.isUserValidated()).thenReturn(true);
         _presenter.onVerificationComplete();
         verify(_view, times(1)).hideLoadingAnimation();
         verify(_view, times(1)).goToDashboard();
         verify(_view, times(1)).finish();
-        verify(_view, times(1)).showToast("Bienvenue "+_presenter.getUser().getDisplayName(), Toast.LENGTH_SHORT);
+        verify(_view, times(1)).showToast("Bienvenue " + _presenter.getUser().getDisplayName(), Toast.LENGTH_SHORT);
     }
 
     @Test
@@ -81,7 +81,7 @@ public class LoginActivityPresenterTest {
     }
 
     @Test
-    public void testOnAnimationFinished(){
+    public void testOnAnimationFinished() {
         _presenter.onAnimationFinished();
         assertFalse(_presenter.getAnimationStarted());
     }

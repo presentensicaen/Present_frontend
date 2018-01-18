@@ -12,7 +12,7 @@ import fr.ensicaen.present.present.R;
 import fr.ensicaen.present.present.configureCall.ConfigureCallActivity;
 
 
-public class SelectGroups extends AppCompatActivity implements ISelectView{
+public class SelectGroups extends AppCompatActivity implements ISelectView {
     ListView listview;
     Context context;
 
@@ -24,7 +24,7 @@ public class SelectGroups extends AppCompatActivity implements ISelectView{
 
 
         context = this;
-        listview = (ListView)findViewById(R.id.listGroup);
+        listview = (ListView) findViewById(R.id.listGroup);
         //string array
         String[] foody = {"TP1 info 2A", "TP2 info 2A", "TD A info 2A", "TD B info 2A", "promo info 2A"};
         // set adapter for listview
