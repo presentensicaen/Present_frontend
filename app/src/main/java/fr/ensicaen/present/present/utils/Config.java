@@ -2,7 +2,6 @@ package fr.ensicaen.present.present.utils;
 
 import android.content.Context;
 import android.content.res.Resources;
-import android.util.Log;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -25,7 +24,7 @@ public class Config {
     private void loadProperties(Context context) throws IOException {
         Resources resources = context.getResources();
         if(_props == null){
-            InputStream rawResource = resources.openRawResource(R.raw.default_config);
+            InputStream rawResource = resources.openRawResource(R.raw.config);
             _props = new Properties();
             _props.load(rawResource);
         }
