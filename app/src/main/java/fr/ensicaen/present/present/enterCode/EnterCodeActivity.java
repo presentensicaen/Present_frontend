@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import fr.ensicaen.present.present.R;
 import fr.ensicaen.present.present.dashboard.DashboardActivity;
@@ -40,7 +41,7 @@ public class EnterCodeActivity extends Activity implements IEnterCodeView {
         enterCodeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                _presenter.onEnterCodeButtonClick(_codeText.getText().toString(), _id);
+                _presenter.onEnterCodeButtonClick(_id, _codeText.getText().toString());
 
                 if(_presenter.getMessage()) {
                     findViewById(R.id.message_container).setVisibility(View.VISIBLE);

@@ -23,7 +23,10 @@ import io.reactivex.schedulers.Schedulers;
 public class EnterCodePresenter implements IEnterCodePresenter{
 
     private IEnterCodeView _view;
-    //@TODO add a boolean : messageServer : 1 right code, 0 wrong code
+
+    //@TODO _serverMessage will be of type data
+    private boolean _serverMessage;
+
 
     public EnterCodePresenter(IEnterCodeView view){
         _view = view;
@@ -40,7 +43,8 @@ public class EnterCodePresenter implements IEnterCodePresenter{
         service.checkCode(createEnterCodePayload(id, code))
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .doOnSubscribe(this::connectionToServerAttempt);
+                .doOnSubscribe(this::connectionToServerAttempt)
+                .subscribe(this::onCodeVerificationComplete);
     }
 
     private void connectionToServerAttempt(Disposable d){
@@ -54,10 +58,12 @@ public class EnterCodePresenter implements IEnterCodePresenter{
         }
     }
 
-
-
-    private void onCodeVerificationComplete(ApiResponseModel<String> response) {
-
+    private void onCodeVerificationComplete(ApiResponseModel<String> response){
+        if(response.getStatus() == 200){
+            _serverMessage = true;
+        } else {
+            _serverMessage = false;
+        }
     }
 
     private JSONObject createEnterCodePayload(String id, String code) {
@@ -75,8 +81,8 @@ public class EnterCodePresenter implements IEnterCodePresenter{
         return jsonPayload;
     }
 
-    //@TODO create fonction getMessage server : right now boolean
-    //@TODO later : date (message from server)
-    public boolean getMessage(){ return true;}
+
+    //@TODO getMessage should return the data send by the server (when implemented)
+    public boolean getMessage(){ return _serverMessage;}
 
 }
