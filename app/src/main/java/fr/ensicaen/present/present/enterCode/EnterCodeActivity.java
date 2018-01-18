@@ -21,46 +21,72 @@ import fr.ensicaen.present.present.utils.Config;
  */
 
 public class EnterCodeActivity extends Activity implements IEnterCodeView {
+
+    //@TODO later, get the user id - for now fake id
+    public static final String _id = "99111";
+
     private IEnterCodePresenter _presenter;
+
     private EditText _codeText;
-    private String _id = "99111";
+    private Button _enterCodeButton;
+    private Button _returnToDashboardButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         _presenter = new EnterCodePresenter(this);
-        initializeLayoutComponents();
         initializeEnterCodeActivity();
+        initializeLayoutComponents();
     }
 
-    public Context getContext() {
-        return this;
+    public void initializeLayoutComponents(){
+        _codeText = findViewById(R.id.editText2);
+        _enterCodeButton = (Button)findViewById(R.id.enter_code);
+        _returnToDashboardButton = (Button)findViewById(R.id.return_dashboard);
+        setOnEnterCodeButtonAction();
+        setReturnDashboardButtonAction();
     }
 
     public void initializeEnterCodeActivity() {
-        Button enterCodeButton = (Button)findViewById(R.id.enter_code);
-        Button returnToDashboardButton = (Button)findViewById(R.id.return_dashboard);
+        setContentView(R.layout.activity_enter_code);
+    }
 
-        enterCodeButton.setOnClickListener(view -> {
-            _presenter.onEnterCodeButtonClick(_id, _codeText.getText().toString());
+    public void setOnEnterCodeButtonAction(){
+        _enterCodeButton.setOnClickListener(view -> _presenter.onEnterCodeButtonClick(_id, _codeText.getText().toString()));
+        if(_presenter.getMessage()){
+            displaySuccessMessage();
+        } else {
+            displayFailureMessage();
+        }
+    }
 
-            if(_presenter.getMessage()) {
-                findViewById(R.id.message_container).setVisibility(View.VISIBLE);
-                TextView message_header = findViewById(R.id.message_header);
-                message_header.setText(R.string.success_message_header);
-                TextView message_text = findViewById(R.id.message_text);
-                message_text.setText(R.string.success_message_text);
-                findViewById(R.id.return_dashboard).setVisibility(View.VISIBLE);
-            }
-            else {
-                findViewById(R.id.message_container).setVisibility(View.VISIBLE);
-                TextView message_header = findViewById(R.id.message_header);
-                message_header.setText(R.string.error_message_header);
-                TextView message_text = findViewById(R.id.message_text);
-                message_text.setText(R.string.error_message_text);
-            }
-        });
-        returnToDashboardButton.setOnClickListener(view -> goToDashboard());
+    private void displaySuccessMessage(){
+        findViewById(R.id.message_container).setVisibility(View.VISIBLE);
+        TextView message_header = findViewById(R.id.message_header);
+        message_header.setText(R.string.success_message_header);
+        TextView message_text = findViewById(R.id.message_text);
+        message_text.setText(R.string.success_message_text);
+        findViewById(R.id.return_dashboard).setVisibility(View.VISIBLE);
+
+    }
+
+    private void displayFailureMessage(){
+        findViewById(R.id.message_container).setVisibility(View.VISIBLE);
+        TextView message_header = findViewById(R.id.message_header);
+        message_header.setText(R.string.error_message_header);
+        TextView message_text = findViewById(R.id.message_text);
+        message_text.setText(R.string.error_message_text);
+    }
+
+    public void setReturnDashboardButtonAction(){
+        _returnToDashboardButton.setOnClickListener(view -> goToDashboard());
+    }
+
+    @Override
+    public void goToDashboard(){
+        Intent intent = new Intent(EnterCodeActivity.this, DashboardActivity.class);
+        startActivity(intent);
+
     }
 
     @Override
@@ -68,15 +94,9 @@ public class EnterCodeActivity extends Activity implements IEnterCodeView {
         return new Config(this);
     }
 
-
-    public void goToDashboard(){
-        Intent intent = new Intent(EnterCodeActivity.this, DashboardActivity.class);
-        startActivity(intent);
-
-    }
-    public void initializeLayoutComponents(){
-        _codeText = findViewById(R.id.editText2);
-        setContentView(R.layout.activity_enter_code);
+    @Override
+    public Context getContext() {
+        return this;
     }
 
 }
