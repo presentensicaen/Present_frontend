@@ -1,18 +1,26 @@
 package fr.ensicaen.present.present.login;
 
-import android.os.Handler;
+import android.widget.Toast;
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
 
+import java.io.IOException;
+
 import fr.ensicaen.present.present.models.UserModel;
+import fr.ensicaen.present.present.utils.Config;
+import io.reactivex.android.plugins.RxAndroidPlugins;
+import io.reactivex.schedulers.Schedulers;
+import okhttp3.mockwebserver.MockWebServer;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.spy;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 /**
@@ -21,53 +29,67 @@ import static org.mockito.Mockito.when;
 
 public class LoginActivityPresenterTest {
 
+    
     @Mock
     private LoginActivity _view;
 
     @Mock
-    private Handler _handler;
+    private Config _config;
+
+    private MockWebServer _webServer;
 
     private LoginActivityPresenter _presenter;
 
     @Before
-    public void setup() {
+    public void setup() throws IOException {
         _view = mock(LoginActivity.class);
-        _presenter = new LoginActivityPresenter(_view, createMockHandler());
+        _config = mock(Config.class);
+        _presenter = spy(new LoginActivityPresenter(_view, _config));
+        _webServer = new MockWebServer();
+        RxAndroidPlugins.setInitMainThreadSchedulerHandler(scheduler -> Schedulers.trampoline());
     }
 
-    private Handler createMockHandler() {
-        Handler handler = mock(Handler.class);
-        when(handler.postDelayed(any(Runnable.class), anyLong())).thenAnswer(invocation -> {
-            ((Runnable) invocation.getArgument(0)).run();
-            return null;
-        });
-
-        return handler;
+    @After
+    public void teardown(){
+        RxAndroidPlugins.setInitMainThreadSchedulerHandler(null);
     }
-
-    //@TODO TEST
 
 
     @Test
-    public void testOnWindoFocusChangedWhenHasFocusFalse() throws Exception {
-        assertFalse(_presenter.onWindowFocusChanged(false));
+    public void testOnVerificationCompleteError(){
+        when(_presenter.isUserValidated()).thenReturn(false);
+        _presenter.onVerificationComplete();
+        verify(_view, times(1)).hideLoadingAnimation();
+        verify(_view, times(1)).showToast("Error : login failed", Toast.LENGTH_SHORT);
+    }
 
+    @Test
+    public void testOnVerificationCompleteSuccess(){
+        _presenter.setUser(new UserModel("Julian", "Easterly", "id"));
+        when(_presenter.isUserValidated()).thenReturn(true);
+        _presenter.onVerificationComplete();
+        verify(_view, times(1)).hideLoadingAnimation();
+        verify(_view, times(1)).goToDashboard();
+        verify(_view, times(1)).finish();
+        verify(_view, times(1)).showToast("Bienvenue "+_presenter.getUser().getDisplayName(), Toast.LENGTH_SHORT);
+    }
+
+    @Test
+    public void testOnWindoFocusChangedWhenHasFocusFalse() {
+        assertFalse(_presenter.onWindowFocusChanged(false));
+        verify(_view, times(0)).animate();
+    }
+
+    @Test
+    public void testOnAnimationFinished(){
+        _presenter.onAnimationFinished();
+        assertFalse(_presenter.getAnimationStarted());
     }
 
     @Test
     public void testOnWindoFocusChangedWhenHasFocusTrue() throws Exception {
         assertTrue(_presenter.onWindowFocusChanged(true));
+        verify(_view, times(1)).animate();
     }
 
-    @Test
-    public void isUserValidTestFalse() {
-        _presenter.setUser(null);
-        assertFalse(_presenter.isUserValidated());
-    }
-
-    @Test
-    public void isUserValidTestTrue() {
-        _presenter.setUser(new UserModel("Julian", "Easterly", "id"));
-        assertTrue(_presenter.isUserValidated());
-    }
 }

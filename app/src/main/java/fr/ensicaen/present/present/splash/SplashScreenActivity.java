@@ -1,11 +1,13 @@
 package fr.ensicaen.present.present.splash;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
+import java.io.IOException;
+
 import fr.ensicaen.present.present.login.LoginActivity;
+import fr.ensicaen.present.present.utils.Config;
 
 public class SplashScreenActivity extends Activity implements ISplashScreenView {
 
@@ -19,7 +21,6 @@ public class SplashScreenActivity extends Activity implements ISplashScreenView 
         _presenter.checkTokenValidity();
     }
 
-
     @Override
     public void openLoginActivity() {
         Intent loginIntent = new Intent(SplashScreenActivity.this, LoginActivity.class);
@@ -27,22 +28,9 @@ public class SplashScreenActivity extends Activity implements ISplashScreenView 
     }
 
     @Override
-    public void openDashboardActivity() {
-
+    public Config getConfigAccessor() throws IOException {
+        return new Config(this);
     }
 
-    @Override
-    public void startSyncService() {
 
-    }
-
-    @Override
-    public void showProgressBar() {
-
-    }
-
-    @Override
-    public Context getContext() {
-        return this;
-    }
 }

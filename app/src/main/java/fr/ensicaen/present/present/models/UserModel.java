@@ -15,10 +15,10 @@ public class UserModel {
     @SerializedName("id")
     private String _id;
 
-    public UserModel(String _name, String _lastName, String _id) {
-        this._name = _name;
-        this._lastName = _lastName;
-        this._id = _id;
+    public UserModel(String name, String lastName, String id) {
+        this._name = name;
+        this._lastName = lastName;
+        this._id = id;
     }
 
     @Override

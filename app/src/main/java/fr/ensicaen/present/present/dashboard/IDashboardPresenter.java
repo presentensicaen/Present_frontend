@@ -6,10 +6,6 @@ package fr.ensicaen.present.present.dashboard;
 
 public interface IDashboardPresenter {
 
-    void onDestroy();
-
-    void onEnterCodeButtonClick();
-
     void onLaunchCallClick();
 
     void onAnswerCallClick();

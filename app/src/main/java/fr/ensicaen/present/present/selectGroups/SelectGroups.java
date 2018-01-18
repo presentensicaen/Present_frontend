@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
@@ -13,9 +12,8 @@ import fr.ensicaen.present.present.R;
 import fr.ensicaen.present.present.configureCall.ConfigureCallActivity;
 
 
-public class SelectGroups extends AppCompatActivity implements ISelectView {
+public class SelectGroups extends AppCompatActivity implements ISelectView{
     ListView listview;
-    String[] foody;
     Context context;
 
 
@@ -26,7 +24,7 @@ public class SelectGroups extends AppCompatActivity implements ISelectView {
 
 
         context = this;
-        listview = (ListView) findViewById(R.id.listGroup);
+        listview = (ListView)findViewById(R.id.listGroup);
         //string array
         String[] foody = {"TP1 info 2A", "TP2 info 2A", "TD A info 2A", "TD B info 2A", "promo info 2A"};
         // set adapter for listview
@@ -38,11 +36,9 @@ public class SelectGroups extends AppCompatActivity implements ISelectView {
 
 
         Button button1 = (Button) findViewById(R.id.generateCode);
-        button1.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v1) {
-                Intent intent = new Intent(SelectGroups.this, ConfigureCallActivity.class);
-                startActivity(intent);
-            }
+        button1.setOnClickListener(v1 -> {
+            Intent intent = new Intent(SelectGroups.this, ConfigureCallActivity.class);
+            startActivity(intent);
         });
     }
 }

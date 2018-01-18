@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -22,7 +23,8 @@
             android:layout_marginRight="15dp"
             android:layout_marginTop="60dp"
             android:inputType="textPersonName"
-            android:hint="Entrer votre code" />
+            android:hint="Entrer votre code"
+            />
 
         <Button
             android:id="@+id/enter_code"
@@ -39,7 +41,7 @@
             android:textColor="@android:color/background_light" />
 
         <android.support.v7.widget.CardView
-            android:id="@+id/success_message_container"
+            android:id="@+id/message_container"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginBottom="50dp"
@@ -61,17 +63,16 @@
                 tools:ignore="UselessParent">
 
                 <TextView
-                    android:id="@+id/success_message"
+                    android:id="@+id/message_header"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="10dp"
-                    android:text="@string/success_message_header"
                     android:textColor="@color/colorPrimaryDark"
                     android:textSize="18dp"
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/success_message_text"
+                    android:id="@+id/message_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="10dp"
@@ -86,11 +87,9 @@
                     android:background="@drawable/accent_button"
                     android:text="Retourner Dashboard"
                     android:textColor="@android:color/background_light"
+                    android:visibility="invisible"/>
 
-
-                    />
             </LinearLayout>
-
         </android.support.v7.widget.CardView>
 
     </LinearLayout>

@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import fr.ensicaen.present.present.R;
 import fr.ensicaen.present.present.dashboard.DashboardActivity;
@@ -17,7 +18,7 @@ public class EnterCodeActivity extends Activity implements IEnterCodeView {
     private IEnterCodePresenter _presenter;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         _presenter = new EnterCodePresenter(this);
         initializeLayoutComponents();
@@ -25,30 +26,37 @@ public class EnterCodeActivity extends Activity implements IEnterCodeView {
     }
 
     public void initializeEnterCodeActivity() {
-        Button enterCodeButton = (Button) findViewById(R.id.enter_code);
-        Button returnToDashboardButton = (Button) findViewById(R.id.return_dashboard);
-        enterCodeButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                findViewById(R.id.success_message_container).setVisibility(View.VISIBLE);
+        Button enterCodeButton = (Button)findViewById(R.id.enter_code);
+        Button returnToDashboardButton = (Button)findViewById(R.id.return_dashboard);
+
+        //@TODO c'est fat
+        enterCodeButton.setOnClickListener(view -> {
+            if(_presenter.getMessage()) {
+                findViewById(R.id.message_container).setVisibility(View.VISIBLE);
+                TextView message_header = findViewById(R.id.message_header);
+                message_header.setText(R.string.success_message_header);
+                TextView message_text = findViewById(R.id.message_text);
+                message_text.setText(R.string.success_message_text);
+                findViewById(R.id.return_dashboard).setVisibility(View.VISIBLE);
+            }
+            else {
+                findViewById(R.id.message_container).setVisibility(View.VISIBLE);
+                TextView message_header = findViewById(R.id.message_header);
+                message_header.setText(R.string.error_message_header);
+                TextView message_text = findViewById(R.id.message_text);
+                message_text.setText(R.string.error_message_text);
             }
         });
 
-        returnToDashboardButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                goToDashboard();
-            }
-        });
+        returnToDashboardButton.setOnClickListener(view -> goToDashboard());
     }
 
-    public void goToDashboard() {
+    public void goToDashboard(){
         Intent intent = new Intent(EnterCodeActivity.this, DashboardActivity.class);
         startActivity(intent);
 
     }
-
-    public void initializeLayoutComponents() {
+    public void initializeLayoutComponents(){
         setContentView(R.layout.activity_enter_code);
     }
 
