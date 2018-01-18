@@ -15,8 +15,11 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 
+import java.io.IOException;
+
 import fr.ensicaen.present.present.R;
 import fr.ensicaen.present.present.dashboard.DashboardActivity;
+import fr.ensicaen.present.present.utils.Config;
 import fr.ensicaen.present.present.utils.api.NetworkTools;
 
 public class LoginActivity extends Activity implements ILoginView {
@@ -101,6 +104,11 @@ public class LoginActivity extends Activity implements ILoginView {
     @Override
     public void verifyNetworkConnection() throws NetworkTools.NoInternetException {
         NetworkTools.verifyConnection(this);
+    }
+
+    @Override
+    public Config getConfigAccessor() throws IOException {
+        return new Config(this);
     }
 
     private void animateContent(){

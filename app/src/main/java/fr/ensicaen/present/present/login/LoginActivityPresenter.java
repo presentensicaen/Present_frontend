@@ -6,6 +6,8 @@ import android.widget.Toast;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.IOException;
+
 import fr.ensicaen.present.present.models.ApiResponseModel;
 import fr.ensicaen.present.present.models.UserModel;
 import fr.ensicaen.present.present.services.IUserService;
@@ -26,12 +28,23 @@ public class LoginActivityPresenter implements ILoginPresenter {
     private ILoginView _view;
     private boolean _animationStarted;
     private UserModel _user;
+    private Config _config;
 
     public LoginActivityPresenter(ILoginView view){
         _view = view;
         _animationStarted = false;
+        try {
+            _config = _view.getConfigAccessor();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
+    public LoginActivityPresenter(ILoginView view, Config c){
+        _view = view;
+        _animationStarted = false;
+        _config = c;
+    }
 
 
     @Override
@@ -50,12 +63,15 @@ public class LoginActivityPresenter implements ILoginPresenter {
 
     @Override
     public void onConnectionButtonClick(String email, String password){
+        attempLogin(createLoginPayload(email, password));
+    }
+
+    public void attempLogin(JSONObject payload) {
         _user = null;
 
         IUserService service = ServiceFactory
-                .createRetrofitService(IUserService.class, Config.property("API_URL"));
-
-        service.loginUser(createLoginPayload(email, password))
+                .createRetrofitService(IUserService.class, _config.property("API_URL"));
+        service.loginUser(payload)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnSubscribe(this::onLoginAttemptStart)
@@ -64,23 +80,13 @@ public class LoginActivityPresenter implements ILoginPresenter {
 
     }
 
-    private void onLoginAttemptStart(Disposable d){
-        _view.showLoadingAnimation();
-        try {
-           _view.verifyNetworkConnection();
-        } catch (NetworkTools.NoInternetException e) {
-            _view.hideLoadingAnimation();
-            //@TODO make this a constant
-            _view.showToast("Erreur : Network error", Toast.LENGTH_SHORT);
-            d.dispose();
-        }
-    }
 
-    private void onVerificationComplete() {
+
+    public void onVerificationComplete() {
         if(!isUserValidated()){
             _view.hideLoadingAnimation();
             //@TODO make this a constant
-            _view.showToast("Erreur : login failed", Toast.LENGTH_SHORT);
+            _view.showToast("Error : login failed", Toast.LENGTH_SHORT);
         }else{
             _view.hideLoadingAnimation();
             //@TODO make this a constant
@@ -90,8 +96,17 @@ public class LoginActivityPresenter implements ILoginPresenter {
         }
     }
 
-    public boolean isUserValidated() {
-        return _user != null;
+    private void onLoginAttemptStart(Disposable d){
+        _view.showLoadingAnimation();
+
+        try {
+            _view.verifyNetworkConnection();
+        } catch (NetworkTools.NoInternetException e) {
+            _view.hideLoadingAnimation();
+            //@TODO make this a constant
+            _view.showToast("Erreur : Network error", Toast.LENGTH_SHORT);
+            d.dispose();
+        }
     }
 
     private void handleLoginSuccessResponse(ApiResponseModel<UserModel.UserObjectHolder> response){
@@ -103,6 +118,9 @@ public class LoginActivityPresenter implements ILoginPresenter {
         _view.showToast("Erreur "+throwable.getLocalizedMessage(), Toast.LENGTH_SHORT);
     }
 
+    public boolean isUserValidated() {
+        return _user != null;
+    }
 
     private JSONObject createLoginPayload(String email, String password) {
         JSONObject jsonPayload = new JSONObject();
@@ -118,10 +136,10 @@ public class LoginActivityPresenter implements ILoginPresenter {
         return jsonPayload;
     }
 
+
     /*
     * F O R  T E S T I N G   O N L Y
     */
-
     void setUser(UserModel user){
         _user = user;
     }

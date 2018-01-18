@@ -28,12 +28,8 @@ public class SplashScreenActivity extends Activity implements ISplashScreenView 
     }
 
     @Override
-    public void loadProperties() {
-        try {
-            Config.loadProperties(this);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    public Config getConfigAccessor() throws IOException {
+        return new Config(this);
     }
 
 

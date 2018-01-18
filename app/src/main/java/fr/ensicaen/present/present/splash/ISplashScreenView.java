@@ -1,6 +1,10 @@
 package fr.ensicaen.present.present.splash;
 
 
+import java.io.IOException;
+
+import fr.ensicaen.present.present.utils.Config;
+
 /**
  * Created by jueast on 03/12/17.
  */
@@ -11,5 +15,5 @@ public interface ISplashScreenView {
 
     void finish();
 
-    void loadProperties();
+    Config getConfigAccessor() throws IOException;
 }
