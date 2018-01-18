@@ -20,16 +20,12 @@ public class SplashScreenPresnterTest {
     @Mock
     private SplashScreenActivity _view;
 
-    @Mock
-    private Config _config;
-
     private SplashPresenter _presenter;
 
     @Before
     public void setup() throws IOException {
         _view = mock(SplashScreenActivity.class);
-        _config = mock(Config.class);
-        _presenter = new SplashPresenter(_view, _config);
+        _presenter = new SplashPresenter(_view);
     }
 
     @Test

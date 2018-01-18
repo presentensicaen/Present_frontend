@@ -7,6 +7,4 @@ package fr.ensicaen.present.present.splash;
 interface ISplashPresenter {
 
     void checkTokenValidity();
-
-    void onDestroy();
 }

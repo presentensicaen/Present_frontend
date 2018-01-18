@@ -2,7 +2,6 @@ package fr.ensicaen.present.present.login;
 
 import android.widget.Toast;
 
-
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -12,10 +11,8 @@ import fr.ensicaen.present.present.models.ApiResponseModel;
 import fr.ensicaen.present.present.models.UserModel;
 import fr.ensicaen.present.present.services.IUserService;
 import fr.ensicaen.present.present.utils.Config;
-import fr.ensicaen.present.present.utils.api.NetworkTools;
 import fr.ensicaen.present.present.utils.api.ServiceFactory;
 import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 
 
@@ -74,7 +71,6 @@ public class LoginActivityPresenter implements ILoginPresenter {
         service.loginUser(payload)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .doOnSubscribe(this::onLoginAttemptStart)
                 .doOnComplete(this::onVerificationComplete)
                 .subscribe(this::handleLoginSuccessResponse, this::handleLoginErrorResponse);
 
@@ -93,19 +89,6 @@ public class LoginActivityPresenter implements ILoginPresenter {
             _view.showToast("Bienvenue "+_user.getDisplayName(), Toast.LENGTH_SHORT);
             _view.goToDashboard();
             _view.finish();
-        }
-    }
-
-    private void onLoginAttemptStart(Disposable d){
-        _view.showLoadingAnimation();
-
-        try {
-            _view.verifyNetworkConnection();
-        } catch (NetworkTools.NoInternetException e) {
-            _view.hideLoadingAnimation();
-            //@TODO make this a constant
-            _view.showToast("Erreur : Network error", Toast.LENGTH_SHORT);
-            d.dispose();
         }
     }
 

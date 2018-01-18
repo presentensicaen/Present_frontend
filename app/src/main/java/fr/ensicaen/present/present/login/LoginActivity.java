@@ -3,7 +3,6 @@ package fr.ensicaen.present.present.login;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-
 import android.os.Handler;
 import android.support.v4.view.ViewCompat;
 import android.view.View;
@@ -14,13 +13,11 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-
 import java.io.IOException;
 
 import fr.ensicaen.present.present.R;
 import fr.ensicaen.present.present.dashboard.DashboardActivity;
 import fr.ensicaen.present.present.utils.Config;
-import fr.ensicaen.present.present.utils.api.NetworkTools;
 
 public class LoginActivity extends Activity implements ILoginView {
 
@@ -102,11 +99,6 @@ public class LoginActivity extends Activity implements ILoginView {
     }
 
     @Override
-    public void verifyNetworkConnection() throws NetworkTools.NoInternetException {
-        NetworkTools.verifyConnection(this);
-    }
-
-    @Override
     public Config getConfigAccessor() throws IOException {
         return new Config(this);
     }
@@ -125,7 +117,7 @@ public class LoginActivity extends Activity implements ILoginView {
         }
         ViewCompat.animate(v)
                 .translationY(50).alpha(1)
-                .setStartDelay(delay + 500)
+                .setStartDelay((long)delay + 500)
                 .setDuration(1000)
                 .setInterpolator(new DecelerateInterpolator())
                 .start();
@@ -138,7 +130,7 @@ public class LoginActivity extends Activity implements ILoginView {
 
         ViewCompat.animate(v)
                 .scaleY(1).scaleX(1)
-                .setStartDelay(delay + 500)
+                .setStartDelay((long)delay + 500)
                 .setDuration(500)
                 .setInterpolator(new DecelerateInterpolator())
                 .start();

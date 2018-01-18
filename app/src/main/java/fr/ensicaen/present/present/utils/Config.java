@@ -14,7 +14,6 @@ import fr.ensicaen.present.present.R;
  */
 
 public class Config {
-    private final String TAG = "CONFIG";
     private Properties _props = null;
 
     public Config(Context c) throws IOException {

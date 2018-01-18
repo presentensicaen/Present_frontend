@@ -1,20 +1,20 @@
 package fr.ensicaen.present.present.dashboard;
 
+import android.app.Activity;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 
 import fr.ensicaen.present.present.R;
 import fr.ensicaen.present.present.enterCode.EnterCodeActivity;
 import fr.ensicaen.present.present.generateCode.GenerateCodeActivity;
 
-public class DashboardActivity extends AppCompatActivity implements IDashboardView{
+public class DashboardActivity extends Activity implements IDashboardView{
 
     private Button _launchCallButton;
     private Button _answerCallButton;
     private IDashboardPresenter _presenter;
+    private Button _reviewCallButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,11 +23,14 @@ public class DashboardActivity extends AppCompatActivity implements IDashboardVi
 
         setContentView(R.layout.activity_dashboard);
 
-        _launchCallButton = (Button)findViewById(R.id.launchCall);
+        _launchCallButton = findViewById(R.id.launchCall);
         setLaunchCallAction();
 
-        _answerCallButton = (Button)findViewById(R.id.answerCall);
+        _answerCallButton = findViewById(R.id.answerCall);
         setAnswerCallAction();
+
+        _reviewCallButton = findViewById(R.id.review_call_button);
+        setReviewCallsAction();
     }
 
     private void setLaunchCallAction() {
@@ -38,6 +41,10 @@ public class DashboardActivity extends AppCompatActivity implements IDashboardVi
         _answerCallButton.setOnClickListener(v -> _presenter.onAnswerCallClick());
     }
 
+    private void setReviewCallsAction(){
+        _reviewCallButton.setOnClickListener(v -> _presenter.onReviewOldCallsClick());
+
+    }
     public void goToGenerateCode() {
         Intent intent = new Intent(DashboardActivity.this, GenerateCodeActivity.class);
         startActivity(intent);
