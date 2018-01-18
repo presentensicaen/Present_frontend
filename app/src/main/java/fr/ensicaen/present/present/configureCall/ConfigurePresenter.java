@@ -7,13 +7,13 @@ import android.widget.Toast;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 import fr.ensicaen.present.present.models.ApiResponseModel;
 import fr.ensicaen.present.present.models.CallModel;
 import fr.ensicaen.present.present.services.ICallService;
 import fr.ensicaen.present.present.utils.Config;
-import fr.ensicaen.present.present.utils.api.NetworkTools;
 import fr.ensicaen.present.present.utils.api.ServiceFactory;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
@@ -26,7 +26,7 @@ import io.reactivex.schedulers.Schedulers;
 public class ConfigurePresenter implements IConfigurePresenter {
 
     private final IConfigureView _view;
-
+    private Config _config;
     private CallModel _call;
     private Handler _handler;
 
@@ -35,14 +35,13 @@ public class ConfigurePresenter implements IConfigurePresenter {
         _call = null;
 
         ICallService service = ServiceFactory
-                .createRetrofitService(ICallService.class, Config.property("API_URL"));
+                .createRetrofitService(ICallService.class, _config.property("API_URL"));
         ArrayList<String> _groups = new ArrayList<String>();
         _groups.add("INFO_TP1");
         _groups.add("INFO_TP2");
         service.createCall(createCallPayload("007", 130, _groups))
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .doOnSubscribe(this::onCreationAttemptStart)
                 .doOnComplete(this::onVerificationComplete)
                 .subscribe(this::handleLoginSuccessResponse, this::handleLoginErrorResponse);
     }
@@ -54,25 +53,24 @@ public class ConfigurePresenter implements IConfigurePresenter {
 
     }
 
-    public ConfigurePresenter(IConfigureView _view) {
-        this._view = _view;
-        _handler = new Handler();
-    }
+    public ConfigurePresenter(IConfigureView view){
+        _view = view;
 
-
-    private void onCreationAttemptStart(Disposable d) {
-        Context c = _view.getContext();
         try {
-            NetworkTools.verifyConnection(c);
-        } catch (NetworkTools.NoInternetException e) {
-            //@TODO make this a constant
-
-            _view.showToast("Erreur : Network error", Toast.LENGTH_SHORT);
-            d.dispose();
+            _config = _view.getConfigAccessor();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
+
     }
 
-    private void onVerificationComplete() {
+    public ConfigurePresenter(IConfigureView view, Config c){
+        _view = view;
+        _config = c;
+    }
+
+
+    public void onVerificationComplete() {
 
         if (!isCallCreated()) {
             //@TODO make this a constant
@@ -119,9 +117,8 @@ public class ConfigurePresenter implements IConfigurePresenter {
     }
 
     /* for the tests */
-    ConfigurePresenter(IConfigureView view, Handler handler) {
-        _view = view;
-        _handler = handler;
+    void setCall(CallModel call){
+        _call = call;
     }
 
     String getCode() {

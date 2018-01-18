@@ -12,7 +12,10 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.IOException;
+
 import fr.ensicaen.present.present.R;
+import fr.ensicaen.present.present.utils.Config;
 
 
 public class ConfigureCallActivity extends AppCompatActivity implements IConfigureView {
@@ -72,6 +75,11 @@ public class ConfigureCallActivity extends AppCompatActivity implements IConfigu
                 );
             }
         });
+    }
+
+    @Override
+    public Config getConfigAccessor() throws IOException {
+        return new Config(this);
     }
 
     @Override
