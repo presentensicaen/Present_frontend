@@ -76,7 +76,7 @@ public class ConfigurePresenter implements IConfigurePresenter {
             //@TODO make this a constant
             Toast.makeText(c, "Erreur lors de la création", Toast.LENGTH_SHORT).show();
         } else {
-            _view.setSuccessMessage();
+            _view.setSuccessMessage(_call.getCode());
         }
     }
 
@@ -85,8 +85,8 @@ public class ConfigurePresenter implements IConfigurePresenter {
     }
 
 
-    private void handleLoginSuccessResponse(ApiResponseModel<CallModel.CallObjectHolder> response) {
-        _call = response.getData().getCall();
+    private void handleLoginSuccessResponse(ApiResponseModel<CallModel> response) {
+        _call = response.getData();
     }
 
     private void handleLoginErrorResponse(Throwable throwable) {
@@ -124,6 +124,10 @@ public class ConfigurePresenter implements IConfigurePresenter {
     ConfigurePresenter(IConfigureView view, Handler handler) {
         _view = view;
         _handler = handler;
+    }
+
+    String getCode(){
+        return _call.getCode();
     }
 
 

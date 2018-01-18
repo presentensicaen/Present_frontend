@@ -87,11 +87,10 @@
                     tools:ignore="HardcodedText" />
 
                 <TextView
-                    android:id="@+id/textView3"
+                    android:id="@+id/code"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:text="AXCD-6AFT-7UIT"
                     android:textAlignment="center"
                     tools:ignore="HardcodedText" />
 

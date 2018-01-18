@@ -9,9 +9,7 @@
 
     </string-array>
 
-    <string name="launchCall">Lorem Ipsum dzenfknre fjznfjerng trhjnrntmhs trhinhrrhj drhidtnhoinr
-    gtrnbjtr rb drntj rdt rtutdlijn fjerjgtrjh rjgbbjtrbrjk
-    rgbrjbtjbhjrtnjhnj gtrnbjn rtjn</string>
+    <string name="launchCall">Bravo ! Il ne vous reste plus qu\'à transmettre le code à vos étudiants pour qu\'ils puissent le rentrer dans l\'application et se déclarer présents.</string>
 
 
     <string name="title_activity_login" translatable="false">LoginActivity</string>

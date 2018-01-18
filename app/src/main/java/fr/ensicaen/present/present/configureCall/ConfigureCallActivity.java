@@ -3,10 +3,12 @@ package fr.ensicaen.present.present.configureCall;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import fr.ensicaen.present.present.R;
 
@@ -17,10 +19,13 @@ public class ConfigureCallActivity extends AppCompatActivity implements IConfigu
     private Button _launchCall;
     private Spinner _timeSpinner;
     private EditText _name;
+    private TextView _code;
 
 
     @Override
-    public void setSuccessMessage() {
+    public void setSuccessMessage(String code) {
+        Log.d("thecode","THE CODE IS:"+code);
+        _code.setText(code);
         findViewById(R.id.code_result_mesg_container).setVisibility(View.VISIBLE);
     }
 
@@ -36,6 +41,7 @@ public class ConfigureCallActivity extends AppCompatActivity implements IConfigu
         _launchCall = findViewById(R.id.launchCall);
         _timeSpinner = findViewById(R.id.time_spinner);
         _name = findViewById(R.id.eventName);
+        _code = findViewById(R.id.code);
         setLaunchCallButtonClick();
     }
 

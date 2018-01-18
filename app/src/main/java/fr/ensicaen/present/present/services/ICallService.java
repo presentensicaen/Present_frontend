@@ -18,6 +18,6 @@ import retrofit2.http.POST;
 public interface ICallService {
 
     @Headers("Content-Type: application/json")
-    @POST("connect/")
-    Observable<ApiResponseModel<CallModel.CallObjectHolder>> createCall(@Body JSONObject jsonString);
+    @POST("generate-code/")
+    Observable<ApiResponseModel<CallModel>> createCall(@Body JSONObject jsonString);
 }

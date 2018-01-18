@@ -45,21 +45,20 @@ public class ConfigurePresenterTest {
 
         return handler;
     }
-
+/*
     @Test
     public void testPayload(){
-        CallModel c = new CallModel("007",111);
+        CallModel c = new CallModel("CODE1");
         System.out.print(c.toString());
         assertTrue(true);
+    }*/
+
+    @Test
+    public void test(){
+        _presenter.createCall();
+        System.out.println(_presenter.getCode());
+
+        assertTrue(true);
     }
-
-
-
-
-
-
-
-
-
 
 }
