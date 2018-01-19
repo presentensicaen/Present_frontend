@@ -26,8 +26,8 @@ public class EnterCodeActivity extends Activity implements IEnterCodeView {
     }
 
     public void initializeEnterCodeActivity() {
-        Button enterCodeButton = (Button) findViewById(R.id.enter_code);
-        Button returnToDashboardButton = (Button) findViewById(R.id.return_dashboard);
+        Button enterCodeButton = findViewById(R.id.enter_code);
+        Button returnToDashboardButton = findViewById(R.id.return_dashboard);
 
         //@TODO c'est fat
         enterCodeButton.setOnClickListener(view -> {

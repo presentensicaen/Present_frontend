@@ -1,5 +1,6 @@
 package fr.ensicaen.present.present.configureCall;
 
+import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -17,12 +18,11 @@ import fr.ensicaen.present.present.R;
 import fr.ensicaen.present.present.utils.Config;
 
 
-public class ConfigureCallActivity extends AppCompatActivity implements IConfigureView {
+public class ConfigureCallActivity extends Activity implements IConfigureView {
 
     private IConfigurePresenter _presenter;
     private Button _launchCall;
     private Spinner _timeSpinner;
-    private EditText _name;
     private TextView _code;
 
 
@@ -43,7 +43,6 @@ public class ConfigureCallActivity extends AppCompatActivity implements IConfigu
     private void initializeLayoutComponents() {
         _launchCall = findViewById(R.id.launchCall);
         _timeSpinner = findViewById(R.id.time_spinner);
-        _name = findViewById(R.id.eventName);
         _code = findViewById(R.id.code);
         setLaunchCallButtonClick();
     }
@@ -58,21 +57,18 @@ public class ConfigureCallActivity extends AppCompatActivity implements IConfigu
 
 
     private void setLaunchCallButtonClick() {
-        _launchCall.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        _launchCall.setOnClickListener(v -> {
 
-                /*To hide the virtual keyboard */
-                InputMethodManager inputManager = (InputMethodManager)
-                        getSystemService(Context.INPUT_METHOD_SERVICE);
+            /*To hide the virtual keyboard */
+            InputMethodManager inputManager = (InputMethodManager)
+                    getSystemService(Context.INPUT_METHOD_SERVICE);
 
-                inputManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(),
-                        InputMethodManager.HIDE_NOT_ALWAYS);
+            inputManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(),
+                    InputMethodManager.HIDE_NOT_ALWAYS);
 
-                _presenter.onLaunchCallButtonClick(
-                        _timeSpinner.getSelectedItem().toString()
-                );
-            }
+            _presenter.onLaunchCallButtonClick(
+                    _timeSpinner.getSelectedItem().toString()
+            );
         });
     }
 

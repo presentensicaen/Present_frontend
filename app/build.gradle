@@ -107,7 +107,6 @@ dependencies {
 
     // dependency injection
 
-
     //noinspection GradleCompatible
     implementation 'com.android.support:appcompat-v7:26.1.0'
     implementation 'com.squareup.retrofit2:retrofit:2.3.0'
@@ -129,7 +128,6 @@ dependencies {
     // required if you want to use Mockito for unit tests
     testImplementation "org.mockito:mockito-core:+"
     androidTestImplementation "org.mockito:mockito-android:+"
-
 
     //RXJava
     implementation 'io.reactivex.rxjava2:rxandroid:2.0.1'
@@ -153,15 +151,15 @@ task createTestReport(type: JacocoReport, dependsOn: ['test', 'testDebugUnitTest
 
     def fileFilter = [
 
-                      '**/R.class',
-                      '**/R$*.class',
-                      '**/BuildConfig.*',
-                      '**/*$ViewInjector*.*',
-                      '**/*$ViewBinder*.*',
-                      '**/*$MembersInjector*.*',
-                      '**/Manifest*.*',
-                      '**/*Test*.*',
-                      'android/**/*.*']
+            '**/R.class',
+            '**/R$*.class',
+            '**/BuildConfig.*',
+            '**/*$ViewInjector*.*',
+            '**/*$ViewBinder*.*',
+            '**/*$MembersInjector*.*',
+            '**/Manifest*.*',
+            '**/*Test*.*',
+            'android/**/*.*']
     def debugTree = fileTree(dir: "${buildDir}/intermediates/classes/dev/dls ebug", excludes: fileFilter)
     def mainSrc = "${project.projectDir}/src/main/java"
 
@@ -179,15 +177,15 @@ task createUnitInstrumentTestReport(type: JacocoReport, dependsOn: ['testDebugUn
     }
 
     def fileFilter = [
-                      '**/R.class',
-                      '**/R$*.class',
-                      '**/BuildConfig.*',
-                      '**/*$ViewInjector*.*',
-                      '**/*$ViewBinder*.*',
-                      '**/*$MembersInjector*.*',
-                      '**/Manifest*.*',
-                      '**/*Test*.*',
-                      'android/**/*.*']
+            '**/R.class',
+            '**/R$*.class',
+            '**/BuildConfig.*',
+            '**/*$ViewInjector*.*',
+            '**/*$ViewBinder*.*',
+            '**/*$MembersInjector*.*',
+            '**/Manifest*.*',
+            '**/*Test*.*',
+            'android/**/*.*']
     def debugTree = fileTree(dir: "${buildDir}/intermediates/classes/dev/dls ebug", excludes: fileFilter)
     def mainSrc = "${project.projectDir}/src/main/java"
 

@@ -9,10 +9,6 @@
 
     </string-array>
 
-    <string name="launchCall">Lorem Ipsum dzenfknre fjznfjerng trhjnrntmhs trhinhrrhj drhidtnhoinr
-    gtrnbjtr rb drntj rdt rtutdlijn fjerjgtrjh rjgbbjtrbrjk
-    rgbrjbtjbhjrtnjhnj gtrnbjn rtjn</string>
-
 
     <string name="title_activity_login" translatable="false">LoginActivity</string>
     <string name="header_generate_code">Blah Blah</string>
@@ -37,5 +33,6 @@
     <string name="success_message_text">Vous venez de vous déclarer présent pour au contrôle de présence.</string>
     <string name="error_message_header">Echec</string>
     <string name="error_message_text">Erreur de code. Veuillez réessayer.</string>
+    <string name="launchCall">Bravo, vous pouvez maintenant transmettre le code ci dessus à vos étudiants pour qu\'ils puissent s\'enregistrer comme présents.</string>
 
 </resources>

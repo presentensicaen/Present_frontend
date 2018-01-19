@@ -1,6 +1,5 @@
 package fr.ensicaen.present.present.configureCall;
 
-import android.os.Handler;
 import android.widget.Toast;
 
 import org.json.JSONException;
@@ -26,7 +25,6 @@ public class ConfigurePresenter implements IConfigurePresenter {
     private final IConfigureView _view;
     private Config _config;
     private CallModel _call;
-    private Handler _handler;
 
     @Override
     public void createCall() {
@@ -71,7 +69,6 @@ public class ConfigurePresenter implements IConfigurePresenter {
     public void onVerificationComplete() {
 
         if (!isCallCreated()) {
-            //@TODO make this a constant
             _view.showToast("Erreur lors de la création", Toast.LENGTH_SHORT);
         } else {
             _view.setSuccessMessage(_call.getCode());
@@ -88,7 +85,6 @@ public class ConfigurePresenter implements IConfigurePresenter {
     }
 
     private void handleLoginErrorResponse(Throwable throwable) {
-        //@TODO handle error
         _view.showToast("Erreur " + throwable.getLocalizedMessage(), Toast.LENGTH_SHORT);
     }
 
@@ -109,10 +105,6 @@ public class ConfigurePresenter implements IConfigurePresenter {
         return jsonPayload;
     }
 
-    @Override
-    public void onDestroy() {
-
-    }
 
     /* for the tests */
     void setCall(CallModel call) {
