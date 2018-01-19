@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:gravity="center"
     android:orientation="vertical"
-    tools:context="fr.ensicaen.present.present.view.launch_call.LaunchCallActivity">
+    tools:context="fr.ensicaen.present.present.view.launchcall.LaunchCallActivity">
 
 
     <LinearLayout

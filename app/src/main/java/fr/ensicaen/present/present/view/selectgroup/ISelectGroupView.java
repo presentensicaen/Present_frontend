@@ -1,4 +1,4 @@
-package fr.ensicaen.present.present.view.select_group;
+package fr.ensicaen.present.present.view.selectgroup;
 
 /**
  * Created by pierr on 31/12/2017.

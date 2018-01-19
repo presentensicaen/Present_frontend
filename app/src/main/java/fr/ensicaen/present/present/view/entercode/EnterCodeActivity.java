@@ -1,4 +1,4 @@
-package fr.ensicaen.present.present.view.enter_code;
+package fr.ensicaen.present.present.view.entercode;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -8,8 +8,8 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import fr.ensicaen.present.present.R;
-import fr.ensicaen.present.present.presenter.enter_code.EnterCodePresenter;
-import fr.ensicaen.present.present.presenter.enter_code.IEnterCodePresenter;
+import fr.ensicaen.present.present.presenter.entercode.EnterCodePresenter;
+import fr.ensicaen.present.present.presenter.entercode.IEnterCodePresenter;
 import fr.ensicaen.present.present.view.dashboard.DashboardActivity;
 
 /**

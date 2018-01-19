@@ -7,7 +7,7 @@
     android:orientation="vertical"
     android:paddingLeft="20dp"
     android:paddingRight="20dp"
-    tools:context="fr.ensicaen.present.present.view.select_group.SelectGroupActivity">
+    tools:context="fr.ensicaen.present.present.view.selectgroup.SelectGroupActivity">
 
 
     <LinearLayout

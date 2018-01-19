@@ -10,9 +10,9 @@ import org.mockito.Mock;
 import java.io.IOException;
 
 import fr.ensicaen.present.present.models.CallModel;
-import fr.ensicaen.present.present.presenter.launch_call.LaunchCallPresenter;
+import fr.ensicaen.present.present.presenter.launchcall.LaunchCallPresenter;
 import fr.ensicaen.present.present.utils.Config;
-import fr.ensicaen.present.present.view.launch_call.LaunchCallActivity;
+import fr.ensicaen.present.present.view.launchcall.LaunchCallActivity;
 import io.reactivex.android.plugins.RxAndroidPlugins;
 import io.reactivex.schedulers.Schedulers;
 import okhttp3.mockwebserver.MockWebServer;

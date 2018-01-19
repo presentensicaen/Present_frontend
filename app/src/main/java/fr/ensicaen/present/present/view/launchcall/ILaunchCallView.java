@@ -1,4 +1,4 @@
-package fr.ensicaen.present.present.view.launch_call;
+package fr.ensicaen.present.present.view.launchcall;
 
 import android.content.Context;
 

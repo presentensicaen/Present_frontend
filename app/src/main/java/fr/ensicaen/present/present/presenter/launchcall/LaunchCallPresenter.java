@@ -1,4 +1,4 @@
-package fr.ensicaen.present.present.presenter.launch_call;
+package fr.ensicaen.present.present.presenter.launchcall;
 
 import android.widget.Toast;
 
@@ -13,7 +13,7 @@ import fr.ensicaen.present.present.models.CallModel;
 import fr.ensicaen.present.present.services.ICallService;
 import fr.ensicaen.present.present.utils.Config;
 import fr.ensicaen.present.present.utils.api.ServiceFactory;
-import fr.ensicaen.present.present.view.launch_call.ILaunchCallView;
+import fr.ensicaen.present.present.view.launchcall.ILaunchCallView;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 
@@ -33,7 +33,7 @@ public class LaunchCallPresenter implements ILaunchCallPresenter {
 
         ICallService service = ServiceFactory
                 .createRetrofitService(ICallService.class, _config.property("API_URL"));
-        ArrayList<String> _groups = new ArrayList<String>();
+        ArrayList<String> _groups = new ArrayList<>();
         _groups.add("INFO_TP1");
         _groups.add("INFO_TP2");
         service.createCall(createCallPayload("007", 130, _groups))

@@ -1,4 +1,4 @@
-package fr.ensicaen.present.present.view.launch_call;
+package fr.ensicaen.present.present.view.launchcall;
 
 import android.app.Activity;
 import android.content.Context;
@@ -13,8 +13,8 @@ import android.widget.Toast;
 import java.io.IOException;
 
 import fr.ensicaen.present.present.R;
-import fr.ensicaen.present.present.presenter.launch_call.LaunchCallPresenter;
-import fr.ensicaen.present.present.presenter.launch_call.ILaunchCallPresenter;
+import fr.ensicaen.present.present.presenter.launchcall.ILaunchCallPresenter;
+import fr.ensicaen.present.present.presenter.launchcall.LaunchCallPresenter;
 import fr.ensicaen.present.present.utils.Config;
 
 

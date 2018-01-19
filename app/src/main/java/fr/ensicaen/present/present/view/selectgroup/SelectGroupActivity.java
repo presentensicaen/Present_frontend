@@ -1,4 +1,4 @@
-package fr.ensicaen.present.present.view.select_group;
+package fr.ensicaen.present.present.view.selectgroup;
 
 import android.app.Activity;
 import android.content.Context;
@@ -9,7 +9,7 @@ import android.widget.Button;
 import android.widget.ListView;
 
 import fr.ensicaen.present.present.R;
-import fr.ensicaen.present.present.view.launch_call.LaunchCallActivity;
+import fr.ensicaen.present.present.view.launchcall.LaunchCallActivity;
 
 
 public class SelectGroupActivity extends Activity implements ISelectGroupView {

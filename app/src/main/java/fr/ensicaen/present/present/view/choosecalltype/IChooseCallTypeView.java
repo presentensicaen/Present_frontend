@@ -1,4 +1,4 @@
-package fr.ensicaen.present.present.view.choose_call_type;
+package fr.ensicaen.present.present.view.choosecalltype;
 
 /**
  * Created by Jeanne on 25/12/2017.
@@ -6,4 +6,8 @@ package fr.ensicaen.present.present.view.choose_call_type;
 
 public interface IChooseCallTypeView {
     void initializeGenerateCodeActivity();
+
+    void goToLaunchCall();
+
+    void goToSelectGroup();
 }

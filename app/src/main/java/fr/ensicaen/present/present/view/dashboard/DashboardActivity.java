@@ -8,8 +8,8 @@ import android.widget.Button;
 import fr.ensicaen.present.present.R;
 import fr.ensicaen.present.present.presenter.dashboard.DashboardPresenter;
 import fr.ensicaen.present.present.presenter.dashboard.IDashboardPresenter;
-import fr.ensicaen.present.present.view.enter_code.EnterCodeActivity;
-import fr.ensicaen.present.present.view.choose_call_type.ChooseCallTypeActivity;
+import fr.ensicaen.present.present.view.choosecalltype.ChooseCallTypeActivity;
+import fr.ensicaen.present.present.view.entercode.EnterCodeActivity;
 
 public class DashboardActivity extends Activity implements IDashboardView {
 
