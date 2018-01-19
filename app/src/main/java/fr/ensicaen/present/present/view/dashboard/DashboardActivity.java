@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
+import android.widget.Toast;
 
 import fr.ensicaen.present.present.R;
 import fr.ensicaen.present.present.presenter.dashboard.DashboardPresenter;
@@ -33,6 +34,8 @@ public class DashboardActivity extends Activity implements IDashboardView {
 
         _reviewCallButton = findViewById(R.id.review_call_button);
         setReviewCallsAction();
+
+        Toast.makeText(this, getSharedPreferences("AndroidPresent", 0).getString("name",null), Toast.LENGTH_SHORT).show();
     }
 
     private void setLaunchCallAction() {

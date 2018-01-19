@@ -38,6 +38,8 @@ public class LaunchCallActivity extends Activity implements ILaunchCallView {
         _presenter = new LaunchCallPresenter(this);
         initializeConfigureCallActivity();
         initializeLayoutComponents();
+        Toast.makeText(this, getSharedPreferences("AndroidPresent", 0).getString("name",null), Toast.LENGTH_SHORT).show();
+
     }
 
     private void initializeLayoutComponents() {
