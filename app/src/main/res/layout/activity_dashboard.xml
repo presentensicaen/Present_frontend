@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:gravity="center"
     android:orientation="vertical"
-    tools:context="fr.ensicaen.present.present.dashboard.DashboardActivity">
+    tools:context="fr.ensicaen.present.present.view.dashboard.DashboardActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
