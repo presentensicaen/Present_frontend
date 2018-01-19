@@ -1,14 +1,13 @@
-package fr.ensicaen.present.present.generateCode;
+package fr.ensicaen.present.present.generate_code;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.widget.Button;
 
 import fr.ensicaen.present.present.R;
-import fr.ensicaen.present.present.configureCall.ConfigureCallActivity;
-import fr.ensicaen.present.present.selectGroups.SelectGroups;
+import fr.ensicaen.present.present.configure_call.ConfigureCallActivity;
+import fr.ensicaen.present.present.select_groups.SelectGroups;
 
 
 public class GenerateCodeActivity extends Activity implements IGenerateCodeView {

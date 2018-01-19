@@ -1,4 +1,4 @@
-package fr.ensicaen.present.present.enterCode;
+package fr.ensicaen.present.present.enter_code;
 
 import android.app.Activity;
 import android.content.Intent;

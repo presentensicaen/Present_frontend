@@ -1,4 +1,4 @@
-package fr.ensicaen.present.present.enterCode;
+package fr.ensicaen.present.present.enter_code;
 
 /**
  * Created by Jeanne on 14/12/2017.

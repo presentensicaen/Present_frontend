@@ -39,18 +39,18 @@
         </activity>
 
         <activity
-            android:name=".configureCall.ConfigureCallActivity"
+            android:name=".configure_call.ConfigureCallActivity"
             android:label="@string/app_name"></activity>
         <activity
-            android:name=".generateCode.GenerateCodeActivity"
-            android:label="@string/app_name"></activity>
-
-        <activity
-            android:name=".selectGroups.SelectGroups"
+            android:name=".generate_code.GenerateCodeActivity"
             android:label="@string/app_name"></activity>
 
         <activity
-            android:name=".enterCode.EnterCodeActivity"
+            android:name=".select_groups.SelectGroups"
+            android:label="@string/app_name"></activity>
+
+        <activity
+            android:name=".enter_code.EnterCodeActivity"
             android:label="@string/app_name">
 
         </activity>

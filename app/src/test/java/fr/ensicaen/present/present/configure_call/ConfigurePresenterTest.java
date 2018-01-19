@@ -1,4 +1,4 @@
-package fr.ensicaen.present.present.configureCall;
+package fr.ensicaen.present.present.configure_call;
 
 import android.widget.Toast;
 

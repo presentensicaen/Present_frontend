@@ -6,8 +6,8 @@ import android.os.Bundle;
 import android.widget.Button;
 
 import fr.ensicaen.present.present.R;
-import fr.ensicaen.present.present.enterCode.EnterCodeActivity;
-import fr.ensicaen.present.present.generateCode.GenerateCodeActivity;
+import fr.ensicaen.present.present.enter_code.EnterCodeActivity;
+import fr.ensicaen.present.present.generate_code.GenerateCodeActivity;
 
 public class DashboardActivity extends Activity implements IDashboardView {
 
