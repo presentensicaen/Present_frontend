@@ -35,7 +35,7 @@ public class SelectGroupActivity extends Activity implements ISelectGroupView {
         //string array
         String[] foody = {"TP1 info 2A", "TP2 info 2A", "TD A info 2A", "TD B info 2A", "promo info 2A"};
         // set adapter for _listview
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, R.layout.list_item, foody);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, R.layout.select_group_item, foody);
         _listview.setAdapter(adapter);
         _listview.setItemsCanFocus(false);
         // we want multiple clicks

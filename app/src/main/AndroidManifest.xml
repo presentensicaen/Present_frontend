@@ -12,47 +12,47 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
         <activity
             android:name=".view.splash.SplashScreenActivity"
             android:theme="@style/MyTheme.Splash">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-
         <activity
             android:name=".view.login.LoginActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_login" />
 
-        <!--        <activity android:name=".dashboard.DashboardActivity">
-                </activity>-->
+        <!--
+                    <activity android:name=".dashboard.DashboardActivity">
+                </activity>
+        -->
         <activity android:name=".view.dashboard.DashboardActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".view.launchcall.LaunchCallActivity"
-            android:label="@string/app_name"></activity>
+            android:label="@string/app_name" />
         <activity
             android:name=".view.choosecalltype.ChooseCallTypeActivity"
-            android:label="@string/app_name"></activity>
-
+            android:label="@string/app_name" />
         <activity
             android:name=".view.selectgroup.SelectGroupActivity"
-            android:label="@string/app_name"></activity>
-
+            android:label="@string/app_name" />
         <activity
             android:name=".view.entercode.EnterCodeActivity"
-            android:label="@string/app_name">
-
-        </activity>
+            android:label="@string/app_name"></activity>
+        <activity
+            android:name=".view.choosepreviouscall.ChoosePreviousCallActivity"
+            android:label="@string/title_activity_choose_previous_call"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

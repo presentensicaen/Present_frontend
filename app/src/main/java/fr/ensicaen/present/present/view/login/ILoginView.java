@@ -1,8 +1,5 @@
 package fr.ensicaen.present.present.view.login;
 
-import java.io.IOException;
-
-import fr.ensicaen.present.present.utils.Config;
 import fr.ensicaen.present.present.view.IGenericView;
 
 /**

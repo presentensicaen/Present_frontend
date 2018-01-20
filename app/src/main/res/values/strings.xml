@@ -34,5 +34,6 @@
     <string name="error_message_header">Echec</string>
     <string name="error_message_text">Erreur de code. Veuillez réessayer.</string>
     <string name="launchCall">Bravo, vous pouvez maintenant transmettre le code ci dessus à vos étudiants pour qu\'ils puissent s\'enregistrer comme présents.</string>
+    <string name="title_activity_choose_previous_call">ChoosePreviousCallActivity</string>
 
 </resources>
