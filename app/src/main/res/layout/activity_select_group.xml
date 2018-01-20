@@ -9,6 +9,7 @@
     android:paddingRight="20dp"
     tools:context="fr.ensicaen.present.present.view.selectgroup.SelectGroupActivity">
 
+    <include layout="@layout/include_progress_overlay" />
 
     <LinearLayout
         android:layout_width="match_parent"

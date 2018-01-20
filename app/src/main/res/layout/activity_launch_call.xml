@@ -17,6 +17,8 @@
         android:paddingRight="20dp"
         android:paddingTop="20dp">
 
+        <include layout="@layout/include_progress_overlay" />
+
         <Spinner
             android:id="@+id/time_spinner"
             android:layout_width="match_parent"

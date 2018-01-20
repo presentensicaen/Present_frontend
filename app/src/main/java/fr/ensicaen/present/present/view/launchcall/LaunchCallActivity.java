@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.Spinner;
@@ -24,6 +25,7 @@ public class LaunchCallActivity extends Activity implements ILaunchCallView {
     private Button _launchCall;
     private Spinner _timeSpinner;
     private TextView _code;
+    private ViewGroup _loadingAnimation;
 
 
     @Override
@@ -45,6 +47,7 @@ public class LaunchCallActivity extends Activity implements ILaunchCallView {
         _timeSpinner = findViewById(R.id.time_spinner);
         _code = findViewById(R.id.code);
         setLaunchCallButtonClick();
+        _loadingAnimation = findViewById(R.id.loading_animation);
     }
 
     private void initializeConfigureCallActivity() {
@@ -78,8 +81,11 @@ public class LaunchCallActivity extends Activity implements ILaunchCallView {
     }
 
     @Override
-    public Context getContext() {
-        return this;
+    public void showLoadingAnimation() { _loadingAnimation.setVisibility(View.VISIBLE); }
+
+    @Override
+    public void hideLoadingAnimation() {
+        _loadingAnimation.setVisibility(View.INVISIBLE);
     }
 
     @Override

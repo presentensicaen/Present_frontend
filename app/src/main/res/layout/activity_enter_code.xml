@@ -13,6 +13,8 @@
         android:paddingRight="20dp"
         android:paddingTop="20dp">
 
+        <include layout="@layout/include_progress_overlay" />
+
         <EditText
             android:id="@+id/editText2"
             android:layout_width="match_parent"

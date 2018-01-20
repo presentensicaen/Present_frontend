@@ -14,6 +14,7 @@ import fr.ensicaen.present.present.utils.Config;
 import fr.ensicaen.present.present.utils.api.ServiceFactory;
 import fr.ensicaen.present.present.view.login.ILoginView;
 import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 
 
@@ -72,9 +73,15 @@ public class LoginActivityPresenter implements ILoginPresenter {
         service.loginUser(payload)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
+                .doOnSubscribe(this::onLoginAttemptStart)
                 .doOnComplete(this::onVerificationComplete)
                 .subscribe(this::handleLoginSuccessResponse, this::handleLoginErrorResponse);
 
+    }
+
+    private void onLoginAttemptStart(Disposable disposable) {
+        _view.showLoadingAnimation();
+        //@TODO check if internet connection exists ?
     }
 
 
