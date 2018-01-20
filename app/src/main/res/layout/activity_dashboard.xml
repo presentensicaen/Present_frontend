@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:gravity="center"
     android:orientation="vertical"
     tools:context="fr.ensicaen.present.present.view.dashboard.DashboardActivity">
@@ -14,16 +15,29 @@
 
         <android.support.v7.widget.CardView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="268dp"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             android:layout_marginTop="20dp">
 
-            <ImageView
-                android:id="@+id/imageView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/chart" />
+            <android.support.constraint.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:id="@+id/imageView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:elevation="0dp"
+                    android:src="@drawable/chart" tools:targetApi="lollipop"/>
+
+                <com.github.mikephil.charting.charts.PieChart
+                    android:id="@+id/idPieChart"
+                    android:layout_width="170dp"
+                    android:layout_height="167dp"
+                    android:visibility="visible"></com.github.mikephil.charting.charts.PieChart>
+            </android.support.constraint.ConstraintLayout>
+
         </android.support.v7.widget.CardView>
 
         <Button
