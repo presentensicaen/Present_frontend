@@ -1,5 +1,6 @@
 package fr.ensicaen.present.present.presenter.dashboard;
 
+import android.os.Handler;
 import android.util.Log;
 
 import fr.ensicaen.present.present.view.dashboard.IDashboardView;
