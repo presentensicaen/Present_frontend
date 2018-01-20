@@ -1,6 +1,5 @@
 package fr.ensicaen.present.present.enterCode;
 
-import android.content.Context;
 
 import java.io.IOException;
 
@@ -11,13 +10,10 @@ import fr.ensicaen.present.present.utils.Config;
  */
 
 interface IEnterCodeView {
-    void initializeEnterCodeActivity();
 
-    void initializeLayoutComponents();
+    void displaySuccessMessage();
 
-    Context getContext();
-
-    void goToDashboard();
+    void displayErrorMessage();
 
     Config getConfigAccessor() throws IOException;
 }

@@ -1,14 +1,12 @@
 package fr.ensicaen.present.present.enterCode;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.io.IOException;
 
@@ -43,24 +41,22 @@ public class EnterCodeActivity extends Activity implements IEnterCodeView {
         _codeText = findViewById(R.id.editText2);
         _enterCodeButton = (Button)findViewById(R.id.enter_code);
         _returnToDashboardButton = (Button)findViewById(R.id.return_dashboard);
-        setOnEnterCodeButtonAction();
-        setReturnDashboardButtonAction();
+        setOnEnterCodeButtonClick();
+        setOnReturnDashboardButtonClick();
     }
 
     public void initializeEnterCodeActivity() {
+        setTheme(R.style.AppTheme);
+        getWindow().getDecorView().setSystemUiVisibility(
+                View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION);
         setContentView(R.layout.activity_enter_code);
     }
 
-    public void setOnEnterCodeButtonAction(){
+    public void setOnEnterCodeButtonClick(){
         _enterCodeButton.setOnClickListener(view -> _presenter.onEnterCodeButtonClick(_id, _codeText.getText().toString()));
-        if(_presenter.getMessage()){
-            displaySuccessMessage();
-        } else {
-            displayFailureMessage();
-        }
     }
 
-    private void displaySuccessMessage(){
+    public void displaySuccessMessage(){
         findViewById(R.id.message_container).setVisibility(View.VISIBLE);
         TextView message_header = findViewById(R.id.message_header);
         message_header.setText(R.string.success_message_header);
@@ -70,7 +66,7 @@ public class EnterCodeActivity extends Activity implements IEnterCodeView {
 
     }
 
-    private void displayFailureMessage(){
+    public void displayErrorMessage(){
         findViewById(R.id.message_container).setVisibility(View.VISIBLE);
         TextView message_header = findViewById(R.id.message_header);
         message_header.setText(R.string.error_message_header);
@@ -78,11 +74,10 @@ public class EnterCodeActivity extends Activity implements IEnterCodeView {
         message_text.setText(R.string.error_message_text);
     }
 
-    public void setReturnDashboardButtonAction(){
+    public void setOnReturnDashboardButtonClick(){
         _returnToDashboardButton.setOnClickListener(view -> goToDashboard());
     }
 
-    @Override
     public void goToDashboard(){
         Intent intent = new Intent(EnterCodeActivity.this, DashboardActivity.class);
         startActivity(intent);
@@ -90,13 +85,7 @@ public class EnterCodeActivity extends Activity implements IEnterCodeView {
     }
 
     @Override
-    public Config getConfigAccessor() throws IOException {
+    public Config getConfigAccessor() throws IOException{
         return new Config(this);
     }
-
-    @Override
-    public Context getContext() {
-        return this;
-    }
-
 }
