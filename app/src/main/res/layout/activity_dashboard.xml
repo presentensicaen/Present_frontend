@@ -1,73 +1,122 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:gravity="center"
     android:orientation="vertical"
-    tools:context="fr.ensicaen.present.present.dashboard.DashboardActivity">
+    tools:context="fr.ensicaen.present.present.view.dashboard.DashboardActivity">
 
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical">
-
-    <android.support.v7.widget.CardView
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginTop="20dp">
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical">
 
-        <ImageView
-            android:id="@+id/imageView"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:srcCompat="@drawable/chart"
-            tools:ignore="ContentDescription" />
-    </android.support.v7.widget.CardView>
+            android:layout_height="283dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:orientation="vertical">
 
-    <Button
-        android:id="@+id/answerCall"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="5dp"
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp"
-        android:layout_marginTop="30dp"
-        android:background="@drawable/accent_button"
-        android:gravity="center"
-        android:text="@string/respond_call"
-        android:textColor="@android:color/background_light"
-        android:visibility="visible" />
+            <ImageView
+                android:id="@+id/profile_pic"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp"
+                android:src="@drawable/barack_obama_test" />
 
-    <Button
-        android:id="@+id/launchCall"
-        style="@style/primary_button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="5dp"
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp"
-        android:layout_marginTop="5dp"
-        android:gravity="center"
-        android:text="@string/launch_new_call"
-        android:textColor="@android:color/background_light"
-        android:visibility="visible" />
+            <TextView
+                android:id="@+id/profile_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Barack Obama"
+                android:textAlignment="center"
+                android:textSize="24sp"
+                android:textStyle="italic" />
 
-    <Button
-        android:id="@+id/review_call_button"
-        style="@style/primary_button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp"
-        android:layout_marginTop="5dp"
-        android:gravity="center"
-        android:text="@string/consult_calls"
-        android:textColor="@android:color/background_light"
-        android:visibility="visible" />
-</LinearLayout>
-</ScrollView>
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="268dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="20dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <com.github.mikephil.charting.charts.PieChart
+                        android:id="@+id/idPieChart"
+                        android:layout_width="match_parent"
+                        android:layout_height="200dp"
+                        android:visibility="visible">
+
+                    </com.github.mikephil.charting.charts.PieChart>
+
+                    <com.github.mikephil.charting.charts.HorizontalBarChart
+                        android:id="@+id/chart1"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_above="@+id/seekBar1"
+                        android:layout_marginBottom="4dp"
+                        android:layout_marginRight="24dp"
+                        android:background="@android:color/white"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintRight_toRightOf="parent" />
+
+                </LinearLayout>
+
+            </android.support.v7.widget.CardView>
+
+            <Button
+                android:id="@+id/answerCall"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_marginTop="30dp"
+                android:background="@drawable/accent_button"
+                android:gravity="center"
+                android:text="@string/respond_call"
+                android:textColor="@android:color/background_light"
+                android:visibility="visible" />
+
+            <Button
+                android:id="@+id/launchCall"
+                style="@style/primary_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_marginTop="5dp"
+                android:gravity="center"
+                android:text="@string/launch_new_call"
+                android:textColor="@android:color/background_light"
+                android:visibility="visible" />
+
+            <Button
+                android:id="@+id/review_call_button"
+                style="@style/primary_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_marginTop="5dp"
+                android:gravity="center"
+                android:text="@string/consult_calls"
+                android:textColor="@android:color/background_light"
+                android:visibility="visible" />
+        </LinearLayout>
+    </ScrollView>
+    <include layout="@layout/include_progress_overlay" />
+
+</FrameLayout>
