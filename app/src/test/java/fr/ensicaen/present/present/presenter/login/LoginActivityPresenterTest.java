@@ -10,6 +10,7 @@ import org.mockito.Mock;
 import java.io.IOException;
 
 import fr.ensicaen.present.present.models.UserModel;
+import fr.ensicaen.present.present.session.SessionManager;
 import fr.ensicaen.present.present.utils.Config;
 import fr.ensicaen.present.present.view.login.LoginActivity;
 import io.reactivex.android.plugins.RxAndroidPlugins;
@@ -37,15 +38,20 @@ public class LoginActivityPresenterTest {
     @Mock
     private Config _config;
 
+    @Mock
+    private SessionManager _session;
+
     private MockWebServer _webServer;
 
     private LoginActivityPresenter _presenter;
+
 
     @Before
     public void setup() throws IOException {
         _view = mock(LoginActivity.class);
         _config = mock(Config.class);
-        _presenter = spy(new LoginActivityPresenter(_view, _config));
+        _session = mock(SessionManager.class);
+        _presenter = spy(new LoginActivityPresenter(_view, _config, _session));
         _webServer = new MockWebServer();
         RxAndroidPlugins.setInitMainThreadSchedulerHandler(scheduler -> Schedulers.trampoline());
     }

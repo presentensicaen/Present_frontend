@@ -42,10 +42,11 @@ public class LoginActivityPresenter implements ILoginPresenter {
         }
     }
 
-    public LoginActivityPresenter(ILoginView view, Config c) {
+    public LoginActivityPresenter(ILoginView view, Config c, SessionManager s) {
         _view = view;
         _animationStarted = false;
         _config = c;
+        session = s;
     }
 
 
