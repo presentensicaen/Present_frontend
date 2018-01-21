@@ -86,12 +86,11 @@ public class LoginActivityPresenter implements ILoginPresenter {
 
 
     public void onVerificationComplete() {
+        _view.hideLoadingAnimation();
         if (!isUserValidated()) {
-            _view.hideLoadingAnimation();
             //@TODO make this a constant
             _view.showToast("Error : login failed", Toast.LENGTH_SHORT);
         } else {
-            _view.hideLoadingAnimation();
             //@TODO make this a constant
             _view.showToast("Bienvenue " + _user.getDisplayName(), Toast.LENGTH_SHORT);
             _view.goToDashboard();

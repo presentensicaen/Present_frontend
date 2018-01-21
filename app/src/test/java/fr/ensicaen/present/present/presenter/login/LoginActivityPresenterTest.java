@@ -1,4 +1,4 @@
-package fr.ensicaen.present.present.login;
+package fr.ensicaen.present.present.presenter.login;
 
 import android.widget.Toast;
 
@@ -10,7 +10,6 @@ import org.mockito.Mock;
 import java.io.IOException;
 
 import fr.ensicaen.present.present.models.UserModel;
-import fr.ensicaen.present.present.presenter.login.LoginActivityPresenter;
 import fr.ensicaen.present.present.utils.Config;
 import fr.ensicaen.present.present.view.login.LoginActivity;
 import io.reactivex.android.plugins.RxAndroidPlugins;
