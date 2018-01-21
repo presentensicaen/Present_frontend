@@ -9,7 +9,6 @@ import android.widget.Button;
 
 import com.github.mikephil.charting.animation.Easing;
 import com.github.mikephil.charting.charts.PieChart;
-import com.github.mikephil.charting.components.Legend;
 import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
@@ -96,11 +95,11 @@ public class DashboardActivity extends Activity implements IDashboardView {
         ArrayList<PieEntry> yEntrys = new ArrayList<>();
         ArrayList<String> xEntrys = new ArrayList<>();
 
-        for(int i = 0; i < yData.length; i++){
-            yEntrys.add(new PieEntry(yData[i] , i));
+        for (int i = 0; i < yData.length; i++) {
+            yEntrys.add(new PieEntry(yData[i], i));
         }
 
-        for(int i = 1; i < xData.length; i++){
+        for (int i = 1; i < xData.length; i++) {
             xEntrys.add(xData[i]);
         }
 
