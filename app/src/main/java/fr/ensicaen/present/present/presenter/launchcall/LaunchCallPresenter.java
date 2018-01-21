@@ -15,6 +15,7 @@ import fr.ensicaen.present.present.utils.Config;
 import fr.ensicaen.present.present.utils.api.ServiceFactory;
 import fr.ensicaen.present.present.view.launchcall.ILaunchCallView;
 import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 
 /**
@@ -39,8 +40,13 @@ public class LaunchCallPresenter implements ILaunchCallPresenter {
         service.createCall(createCallPayload("007", 130, groups))
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
+                .doOnSubscribe(this::onStartCallCreation)
                 .doOnComplete(this::onVerificationComplete)
                 .subscribe(this::handleLoginSuccessResponse, this::handleLoginErrorResponse);
+    }
+
+    private void onStartCallCreation(Disposable disposable) {
+        _view.showLoadingAnimation();
     }
 
     @Override
@@ -68,7 +74,7 @@ public class LaunchCallPresenter implements ILaunchCallPresenter {
 
 
     public void onVerificationComplete() {
-
+        _view.hideLoadingAnimation();
         if (!isCallCreated()) {
             _view.showToast("Erreur lors de la création", Toast.LENGTH_SHORT);
         } else {
@@ -86,6 +92,7 @@ public class LaunchCallPresenter implements ILaunchCallPresenter {
     }
 
     private void handleLoginErrorResponse(Throwable throwable) {
+        _view.hideLoadingAnimation();
         _view.showToast("Erreur " + throwable.getLocalizedMessage(), Toast.LENGTH_SHORT);
     }
 
