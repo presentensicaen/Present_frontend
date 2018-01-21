@@ -6,5 +6,4 @@ package fr.ensicaen.present.present.presenter.selectgroup;
 
 public interface ISelectGroupPresenter {
 
-    void onDestroy();
 }

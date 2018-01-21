@@ -33,10 +33,10 @@ public class LaunchCallPresenter implements ILaunchCallPresenter {
 
         ICallService service = ServiceFactory
                 .createRetrofitService(ICallService.class, _config.property("API_URL"));
-        ArrayList<String> _groups = new ArrayList<>();
-        _groups.add("INFO_TP1");
-        _groups.add("INFO_TP2");
-        service.createCall(createCallPayload("007", 130, _groups))
+        ArrayList<String> groups = new ArrayList<>();
+        groups.add("INFO_TP1");
+        groups.add("INFO_TP2");
+        service.createCall(createCallPayload("007", 130, groups))
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnComplete(this::onVerificationComplete)
@@ -90,13 +90,13 @@ public class LaunchCallPresenter implements ILaunchCallPresenter {
     }
 
 
-    private JSONObject createCallPayload(String _id, int _duration, ArrayList<String> _groups) {
+    private JSONObject createCallPayload(String id, int duration, ArrayList<String> groups) {
         JSONObject jsonPayload = new JSONObject();
         JSONObject jsonData = new JSONObject();
         try {
-            jsonPayload.put("id", _id);
-            jsonPayload.put("duration", _duration);
-            jsonPayload.put("groups", _groups.toString());
+            jsonPayload.put("id", id);
+            jsonPayload.put("duration", duration);
+            jsonPayload.put("groups", groups.toString());
 
             jsonData.put("data", jsonPayload);
             return jsonData;

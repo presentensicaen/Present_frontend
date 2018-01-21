@@ -6,10 +6,4 @@ package fr.ensicaen.present.present.presenter.selectgroup;
 
 public class SelectGroupPresenter implements ISelectGroupPresenter {
 
-
-    @Override
-    public void onDestroy() {
-
-    }
-
 }
