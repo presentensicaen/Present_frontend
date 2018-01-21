@@ -1,4 +1,4 @@
-package fr.ensicaen.present.present.launch_call;
+package fr.ensicaen.present.present.presenter.launchcall;
 
 import android.widget.Toast;
 
@@ -10,7 +10,6 @@ import org.mockito.Mock;
 import java.io.IOException;
 
 import fr.ensicaen.present.present.models.CallModel;
-import fr.ensicaen.present.present.presenter.launchcall.LaunchCallPresenter;
 import fr.ensicaen.present.present.utils.Config;
 import fr.ensicaen.present.present.view.launchcall.LaunchCallActivity;
 import io.reactivex.android.plugins.RxAndroidPlugins;

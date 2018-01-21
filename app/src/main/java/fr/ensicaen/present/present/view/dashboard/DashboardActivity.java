@@ -5,7 +5,13 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
+
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Toast;
+
+import java.io.IOException;
 
 import com.github.mikephil.charting.animation.Easing;
 import com.github.mikephil.charting.charts.PieChart;
@@ -19,8 +25,11 @@ import java.util.ArrayList;
 import fr.ensicaen.present.present.R;
 import fr.ensicaen.present.present.presenter.dashboard.DashboardPresenter;
 import fr.ensicaen.present.present.presenter.dashboard.IDashboardPresenter;
+import fr.ensicaen.present.present.utils.Config;
 import fr.ensicaen.present.present.view.choosecalltype.ChooseCallTypeActivity;
+import fr.ensicaen.present.present.view.choosepreviouscall.ChoosePreviousCallActivity;
 import fr.ensicaen.present.present.view.entercode.EnterCodeActivity;
+import fr.ensicaen.present.present.view.reviewcall.ReviewCallActivity;
 
 public class DashboardActivity extends Activity implements IDashboardView {
 
@@ -28,6 +37,7 @@ public class DashboardActivity extends Activity implements IDashboardView {
     private Button _answerCallButton;
     private IDashboardPresenter _presenter;
     private Button _reviewCallButton;
+    private ViewGroup _loadingAnimation;
 
     private static String TAG = "MainActivity";
 
@@ -50,6 +60,8 @@ public class DashboardActivity extends Activity implements IDashboardView {
 
         _reviewCallButton = findViewById(R.id.review_call_button);
         setReviewCallsAction();
+
+        _loadingAnimation = findViewById(R.id.loading_animation);
 
         pieChart = (PieChart) findViewById(R.id.idPieChart);
 
@@ -133,6 +145,9 @@ public class DashboardActivity extends Activity implements IDashboardView {
         PieData pieData = new PieData(pieDataSet);
         pieChart.setData(pieData);
         pieChart.invalidate();
+
+
+
     }
 
     private void setLaunchCallAction() {
@@ -145,7 +160,6 @@ public class DashboardActivity extends Activity implements IDashboardView {
 
     private void setReviewCallsAction() {
         _reviewCallButton.setOnClickListener(v -> _presenter.onReviewOldCallsClick());
-
     }
 
     public void goToGenerateCode() {
@@ -156,5 +170,29 @@ public class DashboardActivity extends Activity implements IDashboardView {
     public void goToEnterCode() {
         Intent intent = new Intent(DashboardActivity.this, EnterCodeActivity.class);
         startActivity(intent);
+    }
+
+    @Override
+    public void goToReviewCall() {
+        Intent intent = new Intent(DashboardActivity.this, ChoosePreviousCallActivity.class);
+        startActivity(intent);
+    }
+
+    @Override
+    public void showLoadingAnimation() { _loadingAnimation.setVisibility(View.VISIBLE); }
+
+    @Override
+    public void hideLoadingAnimation() {
+        _loadingAnimation.setVisibility(View.INVISIBLE);
+    }
+
+    @Override
+    public void showToast(String message, int toastDuration) {
+        Toast.makeText(this, message, toastDuration).show();
+    }
+
+    @Override
+    public Config getConfigAccessor() throws IOException {
+        return new Config(this);
     }
 }

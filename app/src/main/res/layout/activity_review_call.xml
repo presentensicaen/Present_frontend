@@ -7,8 +7,6 @@
     android:layout_height="match_parent"
     android:gravity="center"
     android:orientation="vertical"
-    android:paddingLeft="20dp"
-    android:paddingRight="20dp"
     tools:context="fr.ensicaen.present.present.view.selectgroup.SelectGroupActivity">
 
 
@@ -34,17 +32,15 @@
         android:layout_alignParentStart="false"
         android:layout_alignParentTop="false"
         android:baselineAligned="false"
-        android:orientation="vertical">
+        android:gravity="center"
+        android:orientation="horizontal">
 
-        <Button
-            android:id="@+id/generateCode"
-            style="@style/accent_button"
-            android:layout_width="match_parent"
+        <TextView
+            android:id="@+id/current_amount"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="@string/generate_code_no_groupe"
-            android:textColor="@android:color/background_light"
-            android:visibility="visible" />
+            android:text="MUST ADD TOTAL" />
+
     </LinearLayout>
 
     <include layout="@layout/include_progress_overlay" />

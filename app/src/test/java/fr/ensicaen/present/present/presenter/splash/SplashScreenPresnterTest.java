@@ -1,4 +1,4 @@
-package fr.ensicaen.present.present.splash;
+package fr.ensicaen.present.present.presenter.splash;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -6,7 +6,6 @@ import org.mockito.Mock;
 
 import java.io.IOException;
 
-import fr.ensicaen.present.present.presenter.splash.SplashPresenter;
 import fr.ensicaen.present.present.view.splash.SplashScreenActivity;
 
 import static org.mockito.Mockito.mock;
