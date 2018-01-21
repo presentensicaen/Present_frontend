@@ -27,7 +27,7 @@ public class SessionManager {
 
     private static final String KEY_NAME = "name";
 
-    private static final String KEY_EMAIL = "email";
+    private static final String KEY_ID = "id";
 
     public SessionManager(Context context) {
         this._context = context;
@@ -35,16 +35,17 @@ public class SessionManager {
         editor = pref.edit();
     }
 
-    public void createLoginSession(String name){
+    public void createLoginSession(String name, String id){
         editor.putBoolean(IS_LOGIN, true);
         editor.putString(KEY_NAME, name);
+        editor.putString(KEY_ID, id);
         editor.commit();
     }
 
     public HashMap<String, String> getUserDetails(){
         HashMap<String, String> user = new HashMap<>();
         user.put(KEY_NAME, pref.getString(KEY_NAME, null));
-        user.put(KEY_EMAIL, pref.getString(KEY_EMAIL, null));
+        user.put(KEY_ID, pref.getString(KEY_ID, null));
         return user;
     }
 

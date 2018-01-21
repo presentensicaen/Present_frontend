@@ -91,8 +91,7 @@ public class LoginActivityPresenter implements ILoginPresenter {
             _view.hideLoadingAnimation();
             //@TODO make this a constant
             _view.showToast("Bienvenue " + _user.getDisplayName(), Toast.LENGTH_SHORT);
-            session.createLoginSession(_user.getDisplayName());
-
+            session.createLoginSession(_user.getDisplayName(), _user.getId());
             _view.goToDashboard();
             _view.finish();
         }
