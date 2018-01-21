@@ -7,6 +7,7 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 
+import fr.ensicaen.present.present.models.ApiResponseModel;
 import fr.ensicaen.present.present.models.EnterCodeModel;
 import fr.ensicaen.present.present.services.IEnterCodeService;
 import fr.ensicaen.present.present.utils.Config;
@@ -14,6 +15,7 @@ import fr.ensicaen.present.present.utils.api.ServiceFactory;
 
 import fr.ensicaen.present.present.view.entercode.IEnterCodeView;
 import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 
 /**
@@ -24,7 +26,7 @@ public class EnterCodePresenter implements IEnterCodePresenter{
 
     private IEnterCodeView _view;
     private Config _config;
-    private EnterCodeModel _verifyCode;
+    private String _verifyCode;
 
 
     public EnterCodePresenter(IEnterCodeView view){
@@ -38,8 +40,6 @@ public class EnterCodePresenter implements IEnterCodePresenter{
 
     @Override
     public void onEnterCodeButtonClick(String id, String code){
-        _view.showToast("hlkhlkhqsf", Toast.LENGTH_SHORT);
-
         verifyCode(createEnterCodePayload(id, code));
     }
 
@@ -50,17 +50,32 @@ public class EnterCodePresenter implements IEnterCodePresenter{
         service.checkCode(payload)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .doOnComplete(this::onCodeVerificationComplete);
+                .doOnSubscribe(this::onCodeVerificationStart)
+                .doOnComplete(this::onCodeVerificationComplete)
+                .subscribe(this::onCodeVerificationSuccess, this::onCodeVerificationFailed);
     }
 
+    private void onCodeVerificationStart(Disposable disposable) {
+        _view.showLoadingAnimation();
+    }
+
+    private void onCodeVerificationSuccess(ApiResponseModel<String> stringApiResponseModel) {
+        _verifyCode = stringApiResponseModel.getData();
+    }
+
+    private void onCodeVerificationFailed(Throwable throwable) {
+        _view.hideLoadingAnimation();
+        _view.showToast("Erreur"+throwable.getMessage(), Toast.LENGTH_SHORT);
+    }
 
 
     public void onCodeVerificationComplete(){
         if(!isCodeRight()){
-            _view.displaySuccessMessage();
+            _view.displayErrorMessage();
         } else {
             _view.displaySuccessMessage();
         }
+        _view.hideLoadingAnimation();
     }
 
     public boolean isCodeRight(){

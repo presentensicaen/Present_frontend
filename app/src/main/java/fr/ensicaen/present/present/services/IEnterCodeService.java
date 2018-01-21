@@ -15,7 +15,7 @@ import io.reactivex.Observable;
 
 public interface IEnterCodeService {
     @Headers("Content-Type: application/json")
-    @POST("enterCode/")
+    @POST("/enter-code")
     /*on s'attend a observer une reponse de l'api - status + data avec data = string*/
     Observable<ApiResponseModel<String>>checkCode(@Body JSONObject jsonString);
 }
