@@ -2,6 +2,7 @@ package fr.ensicaen.present.present.view.dashboard;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
@@ -9,6 +10,8 @@ import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.IOException;
@@ -20,16 +23,18 @@ import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
 import com.github.mikephil.charting.utils.ColorTemplate;
 
+
 import java.util.ArrayList;
 
 import fr.ensicaen.present.present.R;
 import fr.ensicaen.present.present.presenter.dashboard.DashboardPresenter;
 import fr.ensicaen.present.present.presenter.dashboard.IDashboardPresenter;
+import fr.ensicaen.present.present.session.SessionManager;
 import fr.ensicaen.present.present.utils.Config;
+import fr.ensicaen.present.present.utils.imagetools.RoundImage;
 import fr.ensicaen.present.present.view.choosecalltype.ChooseCallTypeActivity;
 import fr.ensicaen.present.present.view.choosepreviouscall.ChoosePreviousCallActivity;
 import fr.ensicaen.present.present.view.entercode.EnterCodeActivity;
-import fr.ensicaen.present.present.view.reviewcall.ReviewCallActivity;
 
 public class DashboardActivity extends Activity implements IDashboardView {
 
@@ -44,6 +49,8 @@ public class DashboardActivity extends Activity implements IDashboardView {
     private float[] yData = {25.3f, 10.6f};
     private String[] xData = {"Mitch", "Jessica"};
     PieChart pieChart;
+    private ImageView _profilePic;
+    private TextView _profileName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,7 +70,16 @@ public class DashboardActivity extends Activity implements IDashboardView {
 
         _loadingAnimation = findViewById(R.id.loading_animation);
 
-        pieChart = (PieChart) findViewById(R.id.idPieChart);
+        //@TODO load pic with user data
+        _profilePic = findViewById(R.id.profile_pic);
+        _profilePic.setImageDrawable(
+                new RoundImage(
+                        BitmapFactory.decodeResource(getResources(), R.drawable.barack_obama_test)
+                )
+        );
+        _profileName = findViewById(R.id.profile_name);
+
+        pieChart = findViewById(R.id.idPieChart);
 
         /*pieChart.setRotationEnabled(true);
         pieChart.setHoleRadius(0f);
@@ -99,6 +115,7 @@ public class DashboardActivity extends Activity implements IDashboardView {
 
 
         addDataSet();
+
     }
 
 

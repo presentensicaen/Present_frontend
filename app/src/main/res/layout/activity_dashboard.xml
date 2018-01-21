@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -19,6 +20,23 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
+            <ImageView
+                android:id="@+id/profile_pic"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp"
+                android:src="@drawable/barack_obama_test" />
+
+            <TextView
+                android:id="@+id/profile_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Barack Obama"
+                android:textAlignment="center"
+                android:textSize="24sp"
+                android:textStyle="italic" />
+
             <android.support.v7.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="268dp"
@@ -26,24 +44,11 @@
                 android:layout_marginRight="20dp"
                 android:layout_marginTop="20dp">
 
-                <android.support.constraint.ConstraintLayout
+                <com.github.mikephil.charting.charts.PieChart
+                    android:id="@+id/idPieChart"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-
-                    <ImageView
-                        android:id="@+id/imageView"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:elevation="0dp"
-                        android:src="@drawable/chart"
-                        tools:targetApi="lollipop" />
-
-                    <com.github.mikephil.charting.charts.PieChart
-                        android:id="@+id/idPieChart"
-                        android:layout_width="170dp"
-                        android:layout_height="167dp"
-                        android:visibility="visible" />
-                </android.support.constraint.ConstraintLayout>
+                    android:layout_height="match_parent"
+                    android:visibility="visible" />
 
             </android.support.v7.widget.CardView>
 
