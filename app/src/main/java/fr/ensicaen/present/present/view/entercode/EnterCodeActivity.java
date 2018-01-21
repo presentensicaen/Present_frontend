@@ -4,9 +4,11 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.io.IOException;
 
@@ -30,6 +32,7 @@ public class EnterCodeActivity extends Activity implements IEnterCodeView {
     private EditText _codeText;
     private Button _enterCodeButton;
     private Button _returnToDashboardButton;
+    private ViewGroup _loadingAnimation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
@@ -43,6 +46,7 @@ public class EnterCodeActivity extends Activity implements IEnterCodeView {
         _codeText = findViewById(R.id.editText2);
         _enterCodeButton = findViewById(R.id.enter_code);
         _returnToDashboardButton = findViewById(R.id.return_dashboard);
+        _loadingAnimation = findViewById(R.id.loading_animation);
         setOnEnterCodeButtonClick();
         setOnReturnDashboardButtonClick();
     }
@@ -88,17 +92,17 @@ public class EnterCodeActivity extends Activity implements IEnterCodeView {
 
     @Override
     public void showLoadingAnimation() {
-
+        _loadingAnimation.setVisibility(View.VISIBLE);
     }
 
     @Override
     public void hideLoadingAnimation() {
-
+        _loadingAnimation.setVisibility(View.INVISIBLE);
     }
 
     @Override
     public void showToast(String message, int toastDuration) {
-
+        Toast.makeText(this,message, toastDuration).show();
     }
 
     @Override
