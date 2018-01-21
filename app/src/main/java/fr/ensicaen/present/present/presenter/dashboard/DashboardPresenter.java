@@ -30,8 +30,6 @@ public class DashboardPresenter implements IDashboardPresenter {
 
     @Override
     public void onReviewOldCallsClick() {
-        /*@TODO needs to be implemented*/
-        Log.d("DashboardPresenter",
-                "Clicked onReviewOldCalls Button. Impliment real function!");
+        _view.goToReviewCall();
     }
 }

@@ -77,7 +77,7 @@ public class ChoosePreviousCallActivity extends Activity implements  IChoosePrev
 
     @Override
     public void showPreviousCalls(ArrayList<PreviousCallModel> prevousCalls) {
-        _listview.setAdapter(new PrevousCallListAdapter(this, prevousCalls));
+        _listview.setAdapter(new PrevousCallListAdapter(this, prevousCalls, R.layout.select_previous_call_item));
         _listview.setItemsCanFocus(false);
         _listview.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
     }

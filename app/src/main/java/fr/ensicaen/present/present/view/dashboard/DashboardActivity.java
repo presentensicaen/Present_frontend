@@ -15,7 +15,9 @@ import fr.ensicaen.present.present.presenter.dashboard.DashboardPresenter;
 import fr.ensicaen.present.present.presenter.dashboard.IDashboardPresenter;
 import fr.ensicaen.present.present.utils.Config;
 import fr.ensicaen.present.present.view.choosecalltype.ChooseCallTypeActivity;
+import fr.ensicaen.present.present.view.choosepreviouscall.ChoosePreviousCallActivity;
 import fr.ensicaen.present.present.view.entercode.EnterCodeActivity;
+import fr.ensicaen.present.present.view.reviewcall.ReviewCallActivity;
 
 public class DashboardActivity extends Activity implements IDashboardView {
 
@@ -55,7 +57,6 @@ public class DashboardActivity extends Activity implements IDashboardView {
 
     private void setReviewCallsAction() {
         _reviewCallButton.setOnClickListener(v -> _presenter.onReviewOldCallsClick());
-
     }
 
     public void goToGenerateCode() {
@@ -65,6 +66,12 @@ public class DashboardActivity extends Activity implements IDashboardView {
 
     public void goToEnterCode() {
         Intent intent = new Intent(DashboardActivity.this, EnterCodeActivity.class);
+        startActivity(intent);
+    }
+
+    @Override
+    public void goToReviewCall() {
+        Intent intent = new Intent(DashboardActivity.this, ChoosePreviousCallActivity.class);
         startActivity(intent);
     }
 

@@ -12,4 +12,5 @@ public interface IDashboardView extends IGenericView{
 
     void goToEnterCode();
 
+    void goToReviewCall();
 }

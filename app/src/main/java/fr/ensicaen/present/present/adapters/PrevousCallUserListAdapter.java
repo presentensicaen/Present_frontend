@@ -12,41 +12,49 @@ package fr.ensicaen.present.present.adapters;
  */
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.Drawable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
 
 import fr.ensicaen.present.present.R;
 import fr.ensicaen.present.present.models.PreviousCallModel;
+import fr.ensicaen.present.present.models.PreviousCallUserModel;
+import fr.ensicaen.present.present.utils.imagetools.RoundImage;
 
 /*
  * @author The Présent ! Team <easterly@ecole.ensicaen.fr>
  * @version 0.0.1 - 21/01/18
- * @TODO refactor with other adapter ?
  */
-public class PrevousCallListAdapter extends BaseAdapter{
+public class PrevousCallUserListAdapter extends BaseAdapter{
     private final int _layout;
-    private ArrayList<PreviousCallModel> _previousCalls;
+    private ArrayList<PreviousCallUserModel> _users;
     private LayoutInflater layoutInflater;
+    private Context _context;
 
-    public PrevousCallListAdapter(Context aContext, ArrayList<PreviousCallModel> previousCalls, int layout) {
-        _previousCalls = previousCalls;
+    public PrevousCallUserListAdapter(Context aContext, ArrayList<PreviousCallUserModel> users, int layout ) {
+        _users = users;
+        _context = aContext;
         layoutInflater = LayoutInflater.from(aContext);
         _layout = layout;
     }
 
     @Override
     public int getCount() {
-        return _previousCalls.size();
+        return _users.size();
     }
 
     @Override
     public Object getItem(int position) {
-        return _previousCalls.get(position);
+        return _users.get(position);
     }
 
     @Override
@@ -59,23 +67,33 @@ public class PrevousCallListAdapter extends BaseAdapter{
         if (convertView == null) {
             convertView = layoutInflater.inflate(_layout, null);
             holder = new ViewHolder();
-            holder._callEventName = convertView.findViewById(R.id.prev_call_event);
-            holder._callEventDate = convertView.findViewById(R.id.prev_call_date);
-            holder._callEventCode = convertView.findViewById(R.id.prev_call_code);
+            holder._userPhoto = convertView.findViewById(R.id.user_image);
+            holder._userName = convertView.findViewById(R.id.user_name);
             convertView.setTag(holder);
+
         } else {
             holder = (ViewHolder) convertView.getTag();
         }
 
-        holder._callEventName.setText(_previousCalls.get(position).getEvent());
-        holder._callEventDate.setText(_previousCalls.get(position).getDate());
-        holder._callEventCode.setText(_previousCalls.get(position).getCode());
+        Drawable roundedImage = _users.get(position).getPhoto();
+        if(roundedImage == null){
+            Bitmap bm = BitmapFactory.decodeResource(
+                    _context.getResources(),
+                    R.drawable.blank_profile
+            );
+            roundedImage = new RoundImage(bm);
+        }
+
+
+        //holder._userPhoto.set(_users.get(position).getPhotoUrl());
+        holder._userPhoto.setImageDrawable(roundedImage);
+        holder._userName.setText(_users.get(position).getName());
+
         return convertView;
     }
 
     static class ViewHolder {
-        TextView _callEventName;
-        TextView _callEventDate;
-        TextView _callEventCode;
+        ImageView _userPhoto;
+        TextView _userName;
     }
 }
