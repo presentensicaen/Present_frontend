@@ -11,16 +11,25 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.IOException;
 
 import com.github.mikephil.charting.animation.Easing;
+import com.github.mikephil.charting.charts.HorizontalBarChart;
 import com.github.mikephil.charting.charts.PieChart;
+import com.github.mikephil.charting.components.Legend;
+import com.github.mikephil.charting.components.XAxis;
+import com.github.mikephil.charting.components.YAxis;
+import com.github.mikephil.charting.data.BarData;
+import com.github.mikephil.charting.data.BarDataSet;
+import com.github.mikephil.charting.data.BarEntry;
 import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
+import com.github.mikephil.charting.interfaces.datasets.IBarDataSet;
 import com.github.mikephil.charting.utils.ColorTemplate;
 
 
@@ -52,6 +61,8 @@ public class DashboardActivity extends Activity implements IDashboardView {
     private ImageView _profilePic;
     private TextView _profileName;
 
+    protected HorizontalBarChart mChart;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -68,6 +79,7 @@ public class DashboardActivity extends Activity implements IDashboardView {
         _reviewCallButton = findViewById(R.id.review_call_button);
         setReviewCallsAction();
 
+
         _loadingAnimation = findViewById(R.id.loading_animation);
 
         //@TODO load pic with user data
@@ -79,11 +91,15 @@ public class DashboardActivity extends Activity implements IDashboardView {
         );
         _profileName = findViewById(R.id.profile_name);
 
+        setPieChart();
+        setHistogram();
+
+
+    }
+
+    private void setPieChart(){
         pieChart = findViewById(R.id.idPieChart);
 
-        /*pieChart.setRotationEnabled(true);
-        pieChart.setHoleRadius(0f);
-        pieChart.setTransparentCircleAlpha(0);*/
         pieChart.setUsePercentValues(true);
         pieChart.setExtraOffsets(5, 10, 5, 5);
 
@@ -113,11 +129,87 @@ public class DashboardActivity extends Activity implements IDashboardView {
         // entry label styling
         pieChart.setEntryLabelColor(Color.WHITE);
 
-
         addDataSet();
+    }
+
+    private void setHistogram(){
+
+        mChart = (HorizontalBarChart) findViewById(R.id.chart1);
+        // mChart.setHighlightEnabled(false);
+
+        mChart.setDrawBarShadow(false);
+
+        mChart.setDrawValueAboveBar(true);
+
+
+        // if more than 60 entries are displayed in the chart, no values will be
+        // drawn
+        mChart.setMaxVisibleValueCount(60);
+
+        // scaling can now only be done on x- and y-axis separately
+        mChart.setPinchZoom(false);
+
+        // draw shadows for each bar that show the maximum value
+        // mChart.setDrawBarShadow(true);
+
+        mChart.setDrawGridBackground(false);
+
+        XAxis xl = mChart.getXAxis();
+        xl.setPosition(XAxis.XAxisPosition.BOTTOM);
+        xl.setDrawAxisLine(true);
+        xl.setDrawGridLines(false);
+        xl.setGranularity(10f);
+
+        YAxis yl = mChart.getAxisLeft();
+        yl.setDrawAxisLine(true);
+        yl.setDrawGridLines(true);
+        yl.setAxisMinValue(0f); // this replaces setStartAtZero(true)
+//        yl.setInverted(true);
+
+        YAxis yr = mChart.getAxisRight();
+        yr.setDrawAxisLine(true);
+        yr.setDrawGridLines(false);
+        yr.setAxisMinValue(0f); // this replaces setStartAtZero(true)
+//        yr.setInverted(true);
+
+        setData(3, 50);
+        mChart.setFitBars(true);
+        mChart.animateY(2500);
+
+
+        Legend l = mChart.getLegend();
+        l.setVerticalAlignment(Legend.LegendVerticalAlignment.BOTTOM);
+        l.setHorizontalAlignment(Legend.LegendHorizontalAlignment.LEFT);
+        l.setOrientation(Legend.LegendOrientation.HORIZONTAL);
+        l.setDrawInside(false);
+        l.setFormSize(8f);
+        l.setXEntrySpace(4f);
+    }
+
+
+
+    private void setLaunchCallAction() {
+        _launchCallButton.setOnClickListener(v -> _presenter.onLaunchCallClick());
+    }
+
+    private void setAnswerCallAction() {
+        _answerCallButton.setOnClickListener(v -> _presenter.onAnswerCallClick());
+    }
+
+    private void setReviewCallsAction() {
+        _reviewCallButton.setOnClickListener(v -> _presenter.onReviewOldCallsClick());
 
     }
 
+    public void goToGenerateCode() {
+        Intent intent = new Intent(DashboardActivity.this, ChooseCallTypeActivity.class);
+        startActivity(intent);
+    }
+
+    public void goToEnterCode() {
+        Intent intent = new Intent(DashboardActivity.this, EnterCodeActivity.class);
+        startActivity(intent);
+    }
 
     private void addDataSet() {
         Log.d(TAG, "addDataSet started");
@@ -167,26 +259,47 @@ public class DashboardActivity extends Activity implements IDashboardView {
 
     }
 
-    private void setLaunchCallAction() {
-        _launchCallButton.setOnClickListener(v -> _presenter.onLaunchCallClick());
-    }
 
-    private void setAnswerCallAction() {
-        _answerCallButton.setOnClickListener(v -> _presenter.onAnswerCallClick());
-    }
+    private void setData(int count, float range) {
 
-    private void setReviewCallsAction() {
-        _reviewCallButton.setOnClickListener(v -> _presenter.onReviewOldCallsClick());
-    }
 
-    public void goToGenerateCode() {
-        Intent intent = new Intent(DashboardActivity.this, ChooseCallTypeActivity.class);
-        startActivity(intent);
-    }
+        float barWidth = 9f;
+        float spaceForBar = 10f;
+        ArrayList<BarEntry> yVals1 = new ArrayList<BarEntry>();
 
-    public void goToEnterCode() {
-        Intent intent = new Intent(DashboardActivity.this, EnterCodeActivity.class);
-        startActivity(intent);
+        ArrayList<Integer> colors = new ArrayList<>();
+        //colors.add(Color.RED);
+        //colors.add(Color.GREEN);
+
+        for (int c : ColorTemplate.VORDIPLOM_COLORS)
+            colors.add(c);
+
+        for (int i = 0; i < count; i++) {
+            float val = (float) (Math.random() * range);
+            yVals1.add(new BarEntry(i * spaceForBar, val,
+                    getResources().getDrawable(R.drawable.star)));
+        }
+
+        BarDataSet set1;
+
+        if (mChart.getData() != null &&
+                mChart.getData().getDataSetCount() > 0) {
+            set1 = (BarDataSet)mChart.getData().getDataSetByIndex(0);
+            set1.setValues(yVals1);
+            mChart.getData().notifyDataChanged();
+            mChart.notifyDataSetChanged();
+        } else {
+            set1 = new BarDataSet(yVals1, "DataSet 1");
+
+
+            ArrayList<IBarDataSet> dataSets = new ArrayList<IBarDataSet>();
+            dataSets.add(set1);
+
+            BarData data = new BarData(dataSets);
+            data.setValueTextSize(10f);
+            data.setBarWidth(barWidth);
+            mChart.setData(data);
+        }
     }
 
     @Override
@@ -212,4 +325,6 @@ public class DashboardActivity extends Activity implements IDashboardView {
     public Config getConfigAccessor() throws IOException {
         return new Config(this);
     }
+
 }
+
