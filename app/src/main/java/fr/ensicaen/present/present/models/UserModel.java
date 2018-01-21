@@ -34,6 +34,10 @@ public class UserModel {
         return _name;
     }
 
+    public String getId() {
+        return _id;
+    }
+
     public final class UserObjectHolder {
         @SerializedName("user")
         private UserModel _user;

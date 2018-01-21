@@ -6,6 +6,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.github.mikephil.charting.animation.Easing;
 import com.github.mikephil.charting.charts.PieChart;
@@ -87,6 +88,7 @@ public class DashboardActivity extends Activity implements IDashboardView {
 
 
         addDataSet();
+
     }
 
 

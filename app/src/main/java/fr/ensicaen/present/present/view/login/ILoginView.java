@@ -1,5 +1,7 @@
 package fr.ensicaen.present.present.view.login;
 
+import android.content.Context;
+
 import java.io.IOException;
 
 import fr.ensicaen.present.present.utils.Config;
@@ -23,4 +25,6 @@ public interface ILoginView {
     void showToast(String message, int toastDuration);
 
     Config getConfigAccessor() throws IOException;
+
+    Context getContext();
 }

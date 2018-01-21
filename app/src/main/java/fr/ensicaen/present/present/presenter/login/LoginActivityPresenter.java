@@ -1,5 +1,6 @@
 package fr.ensicaen.present.present.presenter.login;
 
+import android.content.Context;
 import android.widget.Toast;
 
 import org.json.JSONException;
@@ -10,6 +11,7 @@ import java.io.IOException;
 import fr.ensicaen.present.present.models.ApiResponseModel;
 import fr.ensicaen.present.present.models.UserModel;
 import fr.ensicaen.present.present.services.IUserService;
+import fr.ensicaen.present.present.session.SessionManager;
 import fr.ensicaen.present.present.utils.Config;
 import fr.ensicaen.present.present.utils.api.ServiceFactory;
 import fr.ensicaen.present.present.view.login.ILoginView;
@@ -27,9 +29,11 @@ public class LoginActivityPresenter implements ILoginPresenter {
     private boolean _animationStarted;
     private UserModel _user;
     private Config _config;
+    SessionManager session;
 
     public LoginActivityPresenter(ILoginView view) {
         _view = view;
+        session = new SessionManager(_view.getContext());
         _animationStarted = false;
         try {
             _config = _view.getConfigAccessor();
@@ -87,6 +91,7 @@ public class LoginActivityPresenter implements ILoginPresenter {
             _view.hideLoadingAnimation();
             //@TODO make this a constant
             _view.showToast("Bienvenue " + _user.getDisplayName(), Toast.LENGTH_SHORT);
+            session.createLoginSession(_user.getDisplayName(), _user.getId());
             _view.goToDashboard();
             _view.finish();
         }

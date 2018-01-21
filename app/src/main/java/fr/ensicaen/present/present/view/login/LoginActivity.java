@@ -1,6 +1,7 @@
 package fr.ensicaen.present.present.view.login;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -18,6 +19,7 @@ import java.io.IOException;
 import fr.ensicaen.present.present.R;
 import fr.ensicaen.present.present.presenter.login.ILoginPresenter;
 import fr.ensicaen.present.present.presenter.login.LoginActivityPresenter;
+import fr.ensicaen.present.present.session.SessionManager;
 import fr.ensicaen.present.present.utils.Config;
 import fr.ensicaen.present.present.view.dashboard.DashboardActivity;
 
@@ -151,6 +153,11 @@ public class LoginActivity extends Activity implements ILoginView {
                 _emailText.getText().toString(),
                 _passwordText.getText().toString()
         ));
+    }
+
+    @Override
+    public Context getContext(){
+        return this.getApplicationContext();
     }
 
 
