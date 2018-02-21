@@ -6,8 +6,15 @@
     <color name="colorAccent">#EF4437</color>
     <color name="colorWhite">#ECEFF1</color>
 
+
+
     <color name="black_overlay">#66000000</color>
     <color name="darkAccent">#C62828</color>
-    <color name="lightAccent">#EF9A9A</color>
+    <color name="lightAccent">#ef9a9a</color>
 
+
+    <color name="v2_colorPrimary">#ef5250</color>
+    <color name="v2_colorPrimaryLight">#E57273</color>
+    <color name="v2_colorAccent">#5D6AB2</color>
+    <color name="v2_colorWhite">#fdecf0</color>
 </resources>

@@ -13,7 +13,22 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-            <activity
+
+        <!-- tests for v2 graphics -->
+        <activity
+            android:name=".v2layouttests.LoginActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+            >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <!-- end tests for v2 graphics -->
+
+
+ <!--       <activity
             android:name=".view.splash.SplashScreenActivity"
             android:theme="@style/MyTheme.Splash">
             <intent-filter>
@@ -45,7 +60,9 @@
             android:label="@string/title_activity_choose_previous_call"/>
         <activity
             android:name=".view.reviewcall.ReviewCallActivity"
-            android:label="@string/title_activity_review_call" />
+            android:label="@string/title_activity_review_call" />-->
+
+
     </application>
 
 </manifest>
