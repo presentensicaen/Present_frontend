@@ -5,4 +5,6 @@ package fr.ensicaen.present.present.view.subscribe;
  */
 
 public interface ISubscribeView {
+
+
 }
