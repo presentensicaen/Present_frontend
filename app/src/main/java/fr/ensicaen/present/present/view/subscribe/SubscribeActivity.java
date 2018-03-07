@@ -27,11 +27,12 @@ public class SubscribeActivity extends Activity implements ISubscribeView {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         _presenter = new SubscribeActivityPresenter(this);
+        initializeLayoutComponents();
+        initializeComponents();
         initializeActivity();
-        initComponents();
     }
 
-    private void initComponents(){
+    private void initializeComponents(){
         _lastname = findViewById(R.id.lastname_text);
         _lastname = findViewById(R.id.firstname_text);
         _lastname = findViewById(R.id.mail_text);
@@ -39,11 +40,15 @@ public class SubscribeActivity extends Activity implements ISubscribeView {
         _subscribeButton = findViewById(R.id.subscribe_button);
     }
 
-    private void initializeActivity(){
+    private void initializeLayoutComponents(){
         setTheme(R.style.AppTheme);
         getWindow().getDecorView().setSystemUiVisibility(
                 View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION);
         setContentView(R.layout.activity_subscribe);
+
+    }
+
+    private void initializeActivity(){
 
     }
 }

@@ -16,16 +16,20 @@
             <activity
             android:name=".view.splash.SplashScreenActivity"
             android:theme="@style/MyTheme.Splash">
+        </activity>
+        <activity
+            android:name=".view.login.LoginActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/title_activity_login" />
+
+        <activity android:name=".view.subscribe.SubscribeActivity"
+            android:label="Inscription Présent !">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".view.login.LoginActivity"
-            android:configChanges="orientation|keyboardHidden|screenSize"
-            android:label="@string/title_activity_login" />
 
         <activity android:name=".view.dashboard.DashboardActivity" />
         <activity
