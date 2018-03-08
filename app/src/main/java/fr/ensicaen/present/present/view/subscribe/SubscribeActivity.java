@@ -49,6 +49,5 @@ public class SubscribeActivity extends Activity implements ISubscribeView {
     }
 
     private void initializeActivity(){
-
     }
 }
