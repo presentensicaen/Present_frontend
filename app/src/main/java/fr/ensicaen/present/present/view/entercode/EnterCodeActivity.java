@@ -1,15 +1,19 @@
 package fr.ensicaen.present.present.view.entercode;
 
+import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.provider.Settings;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.view.View;
@@ -35,26 +39,46 @@ import static java.lang.Math.toRadians;
  * Created by Jeanne on 14/12/2017.
  */
 
-public class EnterCodeActivity extends Activity implements IEnterCodeView {
+public class EnterCodeActivity extends Activity implements IEnterCodeView, ActivityCompat.OnRequestPermissionsResultCallback {
     private IEnterCodePresenter _presenter;
     private ViewGroup _loadingAnimation;
 
     LocationManager locationManager;
     double longitudeNetwork, latitudeNetwork;
-    TextView longitudeValueNetwork, latitudeValueNetwork;
     double _distance;
+    private static final int REQUEST_COARSE_LOCATION = 1;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
-        locationManager = (LocationManager)getSystemService(Context.LOCATION_SERVICE);
-        longitudeValueNetwork = (TextView) findViewById(R.id.longitudeValueNetwork);
-        latitudeValueNetwork = (TextView) findViewById(R.id.latitudeValueNetwork);
+        locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
 
         super.onCreate(savedInstanceState);
         _presenter = new EnterCodePresenter(this);
         initializeLayoutComponents();
         initializeEnterCodeActivity();
+
+        int permissionCheck = ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION);
+
+        if (permissionCheck != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_COARSE_LOCATION}, REQUEST_COARSE_LOCATION);
+        }
+
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
+        switch (requestCode) {
+            case REQUEST_COARSE_LOCATION:
+                if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    //TODO
+                }
+                break;
+
+            default:
+                break;
+        }
     }
 
     public void goToDashboard() {
@@ -68,6 +92,7 @@ public class EnterCodeActivity extends Activity implements IEnterCodeView {
         _loadingAnimation = findViewById(R.id.loading_animation);
     }
 
+    @SuppressLint("MissingPermission")
     @Override
     public void initializeEnterCodeActivity() {
         Button enterCodeButton = findViewById(R.id.enter_code);
@@ -89,13 +114,16 @@ public class EnterCodeActivity extends Activity implements IEnterCodeView {
                 TextView message_text = findViewById(R.id.message_text);
                 message_text.setText(R.string.error_message_text);
             }
+
         });
 
         returnToDashboardButton.setOnClickListener(view -> goToDashboard());
     }
 
     @Override
-    public void showLoadingAnimation() { _loadingAnimation.setVisibility(View.VISIBLE); }
+    public void showLoadingAnimation() {
+        _loadingAnimation.setVisibility(View.VISIBLE);
+    }
 
     @Override
     public void hideLoadingAnimation() {
@@ -116,7 +144,7 @@ public class EnterCodeActivity extends Activity implements IEnterCodeView {
 
 
     private boolean checkLocation() {
-        if(!isLocationEnabled())
+        if (!isLocationEnabled())
             showAlert();
         return isLocationEnabled();
     }
@@ -146,20 +174,25 @@ public class EnterCodeActivity extends Activity implements IEnterCodeView {
                 locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
     }
 
-    @SuppressLint("MissingPermission")
+
     public void toggleNetworkUpdates(View view) {
-        if(!checkLocation())
+        showToast("You failed bitch !", Toast.LENGTH_LONG);
+        if (!checkLocation()) {
+            showToast("You failed bitch !", Toast.LENGTH_LONG);
             return;
-        Button button = (Button) view;
-        if(button.getText().equals(getResources().getString(R.string.pause))) {
-            locationManager.removeUpdates(locationListenerNetwork);
-            button.setText(R.string.resume);
         }
-        else {
-            locationManager.requestLocationUpdates(
-                    LocationManager.NETWORK_PROVIDER, 60 * 1000, 10, locationListenerNetwork);
+        Button button = (Button) view;
+        if (button.getText().equals("pause")) {
+            locationManager.removeUpdates(locationListenerNetwork);
+            button.setText("resume");
+        } else {
+            if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                showToast("No permission", Toast.LENGTH_LONG);
+                return;
+            }
+            locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 60 * 1000, 10, locationListenerNetwork);
             showToast("Network provider started running", Toast.LENGTH_LONG);
-            button.setText(R.string.pause);
+            button.setText("pause");
         }
     }
 
@@ -188,8 +221,6 @@ public class EnterCodeActivity extends Activity implements IEnterCodeView {
                 public void run() {
                     distance(latitudeNetwork,longitudeNetwork,49.2144397,-0.3665470999999343);
                     TextView tv = (TextView)findViewById(R.id.distanceEnsi);
-                    longitudeValueNetwork.setText(longitudeNetwork + "");
-                    latitudeValueNetwork.setText(latitudeNetwork + "");
                     tv.setText(Double.toString(_distance)+"km");
                     showToast("Network Provider update", Toast.LENGTH_SHORT);
                 }
