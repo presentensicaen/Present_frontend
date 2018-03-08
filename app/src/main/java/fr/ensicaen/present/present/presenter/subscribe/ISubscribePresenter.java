@@ -5,4 +5,5 @@ package fr.ensicaen.present.present.presenter.subscribe;
  */
 
 public interface ISubscribePresenter {
+    void onSubscribeButtonClick(String lastname, String firstname, String id, String mail);
 }

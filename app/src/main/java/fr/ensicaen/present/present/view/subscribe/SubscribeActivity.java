@@ -6,9 +6,12 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import java.io.IOException;
+
 import fr.ensicaen.present.present.R;
 import fr.ensicaen.present.present.presenter.subscribe.ISubscribePresenter;
 import fr.ensicaen.present.present.presenter.subscribe.SubscribeActivityPresenter;
+import fr.ensicaen.present.present.utils.Config;
 
 /**
  * Created by leymarie on 07/03/18.
@@ -49,5 +52,10 @@ public class SubscribeActivity extends Activity implements ISubscribeView {
     }
 
     private void initializeActivity(){
+    }
+
+    @Override
+    public Config getConfigAccessor() throws IOException{
+        return new Config(this);
     }
 }
