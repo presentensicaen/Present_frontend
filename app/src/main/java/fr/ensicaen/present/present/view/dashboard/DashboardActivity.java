@@ -1,10 +1,21 @@
 package fr.ensicaen.present.present.view.dashboard;
 
+import android.Manifest;
+import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
 import android.os.Bundle;
+import android.provider.Settings;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
+import android.telephony.TelephonyManager;
 import android.util.Log;
 
 import android.view.View;
@@ -33,6 +44,9 @@ import com.github.mikephil.charting.interfaces.datasets.IBarDataSet;
 import com.github.mikephil.charting.utils.ColorTemplate;
 
 
+import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 
 import fr.ensicaen.present.present.R;
@@ -45,7 +59,7 @@ import fr.ensicaen.present.present.view.choosecalltype.ChooseCallTypeActivity;
 import fr.ensicaen.present.present.view.choosepreviouscall.ChoosePreviousCallActivity;
 import fr.ensicaen.present.present.view.entercode.EnterCodeActivity;
 
-public class DashboardActivity extends Activity implements IDashboardView {
+public class DashboardActivity extends Activity implements ActivityCompat.OnRequestPermissionsResultCallback {
 
     private Button _launchCallButton;
     private Button _answerCallButton;
@@ -62,6 +76,53 @@ public class DashboardActivity extends Activity implements IDashboardView {
     private TextView _profileName;
 
     protected HorizontalBarChart mChart;
+
+    private static final int REQUEST_READ_PHONE_STATE = 1;
+
+
+    public byte[] sha256(String text){
+        MessageDigest digest = null;
+        try {
+            digest = MessageDigest.getInstance("SHA-256");
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
+        byte[] hash = digest.digest(text.getBytes(StandardCharsets.UTF_8));
+
+        return hash;
+    }
+
+
+
+    @SuppressLint({"HardwareIds", "MissingPermission"})
+    public void getDeviceIMEI() {
+        int permissionCheck = ContextCompat.checkSelfPermission(this, Manifest.permission.READ_PHONE_STATE);
+
+        if (permissionCheck != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_PHONE_STATE}, REQUEST_READ_PHONE_STATE);
+
+        } else {
+            TelephonyManager telephonyManager = (TelephonyManager)getSystemService(Context.TELEPHONY_SERVICE);
+            Toast.makeText(this, "imei: "+telephonyManager.getDeviceId(), Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    @SuppressLint({"MissingPermission", "HardwareIds"})
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
+        switch (requestCode) {
+            case REQUEST_READ_PHONE_STATE:
+                if ((grantResults.length > 0) && (grantResults[0] == PackageManager.PERMISSION_GRANTED)) {
+                    TelephonyManager telephonyManager = (TelephonyManager)getSystemService(Context.TELEPHONY_SERVICE);
+                    Toast.makeText(this, "imei: "+telephonyManager.getDeviceId(), Toast.LENGTH_SHORT).show();
+
+                }
+                break;
+
+            default:
+                break;
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -94,8 +155,12 @@ public class DashboardActivity extends Activity implements IDashboardView {
         setPieChart();
         setHistogram();
 
+        getDeviceIMEI();
+
 
     }
+
+
 
     private void setPieChart(){
         pieChart = findViewById(R.id.idPieChart);
@@ -302,26 +367,26 @@ public class DashboardActivity extends Activity implements IDashboardView {
         }
     }
 
-    @Override
+    //@Override
     public void goToReviewCall() {
         Intent intent = new Intent(DashboardActivity.this, ChoosePreviousCallActivity.class);
         startActivity(intent);
     }
 
-    @Override
+    //@Override
     public void showLoadingAnimation() { _loadingAnimation.setVisibility(View.VISIBLE); }
 
-    @Override
+    //@Override
     public void hideLoadingAnimation() {
         _loadingAnimation.setVisibility(View.INVISIBLE);
     }
 
-    @Override
+    //@Override
     public void showToast(String message, int toastDuration) {
         Toast.makeText(this, message, toastDuration).show();
     }
 
-    @Override
+    //@Override
     public Config getConfigAccessor() throws IOException {
         return new Config(this);
     }
