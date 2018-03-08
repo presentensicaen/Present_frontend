@@ -59,7 +59,7 @@ import fr.ensicaen.present.present.view.choosecalltype.ChooseCallTypeActivity;
 import fr.ensicaen.present.present.view.choosepreviouscall.ChoosePreviousCallActivity;
 import fr.ensicaen.present.present.view.entercode.EnterCodeActivity;
 
-public class DashboardActivity extends Activity implements ActivityCompat.OnRequestPermissionsResultCallback {
+public class DashboardActivity extends Activity implements IDashboardView, ActivityCompat.OnRequestPermissionsResultCallback {
 
     private Button _launchCallButton;
     private Button _answerCallButton;
@@ -112,7 +112,13 @@ public class DashboardActivity extends Activity implements ActivityCompat.OnRequ
     public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
         switch (requestCode) {
             case REQUEST_READ_PHONE_STATE:
-                if ((grantResults.length > 0) && (grantResults[0] == PackageManager.PERMISSION_GRANTED)) {
+
+                for(int i = 0; i < grantResults.length; i++){
+                    System.out.println(grantResults[0]);
+
+                }
+
+                if (/*(grantResults.length > 0) &&*/ (grantResults[0] == PackageManager.PERMISSION_GRANTED)) {
                     TelephonyManager telephonyManager = (TelephonyManager)getSystemService(Context.TELEPHONY_SERVICE);
                     Toast.makeText(this, "imei: "+telephonyManager.getDeviceId(), Toast.LENGTH_SHORT).show();
 
