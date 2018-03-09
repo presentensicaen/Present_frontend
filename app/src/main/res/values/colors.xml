@@ -17,4 +17,6 @@
     <color name="v2_colorPrimaryLight">#E57273</color>
     <color name="v2_colorAccent">#5D6AB2</color>
     <color name="v2_colorWhite">#fdecf0</color>
+    <color name="superWhite">#FFFFFF</color>
+
 </resources>
