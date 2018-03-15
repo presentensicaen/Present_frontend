@@ -15,6 +15,8 @@ import android.provider.Settings;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
@@ -45,8 +47,10 @@ public class EnterCodeActivity extends Activity implements IEnterCodeView, Activ
 
     LocationManager locationManager;
     double longitudeNetwork, latitudeNetwork;
-    double _distance;
+    double _distance = 0;
     private static final int REQUEST_COARSE_LOCATION = 1;
+    boolean _locationManagerRunning = false;
+    boolean _requestPresence = false;
 
 
     @Override
@@ -65,17 +69,27 @@ public class EnterCodeActivity extends Activity implements IEnterCodeView, Activ
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_COARSE_LOCATION}, REQUEST_COARSE_LOCATION);
         }
 
+        if (!checkLocation()) {
+            return;
+        }
+
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            showToast("No permission", Toast.LENGTH_LONG);
+            return;
+        }
+        _locationManagerRunning = true;
+        locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 100, 0, locationListenerNetwork);
+        showToast("Recherche de votre position", Toast.LENGTH_LONG);
+
     }
 
-    @Override
+
     public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
         switch (requestCode) {
             case REQUEST_COARSE_LOCATION:
                 if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    //TODO
                 }
                 break;
-
             default:
                 break;
         }
@@ -92,32 +106,78 @@ public class EnterCodeActivity extends Activity implements IEnterCodeView, Activ
         _loadingAnimation = findViewById(R.id.loading_animation);
     }
 
+
+
     @SuppressLint("MissingPermission")
     @Override
     public void initializeEnterCodeActivity() {
+
         Button enterCodeButton = findViewById(R.id.enter_code);
         Button returnToDashboardButton = findViewById(R.id.return_dashboard);
 
+        TextView tv = (TextView) findViewById(R.id.distanceEnsi);
+        tv.addTextChangedListener(new TextWatcher() {
+
+            public void afterTextChanged(Editable s) {
+            }
+
+            public void beforeTextChanged(CharSequence s, int start,
+                                          int count, int after) {
+            }
+
+            public void onTextChanged(CharSequence s, int start,
+                                      int before, int count) {
+                Log.d("tag","changement position");
+                if (_requestPresence){
+                    testPresence();
+                }
+            }
+        });
+
+
         //@TODO c'est fat
         enterCodeButton.setOnClickListener(view -> {
-            if (_presenter.getMessage()) {
-                findViewById(R.id.message_container).setVisibility(View.VISIBLE);
-                TextView message_header = findViewById(R.id.message_header);
-                message_header.setText(R.string.success_message_header);
-                TextView message_text = findViewById(R.id.message_text);
-                message_text.setText(R.string.success_message_text);
-                findViewById(R.id.return_dashboard).setVisibility(View.VISIBLE);
+
+            if (!_locationManagerRunning){
+                locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 60 * 1000, 10, locationListenerNetwork);
+                showToast("Recherche de votre position", Toast.LENGTH_LONG);
+            }
+
+            if (_distance != 0){
+                testPresence();
             } else {
-                findViewById(R.id.message_container).setVisibility(View.VISIBLE);
-                TextView message_header = findViewById(R.id.message_header);
-                message_header.setText(R.string.error_message_header);
-                TextView message_text = findViewById(R.id.message_text);
-                message_text.setText(R.string.error_message_text);
+                _requestPresence = true;
             }
 
         });
 
         returnToDashboardButton.setOnClickListener(view -> goToDashboard());
+    }
+
+    void testPresence(){
+
+        if (_distance > 0.2){
+            findViewById(R.id.message_container).setVisibility(View.VISIBLE);
+            TextView message_header = findViewById(R.id.message_header);
+            message_header.setText(R.string.error_message_header);
+            TextView message_text = findViewById(R.id.message_text);
+            message_text.setText("Va en cours petit malin !");
+        }
+        else if (_presenter.getMessage()) {
+            findViewById(R.id.message_container).setVisibility(View.VISIBLE);
+            TextView message_header = findViewById(R.id.message_header);
+            message_header.setText(R.string.success_message_header);
+            TextView message_text = findViewById(R.id.message_text);
+            message_text.setText(R.string.success_message_text);
+            findViewById(R.id.return_dashboard).setVisibility(View.VISIBLE);
+        }
+        else {
+            findViewById(R.id.message_container).setVisibility(View.VISIBLE);
+            TextView message_header = findViewById(R.id.message_header);
+            message_header.setText(R.string.error_message_header);
+            TextView message_text = findViewById(R.id.message_text);
+            message_text.setText(R.string.error_message_text);
+        }
     }
 
     @Override
@@ -174,11 +234,9 @@ public class EnterCodeActivity extends Activity implements IEnterCodeView, Activ
                 locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
     }
 
-
+/*
     public void toggleNetworkUpdates(View view) {
-        showToast("You failed bitch !", Toast.LENGTH_LONG);
         if (!checkLocation()) {
-            showToast("You failed bitch !", Toast.LENGTH_LONG);
             return;
         }
         Button button = (Button) view;
@@ -192,9 +250,13 @@ public class EnterCodeActivity extends Activity implements IEnterCodeView, Activ
             }
             locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 60 * 1000, 10, locationListenerNetwork);
             showToast("Network provider started running", Toast.LENGTH_LONG);
+
             button.setText("pause");
+
+
+
         }
-    }
+    }*/
 
 
     public void distance(double latitude1, double longitude1, double latitude2, double longitude2){
@@ -204,27 +266,31 @@ public class EnterCodeActivity extends Activity implements IEnterCodeView, Activ
         double c= cos(toRadians(longitude1-longitude2));
 
         _distance = acos(a+b*c)*6371;
-        Log.d("distance","lat1 :"+Double.toString(latitude1)+"long1 :"+Double.toString(longitude1)+"lat2 :"+Double.toString(latitude2)
-                +"long2 :"+Double.toString(longitude2));
-        Log.d("distance","a :"+Double.toString(a));
-        Log.d("distance","b :"+Double.toString(b));
-        Log.d("distance","c :"+Double.toString(c));
-        Log.d("distance","distance :"+Double.toString(_distance));
+
     }
+
 
     private final LocationListener locationListenerNetwork = new LocationListener() {
         public void onLocationChanged(Location location) {
+            TextView tv = (TextView)findViewById(R.id.distanceEnsi);
             longitudeNetwork = location.getLongitude();
             latitudeNetwork = location.getLatitude();
+            distance(latitudeNetwork,longitudeNetwork,49.2144397,-0.3665470999999343);
+            tv.setText(Double.toString(_distance)+"km");
+
+            locationManager.removeUpdates(locationListenerNetwork);
+
+            /*
             runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
                     distance(latitudeNetwork,longitudeNetwork,49.2144397,-0.3665470999999343);
-                    TextView tv = (TextView)findViewById(R.id.distanceEnsi);
+
                     tv.setText(Double.toString(_distance)+"km");
                     showToast("Network Provider update", Toast.LENGTH_SHORT);
+
                 }
-            });
+            });*/
         }
 
         @Override
@@ -242,6 +308,7 @@ public class EnterCodeActivity extends Activity implements IEnterCodeView, Activ
 
         }
     };
+
 
 
 }

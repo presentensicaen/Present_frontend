@@ -103,14 +103,7 @@
             android:id="@+id/distanceEnsi"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="TextView" />
-
-        <Button
-            android:id="@+id/pause"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:onClick="toggleNetworkUpdates"
-            android:text="resume" />
+            android:text="Localisation ..." />
 
     </LinearLayout>
     </ScrollView>
