@@ -5,7 +5,9 @@ package fr.ensicaen.present.present.presenter.entercode;
  */
 
 public interface IEnterCodePresenter {
-    void sendCode();
+    void sendCode(String text);
 
     boolean getMessage();
+
+    void onPermissionResponseReceieved(int requestCode, int[] grantResults);
 }

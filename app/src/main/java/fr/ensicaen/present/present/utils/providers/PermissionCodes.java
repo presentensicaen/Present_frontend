@@ -1,4 +1,4 @@
-package fr.ensicaen.present.present.view;
+package fr.ensicaen.present.present.utils.providers;
 /* 
  *
  * ENSICAEN
@@ -11,25 +11,10 @@ package fr.ensicaen.present.present.view;
  * or revised without written permission of the authors.
  */
 
-import java.io.IOException;
-
-import fr.ensicaen.present.present.utils.Config;
-
 /*
  * @author The Présent ! Team <easterly@ecole.ensicaen.fr>
- * @version 0.0.1 - 20/01/18
+ * @version 0.0.1 - 17/03/18
  */
-public interface IGenericView {
-
-    void finish();
-
-    void showLoadingAnimation();
-
-    void hideLoadingAnimation();
-
-    void showToast(String message, int toastDuration);
-
-    Config getConfigAccessor() throws IOException;
-
-
+public class PermissionCodes {
+    public static final int REQUEST_COARSE_LOCATION = 1;
 }
