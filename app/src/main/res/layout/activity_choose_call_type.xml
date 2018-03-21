@@ -16,75 +16,52 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="0dp"
             android:orientation="vertical"
-            android:paddingBottom="20dp"
-            android:paddingLeft="20dp"
-            android:paddingRight="20dp"
-            tools:ignore="UselessParent">
+            android:paddingLeft="0dp"
+            android:paddingRight="0dp">
 
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="match_parent"
+                android:layout_height="265dp"
+                android:src="@drawable/teacher" />
 
-            <android.support.v7.widget.CardView
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="20dp"
-                android:layout_marginTop="20dp"
-                app:cardElevation="3dp">
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp">
 
-                <LinearLayout
-                    android:layout_width="match_parent"
+                <Button
+                    android:id="@+id/choose_groupe_button"
+                    style="@style/primary_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="170dp"
+
+                    android:layout_marginRight="5dp"
+                    android:layout_weight="1"
+                    android:elevation="7dp"
+                    android:text="@string/chose_group"
+                    android:textColor="@color/colorWhite" />
+
+                <Button
+                    android:id="@+id/generate_without_group_button"
+                    style="@style/primary_button"
+                    android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:orientation="vertical"
-                    android:paddingBottom="10dp"
-                    android:paddingEnd="10dp"
-                    android:paddingLeft="10dp"
-                    android:paddingRight="10dp"
-                    android:paddingStart="10dp"
-                    android:paddingTop="10dp">
-
-                    <TextView
-                        android:id="@+id/header_generate_code"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-
-                        android:hint="@string/header_generate_code"
-                        android:paddingTop="20sp"
-
-                        android:textSize="35sp"
-                        android:visibility="visible" />
-
-                    <TextView
-                        android:id="@+id/empty_text"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-
-                        android:hint="@string/empty_text"
-
-                        android:textSize="15sp" />
-                </LinearLayout>
-
-            </android.support.v7.widget.CardView>
-
-            <Button
-                android:id="@+id/generate_without_group_button"
-                style="@style/primary_button"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
 
 
-                android:text="@string/generate_code_no_groupe"
-                android:textColor="@color/colorWhite" />
-
-            <Button
-                android:id="@+id/choose_groupe_button"
-                style="@style/primary_button"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-
-                android:layout_marginTop="20dp"
-
-                android:text="@string/chose_group"
-                android:textColor="@color/colorWhite" />
+                    android:layout_marginLeft="5dp"
+                    android:layout_weight="1"
+                    android:elevation="7dp"
+                    android:text="@string/generate_code_no_groupe"
+                    android:textColor="@color/colorWhite" />
+            </LinearLayout>
         </LinearLayout>
+
 
     </ScrollView>
 

@@ -3,7 +3,7 @@
     android:id="@+id/loading_animation"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:alpha="0.7"
+    android:alpha="0.2"
     android:animateLayoutChanges="true"
     android:background="@android:color/black"
     android:clickable="true"
