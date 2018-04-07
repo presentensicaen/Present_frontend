@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
 import android.view.View;
@@ -45,7 +46,7 @@ import fr.ensicaen.present.present.view.choosecalltype.ChooseCallTypeActivity;
 import fr.ensicaen.present.present.view.choosepreviouscall.ChoosePreviousCallActivity;
 import fr.ensicaen.present.present.view.entercode.EnterCodeActivity;
 
-public class DashboardActivity extends Activity implements IDashboardView {
+public class DashboardActivity extends AppCompatActivity implements IDashboardView {
 
     private Button _launchCallButton;
     private Button _answerCallButton;

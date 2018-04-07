@@ -3,6 +3,7 @@ package fr.ensicaen.present.present.view.launchcall;
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
@@ -19,7 +20,7 @@ import fr.ensicaen.present.present.presenter.launchcall.LaunchCallPresenter;
 import fr.ensicaen.present.present.utils.Config;
 
 
-public class LaunchCallActivity extends Activity implements ILaunchCallView {
+public class LaunchCallActivity extends AppCompatActivity implements ILaunchCallView {
 
     private ILaunchCallPresenter _presenter;
     private Button _launchCall;
@@ -40,8 +41,7 @@ public class LaunchCallActivity extends Activity implements ILaunchCallView {
         _presenter = new LaunchCallPresenter(this);
         initializeConfigureCallActivity();
         initializeLayoutComponents();
-        Toast.makeText(this, "name:"+getSharedPreferences("AndroidPresent", 0).getString("name",null)+"\n"+
-                "id:"+getSharedPreferences("AndroidPresent", 0).getString("id",null), Toast.LENGTH_SHORT).show();
+
     }
 
     private void initializeLayoutComponents() {
@@ -63,17 +63,7 @@ public class LaunchCallActivity extends Activity implements ILaunchCallView {
 
     private void setLaunchCallButtonClick() {
         _launchCall.setOnClickListener(v -> {
-
-            /*To hide the virtual keyboard */
-            InputMethodManager inputManager = (InputMethodManager)
-                    getSystemService(Context.INPUT_METHOD_SERVICE);
-
-            inputManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(),
-                    InputMethodManager.HIDE_NOT_ALWAYS);
-
-            _presenter.onLaunchCallButtonClick(
-                    _timeSpinner.getSelectedItem().toString()
-            );
+            setSuccessMessage("BOB77");
         });
     }
 

@@ -86,14 +86,16 @@ public class EnterCodePresenter implements IEnterCodePresenter {
 
         @Override
         public void onSubscribe(Disposable d) {
-            _view.showLoadingAnimation();
+            //_view.showLoadingAnimation();
+            _view.showLoader();
             _disposable = d;
         }
 
         @Override
         public void onNext(GPSMessage gpsMessage) {
             if(gpsMessage.getLocation() != null){
-                _view.hideLoadingAnimation();
+                //_view.hideLoadingAnimation();
+                _view.hideLoader();
                 _longitude = gpsMessage.getLocation().getLongitude();
                 _latitude = gpsMessage.getLocation().getLatitude();
                 _view.showToast(_longitude+", "+_latitude, Toast.LENGTH_SHORT);
@@ -106,7 +108,8 @@ public class EnterCodePresenter implements IEnterCodePresenter {
 
         @Override
         public void onError(Throwable t) {
-            _view.hideLoadingAnimation();
+            //_view.hideLoadingAnimation();
+            _view.hideLoader();
             t.printStackTrace();
             _disposable.dispose();
             _view.showToast("GPS cannot be found. Try again", Toast.LENGTH_SHORT);
@@ -115,7 +118,8 @@ public class EnterCodePresenter implements IEnterCodePresenter {
 
         @Override
         public void onComplete() {
-            _view.hideLoadingAnimation();
+            //_view.hideLoadingAnimation();
+            _view.hideLoader();
             _disposable.dispose();
         }
     }

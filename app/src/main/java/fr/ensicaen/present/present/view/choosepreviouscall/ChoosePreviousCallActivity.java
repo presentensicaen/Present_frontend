@@ -3,6 +3,7 @@ package fr.ensicaen.present.present.view.choosepreviouscall;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
@@ -19,7 +20,7 @@ import fr.ensicaen.present.present.presenter.choosepreviouscall.IChoosePreviousC
 import fr.ensicaen.present.present.utils.Config;
 import fr.ensicaen.present.present.view.reviewcall.ReviewCallActivity;
 
-public class ChoosePreviousCallActivity extends Activity implements  IChoosePreviousCallView {
+public class ChoosePreviousCallActivity extends AppCompatActivity implements  IChoosePreviousCallView {
 
     private ListView _listview;
     private IChoosePreviousCallPresenter _presenter;

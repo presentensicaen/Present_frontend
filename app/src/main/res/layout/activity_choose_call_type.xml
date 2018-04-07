@@ -25,12 +25,16 @@
                 android:id="@+id/imageView"
                 android:layout_width="match_parent"
                 android:layout_height="265dp"
+                android:adjustViewBounds="true"
+                android:cropToPadding="true"
+                android:elevation="0dp"
+                android:scaleType="fitXY"
                 android:src="@drawable/teacher" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="50dp"
                 android:orientation="horizontal"
                 android:paddingLeft="5dp"
                 android:paddingRight="5dp">
@@ -39,11 +43,11 @@
                     android:id="@+id/choose_groupe_button"
                     style="@style/primary_button"
                     android:layout_width="wrap_content"
-                    android:layout_height="170dp"
+                    android:layout_height="50dp"
 
                     android:layout_marginRight="5dp"
                     android:layout_weight="1"
-                    android:elevation="7dp"
+                    android:elevation="0dp"
                     android:text="@string/chose_group"
                     android:textColor="@color/colorWhite" />
 

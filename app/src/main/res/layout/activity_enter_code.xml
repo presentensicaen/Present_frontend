@@ -44,6 +44,7 @@
             android:layout_marginRight="15dp"
             android:layout_marginTop="45dp"
             android:background="@drawable/accent_button"
+            android:elevation="0dp"
             android:text="@string/app_name"
             android:textColor="@android:color/background_light" />
 

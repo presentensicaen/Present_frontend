@@ -1,7 +1,9 @@
 package fr.ensicaen.present.present.view.entercode;
 
 import android.location.LocationManager;
+import android.view.View;
 
+import fr.ensicaen.present.present.R;
 import fr.ensicaen.present.present.view.IGenericView;
 
 /**
@@ -11,6 +13,10 @@ import fr.ensicaen.present.present.view.IGenericView;
 public interface IEnterCodeView extends IGenericView {
     void initializeEnterCodeActivity();
     void returnToPreviousPage();
+    void showLoader();
+
+
+    void hideLoader();
 
     LocationManager createLocationManager();
 }

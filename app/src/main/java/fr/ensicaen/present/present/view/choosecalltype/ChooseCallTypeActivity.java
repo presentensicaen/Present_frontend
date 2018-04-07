@@ -3,6 +3,7 @@ package fr.ensicaen.present.present.view.choosecalltype;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -18,7 +19,7 @@ import fr.ensicaen.present.present.view.launchcall.LaunchCallActivity;
 import fr.ensicaen.present.present.view.selectgroup.SelectGroupActivity;
 
 
-public class ChooseCallTypeActivity extends Activity implements IChooseCallTypeView {
+public class ChooseCallTypeActivity extends AppCompatActivity implements IChooseCallTypeView {
 
     private IChooseCallTypePresenter _presenter;
     private ViewGroup _loadingAnimation;

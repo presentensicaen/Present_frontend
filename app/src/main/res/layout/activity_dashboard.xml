@@ -28,13 +28,13 @@
                 android:layout_height="150dp"
                 android:layout_gravity="center"
                 android:layout_marginTop="20dp"
-                android:src="@drawable/barack_obama_test" />
+                android:src="@drawable/coline" />
 
             <TextView
                 android:id="@+id/profile_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Barack Obama"
+                android:text="Coline Smagghe"
                 android:textAlignment="center"
                 android:textSize="24sp"
                 android:textStyle="italic" />

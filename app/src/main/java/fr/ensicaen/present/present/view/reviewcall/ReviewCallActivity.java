@@ -2,6 +2,7 @@ package fr.ensicaen.present.present.view.reviewcall;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
@@ -19,7 +20,7 @@ import fr.ensicaen.present.present.utils.Config;
 import fr.ensicaen.present.present.view.choosepreviouscall.ChoosePreviousCallActivity;
 
 
-public class ReviewCallActivity extends Activity implements  IReviewCallView {
+public class ReviewCallActivity extends AppCompatActivity implements  IReviewCallView {
 
     private String _previousCallCode;
     private ListView _listview;

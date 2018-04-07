@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.view.ViewCompat;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.DecelerateInterpolator;
@@ -23,7 +24,7 @@ import fr.ensicaen.present.present.session.SessionManager;
 import fr.ensicaen.present.present.utils.Config;
 import fr.ensicaen.present.present.view.dashboard.DashboardActivity;
 
-public class LoginActivity extends Activity implements ILoginView {
+public class LoginActivity extends AppCompatActivity implements ILoginView {
 
     public static final int STARTUP_DELAY = 300;
     public static final int ANIM_ITEM_DURATION = 1000;

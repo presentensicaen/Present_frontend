@@ -96,7 +96,6 @@ public class LoginActivityPresenter implements ILoginPresenter {
             _view.showToast("Error : login failed", Toast.LENGTH_SHORT);
         } else {
             //@TODO make this a constant
-            _view.showToast("Bienvenue " + _user.getDisplayName(), Toast.LENGTH_SHORT);
             session.createLoginSession(_user.getDisplayName(), _user.getId());
             _view.goToDashboard();
             _view.finish();

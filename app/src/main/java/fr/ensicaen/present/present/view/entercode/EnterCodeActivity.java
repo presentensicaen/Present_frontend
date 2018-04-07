@@ -10,6 +10,7 @@ import android.location.LocationManager;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -33,7 +34,7 @@ import fr.ensicaen.present.present.view.dashboard.DashboardActivity;
 /**
  * Created by Jeanne on 14/12/2017.
  */
-public class EnterCodeActivity extends Activity implements IEnterCodeView, ActivityCompat.OnRequestPermissionsResultCallback {
+public class EnterCodeActivity extends AppCompatActivity implements IEnterCodeView, ActivityCompat.OnRequestPermissionsResultCallback {
     private IEnterCodePresenter _presenter;
     private ViewGroup _loadingAnimation;
 
@@ -57,6 +58,13 @@ public class EnterCodeActivity extends Activity implements IEnterCodeView, Activ
 
     }
 
+    public void showLoader(){
+        findViewById(R.id.progressBar2).setVisibility(View.INVISIBLE);
+    }
+
+    public void hideLoader(){
+        findViewById(R.id.progressBar2).setVisibility(View.VISIBLE);
+    }
 
     public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
         _presenter.onPermissionResponseReceieved(requestCode, grantResults);
@@ -82,41 +90,15 @@ public class EnterCodeActivity extends Activity implements IEnterCodeView, Activ
         Button enterCodeButton = findViewById(R.id.enter_code);
         Button returnToDashboardButton = findViewById(R.id.return_dashboard);
 
-        TextView tv = findViewById(R.id.distanceEnsi);
-        tv.addTextChangedListener(new TextWatcher() {
-
-            public void afterTextChanged(Editable s) {
-            }
-
-            public void beforeTextChanged(CharSequence s, int start,
-                                          int count, int after) {
-            }
-
-            public void onTextChanged(CharSequence s, int start,
-                                      int before, int count) {
-                Log.d("tag","changement position");
-                if (_requestPresence){
-                    testPresence();
-                }
-            }
-        });
-
 
         //@TODO c'est fat
         enterCodeButton.setOnClickListener(view -> {
-            _presenter.sendCode(((TextView)findViewById(R.id.code_text)).getText().toString());
-            //@TODO gps verification is done online
-/*
-            if (!_locationManagerRunning){
-
-                showToast("Recherche de votre position", Toast.LENGTH_LONG);
-            }
-
-            if (_distance != 0){
-                testPresence();
-            } else {
-                _requestPresence = true;
-            }*/
+            findViewById(R.id.message_container).setVisibility(View.VISIBLE);
+            TextView message_header = findViewById(R.id.message_header);
+            message_header.setText(R.string.success_message_header);
+            TextView message_text = findViewById(R.id.message_text);
+            message_text.setText(R.string.success_message_text);
+            findViewById(R.id.return_dashboard).setVisibility(View.VISIBLE);
 
         });
 
