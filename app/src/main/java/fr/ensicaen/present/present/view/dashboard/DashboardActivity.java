@@ -87,7 +87,7 @@ public class DashboardActivity extends AppCompatActivity implements IDashboardVi
         _profilePic = findViewById(R.id.profile_pic);
         _profilePic.setImageDrawable(
                 new RoundImage(
-                        BitmapFactory.decodeResource(getResources(), R.drawable.barack_obama_test)
+                        BitmapFactory.decodeResource(getResources(), R.drawable.coline)
                 )
         );
         _profileName = findViewById(R.id.profile_name);
