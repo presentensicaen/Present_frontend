@@ -11,6 +11,7 @@ package fr.ensicaen.present.present.presenter.reviewcall;
  * or revised without written permission of the authors.
  */
 
+import android.net.Uri;
 import android.os.Build;
 import android.widget.Toast;
 
@@ -21,6 +22,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import fr.ensicaen.present.present.R;
 import fr.ensicaen.present.present.models.ApiResponseModel;
 import fr.ensicaen.present.present.models.PreviousCallUserModel;
 import fr.ensicaen.present.present.services.IPreviousCallReviewService;
@@ -52,6 +54,8 @@ public class ReviewCallPresenter implements IReviewCallPresenter{
 
     @Override
     public void loadConcernedUserList(String callCode) {
+
+
         IPreviousCallReviewService service = ServiceFactory
                 .createRetrofitService(IPreviousCallReviewService.class, _config.property("API_URL"));
 
@@ -71,6 +75,9 @@ public class ReviewCallPresenter implements IReviewCallPresenter{
     }
 
     private void onVerificationComplete() {
+        _users.add(new PreviousCallUserModel("", "Guillaume ZUNINO"));
+        _users.add(new PreviousCallUserModel("", "Hugo DESCOUBES"));
+
         if(_users != null) {
             _view.loadList(_users);
             _view.hideLoadingAnimation();
